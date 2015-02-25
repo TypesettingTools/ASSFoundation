@@ -217,7 +217,9 @@
               "name": "Aegisub-Motion (Log)",
               "url": "https://github.com/TypesettingCartel/Aegisub-Motion"
             },
-            "ASSInspector.Inspector",
+            {
+              "moduleName": "ASSInspector.Inspector"
+            },
             {
               "moduleName": "YUtils",
               "optional": true
