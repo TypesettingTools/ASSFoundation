@@ -25,7 +25,7 @@ local createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSI
 local ASS = require("l0.ASSFoundation.FoundationMethods")(unpack(modules))
 local ASSFInstMeta = {__index = ASS}
 local ASSFInstProxy = setmetatable({}, ASSFInstMeta)
-local yutilsMissingMsg = version:checkOptionalModules("YUtils", true)
+local yutilsMissingMsg = version:checkOptionalModules("YUtils")
 
 local function loadClass(name)
     return require("l0.ASSFoundation."..name)(ASS, ASSFInstProxy, yutilsMissingMsg, unpack(modules))
