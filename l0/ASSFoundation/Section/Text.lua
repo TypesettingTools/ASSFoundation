@@ -1,5 +1,9 @@
 return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
-    local TextSection = createASSClass("Section.Text", ASS.String, {"value"}, {"string"})
+    local TextSection = createASSClass("Section.Text", ASS.String, {"value"}, {"string"}, nil, nil, function(tbl, key)
+        if key == "len" then
+            return unicode.len(tbl.value)
+        else return getmetatable(tbl)[key] end
+    end)
 
     function TextSection:new(value)
         self.value = self:typeCheck(self:getArgs({value},"",true))
@@ -10,7 +14,6 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         if coerce then return tostring(self.value)
         else return self:typeCheck(self.value) end
     end
-
 
     function TextSection:getEffectiveTags(includeDefault, includePrevious, copyTags)
         includePrevious, copyTags = default(includePrevious, true), true
