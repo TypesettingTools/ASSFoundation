@@ -4,6 +4,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     DrawingBase.set, DrawingBase.mod = nil, nil
 
     function DrawingBase:new(args)
+        args = default(args, {})
         -- TODO: support alternative signature for ASSLineDrawingSection
         local cmdMap, lastCmdType = ASS.Draw.commandMapping
         -- construct from a compatible object
