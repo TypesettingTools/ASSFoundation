@@ -1,7 +1,7 @@
 local DependencyControl = require("l0.DependencyControl")
 local version = DependencyControl{
     name = "ASSFoundation",
-    version = "0.1.1",
+    version = "0.1.2",
     description = "General purpose ASS processing library",
     author = "line0",
     url = "http://github.com/TypesettingCartel/ASSFoundation",

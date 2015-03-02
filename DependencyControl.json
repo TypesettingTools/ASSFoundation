@@ -14,14 +14,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.1.1",
-          "released": "2015-02-23",
+          "version": "0.1.2",
+          "released": "2015-03-02",
           "default": true,
           "files": [
             {
               "name": ".lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B7D3D60C9EC831EABB2443D178B8218092323748"
+              "sha1": "D8E67233DD3742B58B8B7A1E2257FA205327C0A2"
             },
             {
               "name": "/Base.lua",
@@ -46,7 +46,7 @@
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "28FC037BDCFAA6FF47BD507C1EA35056179964FF"
+              "sha1": "AED000301297275B015B9BE06D99E58E0932CBDF"
             },
             {
               "name": "/TagList.lua",
@@ -76,7 +76,7 @@
             {
               "name": "/Draw/DrawingBase.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F5542BCFE153958E92F62162D01400F019104A0F"
+              "sha1": "B5D8D40D90704BA532D799025D9C7C331492A763"
             },
             {
               "name": "/Draw/Line.lua",
@@ -121,7 +121,7 @@
             {
               "name": "/Section/Text.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "CFE4D91056527ED85C4699107307F808FC184131"
+              "sha1": "0560B9C1C60A231AD1397DCB78B902511EC50C81"
             },
             {
               "name": "/Tag/Align.lua",
@@ -228,6 +228,11 @@
         }
       },
       "changelog": {
+        "0.1.2": [
+          "LineContents: added :splitAtIndexes() and :getTextLength() methods.",
+          "TextSection: added calculated property 'len for unicode string length.",
+          "Drawings can now be constructed without arguments."
+        ],
         "0.1.1": [
           "Added update feeds"
         ],
