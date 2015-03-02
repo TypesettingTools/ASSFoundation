@@ -422,7 +422,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function LineContents:splitAtIntervals(callback, cleanLevel, reposition, writeOrigin)
-        cleanLevel = default(cleanLevel,3)
+        cleanLevel, reposition = default(cleanLevel, 3), default(reposition, true)
         if type(callback)=="number" then
             local step=callback
             callback = function(idx,len)
@@ -471,6 +471,22 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         if reposition then self:repositionSplitLines(splitLines, writeOrigin) end
         return splitLines
+    end
+
+    function LineContents:splitAtIndexes(indexes, cleanLevel, reposition, writeOrigin)
+        local iType = type(indexes)
+        if iType == "number" then
+            indexes = {indexes}
+        else assertEx(iType == "table", "argument #1 must be either a single index or table of indexes got a %s.",
+                      iType)
+        end
+
+        local i = 1
+        return self:splitAtIntervals(function(_, len)
+            textIndex = indexes[i] or len+1
+            i = i + 1
+            return textIndex
+        end, cleanLevel, reposition, writeOrigin)
     end
 
     function LineContents:repositionSplitLines(splitLines, writeOrigin)
@@ -696,6 +712,14 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             end)
             return cnt, #self.sections
         end
+    end
+
+    function LineContents:getTextLength()
+        local len = 0
+        self:callback(function(section)
+            len = len + section.len
+        end, ASS.Section.Text)
+        return len
     end
 
     function LineContents:isAnimated()
