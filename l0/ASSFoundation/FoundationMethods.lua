@@ -148,11 +148,14 @@ return function(createASSClass, re, util, unicode, Common, LineCollection, Line,
 
     function ASS:getTagFromString(str)
         for _,tag in pairs(self.tagMap) do
-            if tag.pattern then
-                local res = {str:find("^"..tag.pattern)}
-                if #res>0 then
-                    local start, end_ = table.remove(res,1), table.remove(res,1)
-                    return tag.type{raw=res, tagProps=tag.props}, start, end_
+            for name, sig in pairs(tag.signatures) do
+                if sig.pattern then
+                    local res = {str:find("^"..sig.pattern)}
+                    if #res>0 then
+                        local start, end_ = table.remove(res,1), table.remove(res,1)
+                        tag.props.signature = name
+                        return tag.type{raw=res, tagProps=tag.props}, start, end_
+                    end
                 end
             end
         end
@@ -179,6 +182,7 @@ return function(createASSClass, re, util, unicode, Common, LineCollection, Line,
         return names
     end
 
+    -- TODO: check if this can be removed
     function ASS:formatTag(tagRef, ...)
         return self:mapTag(tagRef.__tag.name).format:formatFancy(...)
     end

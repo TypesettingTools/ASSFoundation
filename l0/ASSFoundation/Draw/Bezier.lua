@@ -28,7 +28,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                 self.parent:getLength()
             end
             -- TODO: check
-            local shapeSection = ASS.Draw.DrawingBase{ASS.Draw.Move(self.cursor:get()),self}
+            local shapeSection = ASS.Draw.DrawingBase{ASS.Draw.Move{self.cursor:get()},self}
             self.flattened = ASS.Draw.DrawingBase{str=YUtils.shape.flatten(shapeSection:getTagParams())}
         end
         return self.flattened

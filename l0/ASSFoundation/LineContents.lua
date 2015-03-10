@@ -618,8 +618,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             color2 = ASS:createTag("color2", styleRef("color2")),
             color3 = ASS:createTag("color3", styleRef("color3")),
             color4 = ASS:createTag("color4", styleRef("color4")),
-            clip_vect = ASS:createTag("clip_vect", {ASS.Draw.Move(0,0), ASS.Draw.Line(resX,0), ASS.Draw.Line(resX,resY), ASS.Draw.Line(0,resY), ASS.Draw.Line(0,0)}),
-            iclip_vect = ASS:createTag("iclip_vect", {ASS.Draw.Move(0,0), ASS.Draw.Line(0,0), ASS.Draw.Line(0,0), ASS.Draw.Line(0,0), ASS.Draw.Line(0,0)}),
+            clip_vect = ASS:createTag("clip_vect", {ASS.Draw.Move{0,0}, ASS.Draw.Line{resX,0}, ASS.Draw.Line{resX,resY}, ASS.Draw.Line{0,resY}, ASS.Draw.Line{0,0}}),
+            iclip_vect = ASS:createTag("iclip_vect", {ASS.Draw.Move{0,0}, ASS.Draw.Line{0,0}, ASS.Draw.Line{0,0}, ASS.Draw.Line{0,0}, ASS.Draw.Line{0,0}}),
             clip_rect = ASS:createTag("clip_rect", 0, 0, resX, resY),
             iclip_rect = ASS:createTag("iclip_rect", 0, 0, 0, 0),
             bold = ASS:createTag("bold", styleRef("bold")),
@@ -630,11 +630,12 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             fontsize = ASS:createTag("fontsize", styleRef("fontsize")),
             fontname = ASS:createTag("fontname", styleRef("fontname")),
             position = position,
-            move_simple = ASS:createTag("move_simple", position, position),
             move = ASS:createTag("move", position, position),
             origin = ASS:createTag("origin", position),
         }
         for name,tag in pairs(ASS.tagMap) do
+            -- defaults always use default signature
+            tag.props.signature = "default"
             if tag.default then tagList.tags[name] = tag.type{raw=tag.default, tagProps=tag.props} end
         end
 
@@ -738,8 +739,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         end
 
         if #effTags.transforms>0 or
-        (t.move and not t.move.startPos:equal(t.move.endPos) and t.move.startTime<t.move.endTime) or
-        (t.move_simple and not t.move_simple.startPos:equal(t.move_simple.endPos)) or
+        (t.move and not t.move.startPos:equal(t.move.endPos) and (t.move.startTime<t.move.endTime or t.move.endTime == 0)) or
         (t.fade and (t.fade.startDuration>0 and not t.fade.startAlpha:equal(t.fade.midAlpha) or
                      t.fade.endDuration>0 and not t.fade.midAlpha:equal(t.fade.endAlpha))) or
         (t.fade_simple and (t.fade_simple.startDuration>0 and not t.fade_simple.startAlpha:equal(t.fade_simple.midAlpha) or

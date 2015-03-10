@@ -1,7 +1,7 @@
 return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
     local CommandBase = createASSClass("Draw.CommandBase", ASS.Tag.Base, {}, {})
-    function CommandBase:new(...)
-        local args = {self:getArgs({...}, 0, true)}
+    function CommandBase:new(args)
+        local args = {self:getArgs(args, 0, true)}
 
         if self.compatible[ASS.Point] then
             self.x, self.y = ASS.Number{args[1]}, ASS.Number{args[2]}
@@ -14,7 +14,6 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return self
     end
 
-
     function CommandBase:getTagParams(coerce)
         local params, parts = self.__meta__.order, {}
         local i, j = 1, 1
@@ -22,7 +21,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             parts[i], parts[i+1] = self[params[j]]:getTagParams(coerce)
             i, j = i+self[params[j]].__meta__.rawArgCnt, j+1
         end
-        return table.concat(parts, " ")
+        return parts
     end
 
     function CommandBase:getLength(prevCmd)
@@ -39,7 +38,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         local name, len = self.__tag.name, 0
         if name == "b" then
             -- TODO: check
-            local shapeSection = ASS.Draw.DrawingBase{ASS.Draw.Move(self.cursor:get()),self}
+            local shapeSection = ASS.Draw.DrawingBase{ASS.Draw.Move{self.cursor:get()},self}
             self.flattened = ASS.Draw.DrawingBase{str=YUtils.shape.flatten(shapeSection:getTagParams())} --save flattened shape for further processing
             len = self.flattened:getLength()
         elseif name =="m" or name == "n" then len=0

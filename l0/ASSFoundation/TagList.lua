@@ -286,7 +286,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                  "argument #1 must be either a single or a table of tag names, got a %s.", type(tagNames))
 
         local filtered, removed = TagList(nil, self.contentRef), TagList(nil, self.contentRef)
-        local selected, transNames, retTrans = {}, ASS.tagNames[ASS.Tag.Transform]
+        local selected, retTrans = {}
         local propCnt = tagProps and table.length(tagProps) or 0
 
         if not tagNames and not (tagProps or #tagProps==0) then
@@ -315,7 +315,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
             if name == "reset" then
                 target.reset = selfTag
-            elseif transNames[name] then
+            elseif name == "transform" then
                 target.retTrans = true         -- TODO: filter transforms by type
             elseif self.tags[name] then
                 target.tags[name] = selfTag

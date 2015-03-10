@@ -15,13 +15,15 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             self.__tag.inverse = copy.__tag.inverse
         -- construct from a single string of drawing commands
         elseif args.raw or args.str then
+            local str, scale = args.str, args.scale or 1
+            if args.raw and args.tagProps.signature == "scale" then
+                str, scale = args.raw[2], args.raw[1]
+            elseif args.raw then
+                str = args.raw[1]
+            end
+
             self.contours = {}
-            local str = args.str or args.raw[1]
-            if self.class == ASS.Tag.ClipVect then
-                local _,sepIdx = str:find("^%d+,")
-                self.scale = ASS:createTag("drawing", epIdx and tonumber(str:sub(0,sepIdx-1)) or 1)
-                str = sepIdx and str:sub(sepIdx+1) or str
-            else self.scale = ASS:createTag("drawing", args.scale or 1) end
+            self.scale = ASS:createTag("drawing", scale)
 
             local cmdParts, i, j = str:split(" "), 1, 1
             local contour, c = {}, 1
@@ -40,8 +42,23 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                     else lastCmdType = cmdType end
                     local prmCnt = lastCmdType.__defProps.ords
                     local prms = table.sliceArray(cmdParts,i+1,i+prmCnt)
-                    contour[j] = lastCmdType(unpack(prms))
-                    i = i+prmCnt
+                    for p=1,#prms do
+                        local org, skipOrd = prms[p], false
+                        prms[p] = tonumber(prms[p])
+                        if not prms[p] then
+                            local near, rsn = table.concat(cmdParts, " ", math.min(i+p-10,1), i+p)
+                            if org:match("^[bclmnps]$") then
+                                skipOrd = ASS.config.fixDrawings
+                                rsn = string.format("incorrect number of ordinates for command '%s': expected %d, got %d",
+                                                     lastCmdType.typeName, prmCnt, p-1)
+                            else rsn = string.format("expected ordinate, got '%s'", org) end
+                            assertEx(skipOrd, "Error: failed to parse drawing near '%s' (%s).", near, rsn)
+                        end
+                    end
+                    if not skipOrd then
+                        contour[j] = lastCmdType(prms)
+                        i = i+prmCnt
+                    end
                 else error(string.format("Error: Unsupported drawing Command '%s'.", cmdParts[i])) end
                 i, j = i+1, j+1
             end
@@ -50,7 +67,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                 self.contours[c].parent = self
             end
 
-            if self.scale>=1 then
+            if self.scale > 1 then
                 self:div(2^(self.scale-1),2^(self.scale-1))
             end
         else
@@ -232,11 +249,17 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function DrawingBase:getTagParams(coerce)
-        local cmdStr, j = {}, 1
+        local cmds, j = {}, 1
         for i=1,#self.contours do
-            cmdStr[i] = self.contours[i]:getTagParams(self.scale, self, coerce)
+            cmds[i] = self.contours[i]:getTagParams(self.scale, self, coerce)
         end
-        return table.concat(cmdStr, " "), self.scale:getTagParams(coerce)
+        local cmdStr = table.concat(cmds, " ")
+
+        local scale = self.scale:getTagParams(coerce)
+        self.__tag.signature = scale == 1 and "default" or "scale"
+        if self.__tag.signature == "scale" then
+            return scale, cmdStr
+        else return cmdStr end
     end
 
     function DrawingBase:commonOp(method, callback, default, x, y) -- drawing commands only have x and y in common
@@ -247,8 +270,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function DrawingBase:drawRect(tl, br) -- TODO: contour direction
-        local rect = ASS.Draw.Contour{ASS.Draw.Move(tl), ASS.Draw.Line(br.x, tl.y),
-                                      ASS.Draw.Line(br), ASS.Draw.Line(tl.x, br.y)}
+        local rect = ASS.Draw.Contour{ASS.Draw.Move{tl}, ASS.Draw.Line{br.x, tl.y},
+                                      ASS.Draw.Line{br}, ASS.Draw.Line{tl.x, br.y}}
         self:insertContours(rect)
         return self, rect
     end

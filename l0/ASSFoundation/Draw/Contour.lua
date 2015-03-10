@@ -235,7 +235,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                 lastCmdType = cmd.__tag.name
                 cmdStr[j], j = lastCmdType, j+1
             end
-            local params={cmd:getTagParams(coerce)}
+            local params=cmd:getTagParams(coerce)
             for p=1,#params do
                 cmdStr[j] = scale>1 and params[p]*(2^(scale-1)) or params[p]
                 j = j+1

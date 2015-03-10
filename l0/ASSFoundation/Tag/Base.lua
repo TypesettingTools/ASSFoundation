@@ -75,8 +75,12 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function TagBase:getTagString(caller, coerce)
-        return (self.disabled or caller and caller.toRemove and caller.toRemove[self]) and ""
-               or ASS:formatTag(self, self:getTagParams(coerce))
+        if self.disabled or caller and caller.toRemove and caller.toRemove[self] then
+            return ""
+        end
+        local params = {self:getTagParams(coerce)}
+        local signature = ASS.tagMap[self.__tag.name].signatures[self.__tag.signature or "default"]
+        return signature.format:formatFancy(unpack(params))
     end
 
     function TagBase:equal(ASSTag)  -- checks equalness only of the relevant properties
