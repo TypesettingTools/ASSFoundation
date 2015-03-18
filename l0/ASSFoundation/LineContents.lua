@@ -412,7 +412,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         local splitLines = {}
         self:callback(function(section,_,i,j)
             local splitLine = Line(self.line, self.line.parentCollection, {ASS={}})
-            splitLine.ASS = ASS.LineContents(splitLine, table.insert(self:get(ASS.Section.Tag,0,i),section))
+            local splitSections = self:get(ASS.Section.Tag,0,i)
+            splitSections[#splitSections+1] = section
+            splitLine.ASS = ASS.LineContents(splitLine, splitSections)
             splitLine.ASS:cleanTags(cleanLevel)
             splitLine.ASS:commit()
             splitLines[j] = splitLine
@@ -445,8 +447,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                 local skip = nextIdx>sectEndIdx+1
                 idx = skip and sectEndIdx+1 or nextIdx
                 local addTextSection = skip and section:copy() or ASS.Section.Text(text:sub(1,nextIdx-off-1))
-                local addSections, lastContents = table.insert(self:get(ASS.Section.Tag,lastI+1,i), addTextSection), splitLines[#splitLines].ASS
+                local addSections, lastContents = self:get(ASS.Section.Tag,lastI+1,i), splitLines[#splitLines].ASS
                 lastContents:insertSections(addSections)
+                lastContents:insertSections(addTextSection)
             end
 
             while idx <= sectEndIdx do

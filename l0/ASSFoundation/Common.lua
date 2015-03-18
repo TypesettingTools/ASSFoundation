@@ -181,11 +181,6 @@ table.first = function(tbl)
     end
 end
 
-table._insert = table.insert
-table.insert = function(tbl,...)
-    table._insert(tbl,...)
-    return tbl
-end
 
 table.join = function(...)
     local arr, arrN = {}, 0
@@ -318,12 +313,6 @@ table.sliceArray = function(tbl, istart, iend)
         arr[1+i-istart] = tbl[i]
     end
     return arr
-end
-
-table._sort = table.sort
-table.sort = function(tbl,...)
-    table._sort(tbl,...)
-    return tbl
 end
 
 table.values = function(tbl)
