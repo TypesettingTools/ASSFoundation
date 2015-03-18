@@ -14,14 +14,18 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.1.2",
-          "released": "2015-03-02",
+          "version": "0.2.0",
+          "released": "2015-03-18",
           "default": true,
           "files": [
             {
-              "name": ".lua",
+              "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "D8E67233DD3742B58B8B7A1E2257FA205327C0A2"
+              "sha1": "C1C97D3CA2CFC793DC48A4F458558717A8B77DE1"
+            },
+            {
+              "name": ".lua",
+              "delete": true
             },
             {
               "name": "/Base.lua",
@@ -36,7 +40,7 @@
             {
               "name": "/FoundationMethods.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "4A3EBFBF739949C49F9E5EF70991FFAF49A6D3EA"
+              "sha1": "50AD08047AFC8321F0DB0156586267B24D00F000"
             },
             {
               "name": "/LineBounds.lua",
@@ -46,17 +50,17 @@
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "AED000301297275B015B9BE06D99E58E0932CBDF"
+              "sha1": "0922B809A788BF82FF249D6D0A1D48450864F823"
             },
             {
               "name": "/TagList.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "1BC604C3A9F7746133A114F6AFD702FAE7316561"
+              "sha1": "91D1B027D2F988B3C401D67D8D9FBC3F7EA7EDC4"
             },
             {
               "name": "/Draw/Bezier.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "9DF770199954F0D52A3E0EE905ADCDCA2029EA4C"
+              "sha1": "095B7A9B63AAA84F1217B2D469C90D76A173300B"
             },
             {
               "name": "/Draw/Close.lua",
@@ -66,17 +70,17 @@
             {
               "name": "/Draw/CommandBase.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "3E111611492795C91094D6ADA3B6254145CD087A"
+              "sha1": "7B5D3CE43E4DD8B47468E63C7FFE0637CA3F8E73"
             },
             {
               "name": "/Draw/Contour.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F361D6274ACA979CB4CD8A6312526D83925A1F87"
+              "sha1": "1D539D3911C166309B4175C837D411EDCEB94634"
             },
             {
               "name": "/Draw/DrawingBase.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B5D8D40D90704BA532D799025D9C7C331492A763"
+              "sha1": "B3D9D29AF1DA05C7F21B72C54B6423822B8F06B5"
             },
             {
               "name": "/Draw/Line.lua",
@@ -131,7 +135,7 @@
             {
               "name": "/Tag/Base.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "401DA119B4D04107A7923CE395EDC35EDC19BFDB"
+              "sha1": "21C9F56405E703B238843CE3EA7C091D76A5AD18"
             },
             {
               "name": "/Tag/ClipRect.lua",
@@ -161,7 +165,7 @@
             {
               "name": "/Tag/Move.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "6A717D353B9A6CABE86342D78915D99ED7413221"
+              "sha1": "06BBD862A37648DB78D3446F3CC5DC65771486F9"
             },
             {
               "name": "/Tag/String.lua",
@@ -176,7 +180,7 @@
             {
               "name": "/Tag/Transform.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "A38524678B58E6AD977A6E7384B9689759D91D32"
+              "sha1": "C6ED75E054AEE0913A13AFF577AD05537C162AB8"
             },
             {
               "name": "/Tag/Weight.lua",
@@ -218,7 +222,9 @@
               "url": "https://github.com/TypesettingCartel/Aegisub-Motion"
             },
             {
-              "moduleName": "ASSInspector.Inspector"
+              "moduleName": "ASSInspector.Inspector",
+              "version": "0.5.2",
+              "feed": "https://raw.githubusercontent.com/TypesettingCartel/ASSInspector/master/DependencyControl.json"
             },
             {
               "moduleName": "YUtils",
@@ -228,6 +234,11 @@
         }
       },
       "changelog": {
+        "0.2.0": [
+          "Fixed parsing of scaled clips."
+          "Improved handling of broken drawings."
+          "Simplified working with tags that have different signatures (\\move, \\t and \\clip)"
+        ],
         "0.1.2": [
           "LineContents: added :splitAtIndexes() and :getTextLength() methods.",
           "TextSection: added calculated property 'len for unicode string length.",
@@ -249,14 +260,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/cmn-v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.1.1",
-          "released": "2015-02-23",
+          "version": "0.2.0",
+          "released": "2015-03-18",
           "default": true,
           "files": [
             {
               "name": ".lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "70BF8C10B6AEF7DD1183860F1D4BB56A16FE2054"
+              "sha1": "60B27619878B5BB263767A5F9C21DC247D68A79F"
             }
           ],
           "requiredModules": [
@@ -275,6 +286,9 @@
         }
       },
       "changelog": {
+        "0.2.0": [
+          "Removed table.sort and and table.insert replacements."
+        ],
         "0.1.1": [
           "Fixed broken RGB to HSV color conversion",
           "Added update feeds"

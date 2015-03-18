@@ -1,7 +1,7 @@
 DependencyControl = require "l0.DependencyControl"
 version = DependencyControl{
     name: "ASSFoundation",
-    version: "0.1.2",
+    version: "0.2.0",
     description: "General purpose ASS processing library",
     author: "line0",
     url: "http://github.com/TypesettingCartel/ASSFoundation",
@@ -10,14 +10,13 @@ version = DependencyControl{
     {
         "l0.ASSFoundation.ClassFactory",
         "aegisub.re", "aegisub.util", "aegisub.unicode",
-        {"l0.ASSFoundation.Common", version: "0.1.1", url: "https://github.com/TypesettingCartel/ASSFoundation",
+        {"l0.ASSFoundation.Common", version: "0.2.0", url: "https://github.com/TypesettingCartel/ASSFoundation",
          feed: "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/master/DependencyControl.json"},
         {"a-mo.LineCollection", version: "1.0.1", url: "https://github.com/TypesettingCartel/Aegisub-Motion"},
         {"a-mo.Line", version: "1.0.0", url: "https://github.com/TypesettingCartel/Aegisub-Motion"},
         {"a-mo.Log", url: "https://github.com/TypesettingCartel/Aegisub-Motion"},
-        {"ASSInspector.Inspector", version: "0.5.0", url: "https://github.com/TypesettingCartel/ASSInspector",
+        {"ASSInspector.Inspector", version: "0.5.2", url: "https://github.com/TypesettingCartel/ASSInspector",
          feed: "https://raw.githubusercontent.com/TypesettingCartel/ASSInspector/master/DependencyControl.json"},
-         --feed = "https://raw.githubusercontent.com/TypesettingCartel/ASSInspector/master/DependencyControl.json"},
         {"YUtils", optional: true},
     }
 }

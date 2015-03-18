@@ -1,7 +1,7 @@
 local DependencyControl = require("l0.DependencyControl")
 local version = DependencyControl{
     name = "ASSFoundation Common Components",
-    version = "0.1.1",
+    version = "0.2.0",
     description = "Collection of commonly used functions",
     author = "line0",
     moduleName = "l0.ASSFoundation.Common",
