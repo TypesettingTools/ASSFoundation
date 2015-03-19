@@ -235,8 +235,8 @@
       },
       "changelog": {
         "0.2.0": [
-          "Fixed parsing of scaled clips."
-          "Improved handling of broken drawings."
+          "Fixed parsing of scaled clips.",
+          "Improved handling of broken drawings.",
           "Simplified working with tags that have different signatures (\\move, \\t and \\clip)"
         ],
         "0.1.2": [
