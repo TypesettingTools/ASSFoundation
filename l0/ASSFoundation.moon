@@ -1,7 +1,7 @@
 DependencyControl = require "l0.DependencyControl"
 version = DependencyControl{
     name: "ASSFoundation",
-    version: "0.2.0",
+    version: "0.2.1",
     description: "General purpose ASS processing library",
     author: "line0",
     url: "http://github.com/TypesettingTools/ASSFoundation",
@@ -15,7 +15,7 @@ version = DependencyControl{
         {"a-mo.LineCollection", version: "1.0.1", url: "https://github.com/TypesettingTools/Aegisub-Motion"},
         {"a-mo.Line", version: "1.0.0", url: "https://github.com/TypesettingTools/Aegisub-Motion"},
         {"a-mo.Log", url: "https://github.com/TypesettingTools/Aegisub-Motion"},
-        {"SubInspector.Inspector", version: "0.5.2", url: "https://github.com/TypesettingTools/SubInspector",
+        {"SubInspector.Inspector", version: "0.6.0", url: "https://github.com/TypesettingTools/SubInspector",
          feed: "https://raw.githubusercontent.com/TypesettingTools/SubInspector/master/DependencyControl.json"},
         {"YUtils", optional: true},
     }

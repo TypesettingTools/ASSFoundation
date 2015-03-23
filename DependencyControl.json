@@ -14,14 +14,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.2.0",
-          "released": "2015-03-18",
+          "version": "0.2.1",
+          "released": "2015-03-23",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "C1C97D3CA2CFC793DC48A4F458558717A8B77DE1"
+              "sha1": "D9A54A6428B02F01A62AD4F095C1133910086076"
             },
             {
               "name": ".lua",
@@ -30,7 +30,7 @@
             {
               "name": "/Base.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "BEF391301681BE3033CE910DF7AA0B540C3CA43C"
+              "sha1": "ABADC55C37E45F0C63408909977378C20636B774"
             },
             {
               "name": "/ClassFactory.lua",
@@ -40,152 +40,152 @@
             {
               "name": "/FoundationMethods.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "50AD08047AFC8321F0DB0156586267B24D00F000"
+              "sha1": "63A504DEB834B279A336F89B18B76E142A7FC03C"
             },
             {
               "name": "/LineBounds.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "2FE859D2A1040E1AB64FE2130EAB06367380B850"
+              "sha1": "8003CD51043C9B6CBD38EB1BE58DFB254B49F6AA"
             },
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "0922B809A788BF82FF249D6D0A1D48450864F823"
+              "sha1": "33933B538122EF66EF210115E268B07756FA3510"
             },
             {
               "name": "/TagList.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "91D1B027D2F988B3C401D67D8D9FBC3F7EA7EDC4"
+              "sha1": "8D40D53E82EA581242B6F9273B6AFC76BEA8693A"
             },
             {
               "name": "/Draw/Bezier.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "095B7A9B63AAA84F1217B2D469C90D76A173300B"
+              "sha1": "22799BFF13B95E589EB2CF8507DB45417AF44AA6"
             },
             {
               "name": "/Draw/Close.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "BEB294E33D574E5A48BA30747810DF896C1EEA1B"
+              "sha1": "C19C1B2BDF34D156930272A08FC5F2C412FBC3FA"
             },
             {
               "name": "/Draw/CommandBase.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "7B5D3CE43E4DD8B47468E63C7FFE0637CA3F8E73"
+              "sha1": "B3C310179B12A367642324F4542D15152E0A8ADD"
             },
             {
               "name": "/Draw/Contour.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "1D539D3911C166309B4175C837D411EDCEB94634"
+              "sha1": "DF662D58A65073C1E8A53708AC259346808E42FD"
             },
             {
               "name": "/Draw/DrawingBase.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B3D9D29AF1DA05C7F21B72C54B6423822B8F06B5"
+              "sha1": "1D976592710B01480667C1DC031471A6BD8E0082"
             },
             {
               "name": "/Draw/Line.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "EFD6C977B5FA86772D65A011532F547D9DE729D3"
+              "sha1": "D0B600A2BD9ED63B6D2D5027B1DBB6170E754C83"
             },
             {
               "name": "/Primitive/Number.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "792E4772A5064F9721F2AABC8A764A348EDE5DD5"
+              "sha1": "B0ABD2AE7B536668EE61F2722E49D36ACDBFEE54"
             },
             {
               "name": "/Primitive/Point.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F197D6D44A9FFCAD23DB7289E563C4FC6D1DB7E9"
+              "sha1": "52ADFBE6FF993795F44975E7DDDC8E61BA74DE5A"
             },
             {
               "name": "/Primitive/String.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "DB98B12ABC1109E54AB5497EC3798ECE2297F48B"
+              "sha1": "E1A9549F990E0183CCB471AA9A55FF2D0500DA37"
             },
             {
               "name": "/Primitive/Time.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "77789DCA8C6D79DD5B22B96AD630835E8A920C94"
+              "sha1": "8DA5EFE01B2D452F5B947627E91A68A3208630C2"
             },
             {
               "name": "/Section/Comment.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "9A9D4BBD85ED510F8647B7722EE806A6B2A8298B"
+              "sha1": "BA31C90FA45BCDC46DE8EE10F8F01812A021C6B3"
             },
             {
               "name": "/Section/Drawing.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "9907FA8A826DE7A0EB01F501005141A1C7E9C50D"
+              "sha1": "2721970D77D530305B87ED86401BE77B002875FA"
             },
             {
               "name": "/Section/Tag.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "1EA044172A4CDFE54BE4CD35BF4C02FDF2DB4DDF"
+              "sha1": "1E8D6DC185C1C2029613E2F7B7821990D4DDC680"
             },
             {
               "name": "/Section/Text.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "0560B9C1C60A231AD1397DCB78B902511EC50C81"
+              "sha1": "CDB7C834BD025DCEC13FA7D653EEB31DE4676C7C"
             },
             {
               "name": "/Tag/Align.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "6FC50807C52C9413AA80E18AA6EC4CFDB35BCD30"
+              "sha1": "C99439C17C23B8DEA360F4BB7DD0F90F757B0CF2"
             },
             {
               "name": "/Tag/Base.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "21C9F56405E703B238843CE3EA7C091D76A5AD18"
+              "sha1": "43E02148E0FCCF5ECA7B69260C467892947A8C2E"
             },
             {
               "name": "/Tag/ClipRect.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "02AB5DB90AF06F4D1D48A01403DB1BE76767FEC3"
+              "sha1": "093BE2D1BB4B98C06404529AB6EBFE751F4BE0AF"
             },
             {
               "name": "/Tag/ClipVect.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "80DE00DD500A09F935D2F6E05F932E2C7CBCF3D8"
+              "sha1": "183252B88324614282C860A480A5C0D8B76A9A6B"
             },
             {
               "name": "/Tag/Color.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "32F79CAEA34743FBB50AC4201802442E1CF8E3BE"
+              "sha1": "1F7C61882B558DC86C12CEC45CB52A0C85D9CB75"
             },
             {
               "name": "/Tag/Fade.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "77F898BAB8AF2ACF4334D8DC5200CA0B4A1C3C24"
+              "sha1": "C04A4D0566AF6B2CA00055957560A00FCFCE5232"
             },
             {
               "name": "/Tag/Indexed.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "CD8E0FBB1880DE6FA214FA9F4093CC5BCC9C9591"
+              "sha1": "80BCCD0BD943C8CBD954A51053B789D19206A24D"
             },
             {
               "name": "/Tag/Move.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "06BBD862A37648DB78D3446F3CC5DC65771486F9"
+              "sha1": "74F37FF451008818D8A1349377DF8012922FDEA9"
             },
             {
               "name": "/Tag/String.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "90A3B38FD1F47E419C19C5DF8AFF0B772647ABC9"
+              "sha1": "F697BE32B154C2252FB8067B07B8199895000ED0"
             },
             {
               "name": "/Tag/Toggle.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "180178A636A597194703FE0CDE0D3E155A2C3930"
+              "sha1": "7A96C9AA4D2735CAD48D484122A790C3455E67B9"
             },
             {
               "name": "/Tag/Transform.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "C6ED75E054AEE0913A13AFF577AD05537C162AB8"
+              "sha1": "8E5624708BBC0295BCDED4AFC034C688537D17D6"
             },
             {
               "name": "/Tag/Weight.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F1952A7FAF5109E212F2B7E7F80CAD48E3B2EE53"
+              "sha1": "99D24439C3AF678852C7295FFDD5FD071D02BC96"
             }
           ],
           "requiredModules": [
@@ -201,7 +201,7 @@
             {
               "moduleName": "l0.ASSFoundation.Common",
               "name": "ASSFoundation Common Components",
-              "version": "0.1.1",
+              "version": "0.2.0",
               "url": "@{baseUrl}"
             },
             {
@@ -222,9 +222,9 @@
               "url": "https://github.com/TypesettingCartel/Aegisub-Motion"
             },
             {
-              "moduleName": "ASSInspector.Inspector",
-              "version": "0.5.2",
-              "feed": "https://raw.githubusercontent.com/TypesettingCartel/ASSInspector/master/DependencyControl.json"
+              "moduleName": "SubInspector.Inspector",
+              "version": "0.6.0",
+              "feed": "https://raw.githubusercontent.com/TypesettingCartel/SubInspector/master/DependencyControl.json"
             },
             {
               "moduleName": "YUtils",
@@ -234,6 +234,9 @@
         }
       },
       "changelog": {
+        "0.2.1": [
+          "Fixed for ASSInspector -> SubInspector rebranding."
+        ],
         "0.2.0": [
           "Fixed parsing of scaled clips.",
           "Improved handling of broken drawings.",
