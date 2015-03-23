@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local Weight = createASSClass("Tag.Weight", ASS.Tag.Base, {"weightClass","bold"}, {ASS.Number, ASS.Tag.Toggle})
     function Weight:new(args)
         local weight, bold = self:getArgs(args,{0,false},true)

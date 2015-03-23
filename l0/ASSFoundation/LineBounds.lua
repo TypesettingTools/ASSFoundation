@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local LineBounds = createASSClass("LineBounds", ASS.Base, {1, 2, "w", "h", "fbf", "animated", "rawText"},
                                   {ASS.Point, ASS.Point, "number", "number", "table", "boolean", "string"})
     function LineBounds:new(cnts, noCommit)
@@ -8,11 +8,11 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         )
         if not noCommit then cnts:commit() end
 
-        local assi, msg = ASSFInst.cache.ASSInspector
+        local assi, msg = ASSFInst.cache.SubInspector
         if not assi then
-            assi, msg = ASSInspector(cnts.sub)
-            assertEx(assi, "ASSInspector Error: %s.", tostring(msg))
-            ASSFInst.cache.ASSInspector = assi
+            assi, msg = SubInspector(cnts.sub)
+            assertEx(assi, "SubInspector Error: %s.", tostring(msg))
+            ASSFInst.cache.SubInspector = assi
         elseif cnts.line.sub ~= ASSFInst.cache.lastSub then
             assi:updateHeader(cnts.line.sub)
             ASSFInst.cache.lastSub = cnts.line.sub
@@ -22,7 +22,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         cnts.line.assi_exhaustive = self.animated
 
         local bounds, times = assi:getBounds{cnts.line}
-        assertEx(bounds~=nil,"ASSInspector Error: %s.", tostring(times))
+        assertEx(bounds~=nil,"SubInspector Error: %s.", tostring(times))
 
         if bounds[1]~=false or self.animated then
             local frame, x2Max, y2Max, x1Min, y1Min = aegisub.frame_from_ms, 0, 0

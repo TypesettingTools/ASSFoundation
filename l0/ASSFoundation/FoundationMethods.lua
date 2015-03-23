@@ -1,4 +1,4 @@
-return function(createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local ASS = createASSClass("ASSFoundation")
 
     function ASS:new()

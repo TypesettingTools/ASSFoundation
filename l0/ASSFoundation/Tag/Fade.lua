@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local Fade = createASSClass("Tag.Fade", ASS.Tag.Base,
         {"startDuration", "endDuration", "startTime", "endTime", "startAlpha", "midAlpha", "endAlpha"},
         {ASS.Duration, ASS.Duration, ASS.Time, ASS.Time, ASS.Hex, ASS.Hex, ASS.Hex}

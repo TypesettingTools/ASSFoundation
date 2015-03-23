@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local TextSection = createASSClass("Section.Text", ASS.String, {"value"}, {"string"}, nil, nil, function(tbl, key)
         if key == "len" then
             return unicode.len(tbl.value)

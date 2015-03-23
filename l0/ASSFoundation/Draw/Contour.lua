@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local Contour = createASSClass("Draw.Contour", ASS.Base, {"commands"}, {"table"}, nil, nil, function(tbl, key)
         if key=="isCW" then
             return tbl:getDirection()

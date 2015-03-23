@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local LineContents = createASSClass("LineContents", ASS.Base, {"sections"}, {"table"})
     function LineContents:new(line, sections)
         sections = self:getArgs({sections})

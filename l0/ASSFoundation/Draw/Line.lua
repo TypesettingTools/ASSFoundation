@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local DrawLine = createASSClass("Draw.Line", ASS.Draw.CommandBase, {"x", "y"}, {ASS.Number, ASS.Number},
                                     {name="l", ords=2}, {ASS.Point, ASS.Draw.Move, ASS.Draw.MoveNc})
     function DrawLine:ScaleToLength(len,noUpdate)

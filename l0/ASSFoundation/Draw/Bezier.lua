@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local DrawBezier = createASSClass("Draw.Bezier", ASS.Draw.CommandBase, {"p1","p2","p3"},
                                       {ASS.Point, ASS.Point, ASS.Point}, {name="b", ords=6})
 

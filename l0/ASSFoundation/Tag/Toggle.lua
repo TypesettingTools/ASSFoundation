@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local Toggle = createASSClass("Tag.Toggle", ASS.Tag.Base, {"value"}, {"boolean"})
     function Toggle:new(args)
         self.value = self:getArgs(args,false,true)

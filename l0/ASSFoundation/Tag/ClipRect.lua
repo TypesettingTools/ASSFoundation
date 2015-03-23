@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     ClipRect = createASSClass("Tag.ClipRect", ASS.Tag.Base, {"topLeft", "bottomRight"}, {ASS.Point, ASS.Point})
 
     function ClipRect:new(args)

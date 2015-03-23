@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local DrawingBase = createASSClass("Draw.DrawingBase", ASS.Tag.Base, {"contours"}, {"table"})
     -- TODO: check if these can be remapped/implemented in a way that makes sense, maybe work on strings
     DrawingBase.set, DrawingBase.mod = nil, nil

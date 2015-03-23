@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local Indexed = createASSClass("Tag.Indexed", ASS.Number, {"value"}, {"number"}, {precision=0, positive=true})
     function Indexed:cycle(down)
         local min, max = self.__tag.range[1], self.__tag.range[2]

@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local DrawingSection = createASSClass("Section.Drawing", ASS.Draw.DrawingBase, {"contours","scale"}, {"table", ASS.Number},
                                           {}, {ASS.Draw.DrawingBase, ASS.Tag.ClipVect})
 

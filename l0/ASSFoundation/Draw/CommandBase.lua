@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
     local CommandBase = createASSClass("Draw.CommandBase", ASS.Tag.Base, {}, {})
     function CommandBase:new(args)
         local args = {self:getArgs(args, 0, true)}

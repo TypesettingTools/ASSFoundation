@@ -4,25 +4,25 @@ version = DependencyControl{
     version: "0.2.0",
     description: "General purpose ASS processing library",
     author: "line0",
-    url: "http://github.com/TypesettingCartel/ASSFoundation",
+    url: "http://github.com/TypesettingTools/ASSFoundation",
     moduleName: "l0.ASSFoundation",
-    feed: "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/master/DependencyControl.json",
+    feed: "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/master/DependencyControl.json",
     {
         "l0.ASSFoundation.ClassFactory",
         "aegisub.re", "aegisub.util", "aegisub.unicode",
-        {"l0.ASSFoundation.Common", version: "0.2.0", url: "https://github.com/TypesettingCartel/ASSFoundation",
-         feed: "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/master/DependencyControl.json"},
-        {"a-mo.LineCollection", version: "1.0.1", url: "https://github.com/TypesettingCartel/Aegisub-Motion"},
-        {"a-mo.Line", version: "1.0.0", url: "https://github.com/TypesettingCartel/Aegisub-Motion"},
-        {"a-mo.Log", url: "https://github.com/TypesettingCartel/Aegisub-Motion"},
-        {"ASSInspector.Inspector", version: "0.5.2", url: "https://github.com/TypesettingCartel/ASSInspector",
-         feed: "https://raw.githubusercontent.com/TypesettingCartel/ASSInspector/master/DependencyControl.json"},
+        {"l0.ASSFoundation.Common", version: "0.2.0", url: "https://github.com/TypesettingTools/ASSFoundation",
+         feed: "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/master/DependencyControl.json"},
+        {"a-mo.LineCollection", version: "1.0.1", url: "https://github.com/TypesettingTools/Aegisub-Motion"},
+        {"a-mo.Line", version: "1.0.0", url: "https://github.com/TypesettingTools/Aegisub-Motion"},
+        {"a-mo.Log", url: "https://github.com/TypesettingTools/Aegisub-Motion"},
+        {"SubInspector.Inspector", version: "0.5.2", url: "https://github.com/TypesettingTools/SubInspector",
+         feed: "https://raw.githubusercontent.com/TypesettingTools/SubInspector/master/DependencyControl.json"},
         {"YUtils", optional: true},
     }
 }
 
 modules = {version\requireModules!}
-createASSClass, re, util, unicode, Common, LineCollection, Line, Log, ASSInspector, YUtils = unpack modules
+createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils = unpack modules
 ASS = require("l0.ASSFoundation.FoundationMethods")(unpack modules)
 ASSFInstMeta = __index: ASS
 ASSFInstProxy = setmetatable {}, ASSFInstMeta
