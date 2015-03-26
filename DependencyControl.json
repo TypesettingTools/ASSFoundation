@@ -14,14 +14,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.2.1",
-          "released": "2015-03-23",
+          "version": "0.2.2",
+          "released": "2015-03-26",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "D9A54A6428B02F01A62AD4F095C1133910086076"
+              "sha1": "275A3EA1E76E991CDD8EF6E35513B9252A390FB2"
             },
             {
               "name": ".lua",
@@ -180,7 +180,7 @@
             {
               "name": "/Tag/Transform.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "8E5624708BBC0295BCDED4AFC034C688537D17D6"
+              "sha1": "EFC004C0FA480C18625ED3DC8579BBDC18151737"
             },
             {
               "name": "/Tag/Weight.lua",
@@ -234,6 +234,9 @@
         }
       },
       "changelog": {
+        "0.2.2": [
+          "Fixed parsing of \\t with acceleration and \\t with end time 0."
+        ],
         "0.2.1": [
           "Fixed for ASSInspector -> SubInspector rebranding."
         ],
