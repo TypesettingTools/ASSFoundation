@@ -8,7 +8,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         if args.raw then
             local r = {}
             if signature == "accel" then        -- \t(<accel>,<style modifiers>)
-                r[1], r[4] = args.raw[1], args.raw[2]
+                r[1], r[4] = args.raw[2], args.raw[1]
             elseif signature == "default" then    -- \t(<t1>,<t2>,<accel>,<style modifiers>)
                 r[1], r[2], r[3], r[4] = args.raw[4], args.raw[1], args.raw[2], args.raw[3]
             elseif signature == "time" then    -- \t(<t1>,<t2>,<style modifiers>)
@@ -45,7 +45,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         if coerce then
             t2 = util.max(t1, t2)
-        else assertEx(t1<=t2, "transform start time must not be greater than the end time, got %d <= %d.", t1, t2) end
+        else assertEx(t1 <= t2 or t2 == 0, "transform start time must not be greater than the end time, got %d <= %d.", t1, t2) end
 
         if signature == "simple" then
             return self.tags:getString(coerce)
