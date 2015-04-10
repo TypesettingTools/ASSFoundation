@@ -14,7 +14,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function ClipVect:getDrawing(trimDrawing, pos, an)
-        if ASS.instanceOf(pos, ASS.TagList) then
+        if ASS:instanceOf(pos, ASS.TagList) then
             pos, an = pos.tags.position, pos.tags.align
         end
 
@@ -25,10 +25,10 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             elseif not an then an=ASS.Tag.Align{7} end
         end
 
-        assertEx(not pos or ASS.instanceOf(pos, ASS.Point, nil, true),
+        assertEx(not pos or ASS:instanceOf(pos, ASS.Point, nil, true),
                  "argument position must be an %d or a compatible object, got a %s.",
                  ASS.Point.typeName, type(pos)=="table" and pos.typeName or type(pos))
-        assertEx(ASS.instanceOf(an, ASS.Tag.Align),
+        assertEx(ASS:instanceOf(an, ASS.Tag.Align),
                  "argument align must be an %d or a compatible object, got a %s.",
                  ASS.Tag.Align.typeName, type(pos)=="table" and an.typeName or type(an))
 
