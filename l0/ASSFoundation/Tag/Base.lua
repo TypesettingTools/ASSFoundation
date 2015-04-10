@@ -97,9 +97,11 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         if #vals1~=#vals2 then return false end
 
         for i=1,#vals1 do
-            if type(vals1[i])=="table" and #table.intersectInto(vals1[i],vals2[i]) ~= #vals2[i] then
+            local isTable = type(vals1[i]) == "table"
+            if isTable and #table.intersectInto(vals1[i], vals2[i]) ~= #vals2[i]
+               or not isTable and vals1[i]~=vals2[i] then
                 return false
-            elseif type(vals1[i])~="table" and vals1[i]~=vals2[i] then return false end
+            end
         end
 
         return true
