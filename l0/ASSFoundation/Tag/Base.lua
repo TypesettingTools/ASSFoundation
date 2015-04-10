@@ -6,12 +6,12 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         local j, valNames = 1, self.__meta__.order
         for i=1,#valNames do
             if ASS:instanceOf(self[valNames[i]]) then
-                local subCnt = #self[valNames[i]].__meta__.order
-                local subArgs = unpack(table.sliceArray(args,j,j+subCnt-1))
-                self[valNames[i]][method](self[valNames[i]],subArgs)
-                j=j+subCnt
+                local subCnt = self[valNames[i]].__meta__.rawArgCnt
+                local subArgs = table.sliceArray(args, j, j+subCnt-1)
+                self[valNames[i]][method](self[valNames[i]], unpack(subArgs))
+                j = j + subCnt
             else
-                self[valNames[i]]=callback(self[valNames[i]],args[j])
+                self[valNames[i]]=callback(self[valNames[i]], args[j])
                 j = self[valNames[i]], j+1
             end
         end
