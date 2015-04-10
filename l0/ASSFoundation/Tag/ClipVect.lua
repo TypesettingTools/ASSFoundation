@@ -34,11 +34,14 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         local drawing = ASS.Section.Drawing{self}
         local ex = self:getExtremePoints()
+        -- width and height of a drawing are always determined by the extreme points
+        -- in the drawing, not the actual bounding box
         local anOff = an:getPositionOffset(ex.w, ex.h)
 
         if trimDrawing or not pos then
-            drawing:sub(ex.left.x.value, ex.top.y.value)
-            return drawing, ASS:createTag("position", ex.left.x, ex.top.y):add(anOff)
+            local topLeft = ASS:createTag("position", self:getBounds()[1])
+            drawing:sub(topLeft)
+            return drawing, topLeft:add(anOff)
         else return drawing:add(anOff):sub(pos) end
     end
 
