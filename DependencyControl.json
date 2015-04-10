@@ -14,14 +14,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.2.2",
-          "released": "2015-03-26",
+          "version": "0.2.3",
+          "released": "2015-04-10",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "275A3EA1E76E991CDD8EF6E35513B9252A390FB2"
+              "sha1": "326AE0D8CFA30B9A1E01386964E7FC42ECED3CBC"
             },
             {
               "name": ".lua",
@@ -50,7 +50,7 @@
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "33933B538122EF66EF210115E268B07756FA3510"
+              "sha1": "94B5A64FA812B206363764E0D91F1B609B00B261"
             },
             {
               "name": "/TagList.lua",
@@ -75,12 +75,12 @@
             {
               "name": "/Draw/Contour.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "DF662D58A65073C1E8A53708AC259346808E42FD"
+              "sha1": "B551191D1F49C8E541CFDF0E4672B1926A3D3644"
             },
             {
               "name": "/Draw/DrawingBase.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "1D976592710B01480667C1DC031471A6BD8E0082"
+              "sha1": "65B67F82A542B5010DD8D6652D7CA9189CAB6213"
             },
             {
               "name": "/Draw/Line.lua",
@@ -115,17 +115,17 @@
             {
               "name": "/Section/Drawing.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "2721970D77D530305B87ED86401BE77B002875FA"
+              "sha1": "F90963A9FF97C668B61F14256DE4A57BA1BE8CA7"
             },
             {
               "name": "/Section/Tag.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "1E8D6DC185C1C2029613E2F7B7821990D4DDC680"
+              "sha1": "86E7574663583EDEE2542C5D39BA016534443682"
             },
             {
               "name": "/Section/Text.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "CDB7C834BD025DCEC13FA7D653EEB31DE4676C7C"
+              "sha1": "B790A68997C5A1D4A6367A77C62DE3CA6EF4B41E"
             },
             {
               "name": "/Tag/Align.lua",
@@ -135,7 +135,7 @@
             {
               "name": "/Tag/Base.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "43E02148E0FCCF5ECA7B69260C467892947A8C2E"
+              "sha1": "234461E0A2B0910C944848D55DC9E967A2DB6892"
             },
             {
               "name": "/Tag/ClipRect.lua",
@@ -145,7 +145,7 @@
             {
               "name": "/Tag/ClipVect.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "183252B88324614282C860A480A5C0D8B76A9A6B"
+              "sha1": "C5BA699725987AE802CB029AB0814859749A9D7D"
             },
             {
               "name": "/Tag/Color.lua",
@@ -234,6 +234,15 @@
         }
       },
       "changelog": {
+        "0.2.3": [
+          "LineContents:getPosition() now returns found \\move tags instead of the default position for the line."
+          "LineContents:getPosition() now returns the original \\an tag if one is found in the line (instead of a copy)."
+          "YUtils-based bounds detection is now available to all drawings, clips and contours."
+          "Retrieval of effective tags no longer ignores the 'copyTags' parameter."
+          "Fixed a bug that would sometimes cause common operations to incorrectly process object members."
+          "Fixed incorrect function signature use in vectorial clip objects."
+          "Drawings converted from clips are no longer trimmed incorrectly when bezier commands are used."
+        ],
         "0.2.2": [
           "Fixed parsing of \\t with acceleration and \\t with end time 0."
         ],
