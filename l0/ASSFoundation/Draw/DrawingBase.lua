@@ -353,6 +353,12 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return ext
     end
 
+    function DrawingBase:getBounds()
+        assert(YUtils, yutilsMissingMsg)
+        local l, t, r, b = YUtils.shape.bounding(YUtils.shape.flatten(self:getTagParams()))
+        return {ASS.Point{l, t}, ASS.Point{r, b}, w=r-l, h=b-t}
+    end
+
     function DrawingBase:outline(x,y,mode)
         self.contours = self:getOutline(x,y,mode).contours
         self.length = nil

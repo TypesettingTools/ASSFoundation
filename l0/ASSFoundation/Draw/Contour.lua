@@ -194,6 +194,12 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                 bounds={left.x.value, top.y.value, right.x.value, bottom.y.value}}
     end
 
+    function Contour:getBounds()
+        assert(YUtils, yutilsMissingMsg)
+        local l, t, r, b = YUtils.shape.bounding(YUtils.shape.flatten(self:getTagParams()))
+        return {ASS.Point{l, t}, ASS.Point{r, b}, w=r-l, h=b-t}
+    end
+
     function Contour:getLength()
         local totalLen, lens = 0, {}
         for i=1,#self.commands do

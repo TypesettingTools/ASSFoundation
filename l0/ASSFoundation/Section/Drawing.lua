@@ -16,14 +16,6 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return posOff, ex
     end
 
-    function DrawingSection:getBounds(coerce)
-        assert(YUtils, yutilsMissingMsg)
-        local bounds = {YUtils.shape.bounding(self:getString())}
-        bounds.width = (bounds[3] or 0)-(bounds[1] or 0)
-        bounds.height = (bounds[4] or 0)-(bounds[2] or 0)
-        return bounds
-    end
-
     function DrawingSection:getClip(inverse)
         -- TODO: scale support
         local effTags, ex = self.parent:getEffectiveTags(-1, true, true, false).tags , self:getExtremePoints()
