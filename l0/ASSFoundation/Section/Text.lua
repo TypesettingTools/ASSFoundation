@@ -16,7 +16,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function TextSection:getEffectiveTags(includeDefault, includePrevious, copyTags)
-        includePrevious, copyTags = default(includePrevious, true), true
+        includePrevious, copyTags = default(includePrevious, true), default(copyTags, true)
         -- previous and default tag lists
         local effTags
         if includeDefault then

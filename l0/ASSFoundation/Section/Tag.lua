@@ -238,7 +238,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function TagSection:getEffectiveTags(includeDefault, includePrevious, copyTags)   -- TODO: properly handle transforms, include forward sections for global tags
-        includePrevious, copyTags = default(includePrevious, true), true
+        includePrevious, copyTags = default(includePrevious, true), default(copyTags, true)
         -- previous and default tag lists
         local effTags
         if includeDefault then
