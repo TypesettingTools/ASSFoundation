@@ -559,8 +559,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
              ASS.Tag.Align.typeName, ASS:instanceOf(align) or type(align))
         end
 
-        if not forceDefault and effTags.position then
-            return effTags.position
+        local pos = effTags.position or effTags.move
+        if not forceDefault and pos then
+            return pos, align
         end
 
         local scriptInfo = self.scriptInfo or ASS:getScriptInfo(self.sub)
