@@ -552,12 +552,13 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         local effTags = not (forceDefault and align) and self:getEffectiveTags(-1,false,true,false).tags
         style = self:getStyleRef(style)
         align = align or effTags.align or style.align
-
-        if ASS:instanceOf(align,ASS.Tag.Align) then
-            align = align:get()
-        else assertEx(type(align)=="number", "argument #1 (align) must be of type number or %s, got a %s.",
-             ASS.Tag.Align.typeName, ASS:instanceOf(align) or type(align))
+        if type(align) == "number" then
+            align = ASS:createTag("align", align)
         end
+
+        assertEx(ASS:instanceOf(align, ASS.Tag.Align), "argument #1 (align) must be of type number or %s, got a %s.",
+                 ASS.Tag.Align.typeName, ASS:instanceOf(align) or type(align))
+
 
         local pos = effTags.position or effTags.move
         if not forceDefault and pos then
@@ -570,9 +571,10 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         lMargin = self.line.margin_l == 0 and style.margin_l or self.line.margin_l
         rMargin = self.line.margin_r == 0 and style.margin_r or self.line.margin_r
 
-        return ASS:createTag("position", self.line.defaultXPosition[align%3+1](scriptInfo.PlayResX, lMargin, rMargin),
-                                         self.line.defaultYPosition[math.ceil(align/3)](scriptInfo.PlayResY, vMargin)
-        ), ASS:createTag("align", align)
+        an = align:get()
+        return ASS:createTag("position", self.line.defaultXPosition[an%3+1](scriptInfo.PlayResX, lMargin, rMargin),
+                                         self.line.defaultYPosition[math.ceil(an/3)](scriptInfo.PlayResY, vMargin)
+        ), align
     end
 
     -- TODO: make all caches members of ASSFoundation
