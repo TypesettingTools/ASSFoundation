@@ -226,7 +226,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             -- unless this section begins with a reset, in which case only rectangular clips are kept
             or not (global or ownReset and not tag.instanceOf[ASS.Tag.ClipRect]) and otherTransSet[name]
             -- check local tags for equality in reference list
-            or not (global or tag:equal(ref.tags[name]) or otherReset and tag:equal(otherReset.tags[name])) then
+            or not (global or tag:equal(ref.tags[name]) or otherReset and tag:equal(otherReset.tags[name]))
+            -- don't decimate section-local tags like karaoke
+            or tag.__tag.noOverride then
                 if returnOnly then diff.tags[name] = tag end
 
             elseif not returnOnly then
