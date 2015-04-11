@@ -459,7 +459,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "\\k([%d]+)", format: "\\k%d"
                             }
-                            props: scale: 10, karaoke: true
+                            props: scale: 10, karaoke: true, noOverride: true
                             default: {0}
                         }
     k_sweep:            {
@@ -470,7 +470,7 @@ ASS.tagMap = {
                                 default:     pattern: "\\kf([%d]+)", format: "\\kf%d"
                                 short:       pattern: "\\K([%d]+)",  format: "\\K%d"
                             }
-                            props: scale: 10, karaoke: true
+                            props: scale: 10, karaoke: true, noOverride: true
                             default: {0}
                         }
     k_bord:             {
@@ -480,7 +480,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "\\ko([%d]+)", format: "\\ko%d"
                             }
-                            props: scale: 10,  karaoke: true
+                            props: scale: 10,  karaoke: true, noOverride: true
                             default: {0}
                         }
     position:           {
