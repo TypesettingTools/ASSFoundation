@@ -14,14 +14,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.2.3",
-          "released": "2015-04-10",
+          "version": "0.2.4",
+          "released": "2015-04-13",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "326AE0D8CFA30B9A1E01386964E7FC42ECED3CBC"
+              "sha1": "952B9A8112C1421B8EBF1BA9823C6B496DD8B7D1"
             },
             {
               "name": ".lua",
@@ -50,12 +50,12 @@
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "94B5A64FA812B206363764E0D91F1B609B00B261"
+              "sha1": "0B7246EC84FED7E47B41E3C8E77BD355D9DA8AAD"
             },
             {
               "name": "/TagList.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "8D40D53E82EA581242B6F9273B6AFC76BEA8693A"
+              "sha1": "EF0991C047357DB585EC1DD7A8B7FBE4640AEF14"
             },
             {
               "name": "/Draw/Bezier.lua",
@@ -80,7 +80,7 @@
             {
               "name": "/Draw/DrawingBase.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "65B67F82A542B5010DD8D6652D7CA9189CAB6213"
+              "sha1": "E10DA2E8F34C9FD6A9DFCB9876DA55B304545E49"
             },
             {
               "name": "/Draw/Line.lua",
@@ -234,13 +234,19 @@
         }
       },
       "changelog": {
+        "0.2.4": [
+          "LineContents:getPosition() now also returns the origin of a line.",
+          "Contours can now be temporarily disabled for committing.",
+          "LineContents:repositionSplitLines(): the origin is now calculated correctly for lines with \\pos tags.",
+          "Per-section karaoke tags are no longer removed when cleaning/diffing tags."
+        ],
         "0.2.3": [
-          "LineContents:getPosition() now returns found \\move tags instead of the default position for the line."
-          "LineContents:getPosition() now returns the original \\an tag if one is found in the line (instead of a copy)."
-          "YUtils-based bounds detection is now available to all drawings, clips and contours."
-          "Retrieval of effective tags no longer ignores the 'copyTags' parameter."
-          "Fixed a bug that would sometimes cause common operations to incorrectly process object members."
-          "Fixed incorrect function signature use in vectorial clip objects."
+          "LineContents:getPosition() now returns found \\move tags instead of the default position for the line.",
+          "LineContents:getPosition() now returns the original \\an tag if one is found in the line (instead of a copy).",
+          "YUtils-based bounds detection is now available to all drawings, clips and contours.",
+          "Retrieval of effective tags no longer ignores the 'copyTags' parameter.",
+          "Fixed a bug that would sometimes cause common operations to incorrectly process object members.",
+          "Fixed incorrect function signature use in vectorial clip objects.",
           "Drawings converted from clips are no longer trimmed incorrectly when bezier commands are used."
         ],
         "0.2.2": [
