@@ -559,10 +559,12 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         assertEx(ASS:instanceOf(align, ASS.Tag.Align), "argument #1 (align) must be of type number or %s, got a %s.",
                  ASS.Tag.Align.typeName, ASS:instanceOf(align) or type(align))
 
-
+        -- TODO: check and fix for \move
         local pos = effTags.position or effTags.move
+        local org = effTags.origin or pos and ASS:createTag("origin", pos)
+
         if not forceDefault and pos then
-            return pos, align
+            return pos, align, org
         end
 
         local scriptInfo = self.scriptInfo or ASS:getScriptInfo(self.sub)
@@ -571,10 +573,11 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         lMargin = self.line.margin_l == 0 and style.margin_l or self.line.margin_l
         rMargin = self.line.margin_r == 0 and style.margin_r or self.line.margin_r
 
-        an = align:get()
-        return ASS:createTag("position", self.line.defaultXPosition[an%3+1](scriptInfo.PlayResX, lMargin, rMargin),
-                                         self.line.defaultYPosition[math.ceil(an/3)](scriptInfo.PlayResY, vMargin)
-        ), align
+        local an = align:get()
+        pos = ASS:createTag("position", self.line.defaultXPosition[an%3+1](scriptInfo.PlayResX, lMargin, rMargin),
+                                        self.line.defaultYPosition[math.ceil(an/3)](scriptInfo.PlayResY, vMargin)
+        )
+        return pos, align, org or ASS:createTag("origin", pos)
     end
 
     -- TODO: make all caches members of ASSFoundation
