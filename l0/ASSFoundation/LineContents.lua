@@ -501,8 +501,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             [2] = function(wSec,wLine) return wSec/2-wLine/2 end -- center
         }
         local xOff = 0
-        local origin = writeOrigin and self:getEffectiveTags(-1,true,true,false).tags["origin"]
-
+        local pos, align, org = self:getPosition()
 
         for i=1,#splitLines do
             local data = splitLines[i].ASS
@@ -511,19 +510,16 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             local effTags = data:getEffectiveTags(-1,true,true,false)
             local sectWidth = data:getTextExtents()
 
-            -- kill all old position tags because we only ever need one
-            data:removeTags("position")
             -- calculate new position
             local alignOffset = getAlignOffset[effTags.tags["align"]:get()%3](sectWidth,lineWidth)
             local pos = effTags.tags["position"]:copy()
             pos:add(alignOffset+xOff,0)
             -- write new position tag to first tag section
-            data:insertTags(pos,1,1)
+            data:replaceTags(pos)
 
             -- if desired, write a new origin to the line if the style or the override tags contain any angle
             if writeOrigin and (#data:getTags({"angle","angle_x","angle_y"})>0 or effTags.tags["angle"]:get()~=0) then
-                data:removeTags("origin")
-                data:insertTags(origin:copy(),1,1)
+                data:replaceTags(org:copy())
             end
 
             xOff = xOff + sectWidth
