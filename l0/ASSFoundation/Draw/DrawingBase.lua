@@ -250,8 +250,11 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
     function DrawingBase:getTagParams(coerce)
         local cmds, j = {}, 1
-        for i=1,#self.contours do
-            cmds[i] = self.contours[i]:getTagParams(self.scale, self, coerce)
+        for i=1, #self.contours do
+            if not self.contours[i].disabled then
+                cmds[j] = self.contours[i]:getTagParams(self.scale, self, coerce)
+                j = j + 1
+            end
         end
         local cmdStr = table.concat(cmds, " ")
 
