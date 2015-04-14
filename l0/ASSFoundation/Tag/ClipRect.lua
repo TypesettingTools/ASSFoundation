@@ -1,5 +1,5 @@
 return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
-    ClipRect = createASSClass("Tag.ClipRect", ASS.Tag.Base, {"topLeft", "bottomRight"}, {ASS.Point, ASS.Point})
+    local ClipRect = createASSClass("Tag.ClipRect", ASS.Tag.Base, {"topLeft", "bottomRight"}, {ASS.Point, ASS.Point})
 
     function ClipRect:new(args)
         local left, top, right, bottom = self:getArgs(args, 0, true)

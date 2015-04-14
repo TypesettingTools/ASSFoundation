@@ -1,5 +1,5 @@
 return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
-    Point = createASSClass("Point", ASS.Tag.Base, {"x","y"}, {ASS.Number, ASS.Number})
+    local Point = createASSClass("Point", ASS.Tag.Base, {"x","y"}, {ASS.Number, ASS.Number})
     function Point:new(args)
         local x, y = self:getArgs(args,0,true)
         self:readProps(args)

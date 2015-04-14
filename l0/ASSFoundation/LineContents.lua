@@ -58,7 +58,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         local j, str, sections, prevDrawingState, secType, prevSecType = 1, {}, self.sections, defDrawingState
 
         for i=1,#sections do
-            secType, lastSecType = ASS:instanceOf(sections[i], ASS.Section, classes), secType
+            secType = ASS:instanceOf(sections[i], ASS.Section, classes)
             if secType == ASS.Section.Text or secType == ASS.Section.Drawing then
                 -- determine whether we need to enable or disable drawing mode and insert the appropriate tags
                 local drawingState = secType==ASS.Section.Drawing and sections[i].scale or defDrawingState
@@ -380,6 +380,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         -- 4: remove tags matching style default and not changing state, end: remove empty sections
         local tagListPrev = ASS.TagList(nil, self)
 
+        local tagListDef
         if level>=3 then
             tagListDef = self:getDefaultTags()
             if not defaultToKeep or #defaultToKeep==1 and defaultToKeep[1]=="position" then
@@ -565,9 +566,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         local scriptInfo = self.scriptInfo or ASS:getScriptInfo(self.sub)
         -- blatantly copied from torque's Line.moon
-        vMargin = self.line.margin_t == 0 and style.margin_t or self.line.margin_t
-        lMargin = self.line.margin_l == 0 and style.margin_l or self.line.margin_l
-        rMargin = self.line.margin_r == 0 and style.margin_r or self.line.margin_r
+        local vMargin = self.line.margin_t == 0 and style.margin_t or self.line.margin_t
+        local lMargin = self.line.margin_l == 0 and style.margin_l or self.line.margin_l
+        local rMargin = self.line.margin_r == 0 and style.margin_r or self.line.margin_r
 
         local an = align:get()
         pos = ASS:createTag("position", self.line.defaultXPosition[an%3+1](scriptInfo.PlayResX, lMargin, rMargin),

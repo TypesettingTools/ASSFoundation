@@ -33,7 +33,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         elseif type_ == "number" then
             if type(value)=="boolean" then return value and 1 or 0
             else
-                cval = tonumber(value, tagProps.base or 10)
+                local cval = tonumber(value, tagProps.base or 10)
                 assertEx(cval, "failed coercing value '%s' of type %s to a number on creation of %s object.",
                          tostring(value), type(value), self.typeName)
             return cval*(tagProps.scale or 1) end

@@ -12,7 +12,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             a[5], a[6], a[7] = num(r[1]), num(r[2]), num(r[3])
             args.raw = a
         end
-        startDuration, endDuration, startTime, endTime, startAlpha, midAlpha, endAlpha = self:getArgs(args,{0,0,0,0,255,0,255},true)
+        local startDuration, endDuration, startTime, endTime, startAlpha, midAlpha, endAlpha = self:getArgs(args,{0,0,0,0,255,0,255},true)
 
         self.startDuration, self.endDuration = ASS.Duration{startDuration}, ASS.Duration{endDuration}
         self.startTime, self.endTime = ASS.Time{startTime}, ASS.Time{endTime}
