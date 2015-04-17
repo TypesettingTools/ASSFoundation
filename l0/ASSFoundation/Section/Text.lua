@@ -42,7 +42,10 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     function TextSection:getMetrics(includeTypeBounds, coerce)
         assert(YUtils, yutilsMissingMsg)
         local fontObj, tagList, shape = self:getYutilsFont()
-        local metrics = table.merge(fontObj.metrics(),fontObj.text_extents(self.value))
+        extents, metrics = fontObj.text_extents(self.value), fontObj.metrics()
+        -- make sure we convert uint64 (returned from ffi) to lua numbers here
+        -- in order to not ruin everything
+        metrics.width, metrics.height = tonumber(extents.width), tonumber(extents.height)
 
         if includeTypeBounds then
             shape = fontObj.text_to_shape(self.value)
