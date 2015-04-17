@@ -2,7 +2,7 @@
   "dependencyControlFeedFormatVersion": "0.1.0",
   "name": "ASSFoundation",
   "description": "ASSFoundation and ancillary modules.",
-  "baseUrl": "https://github.com/TypesettingCartel/ASSFoundation",
+  "baseUrl": "https://github.com/TypesettingTools/ASSFoundation",
   "url": "@{baseUrl}",
   "maintainer": "line0",
   "modules": {
@@ -11,17 +11,17 @@
       "author": "line0",
       "name": "ASSFoundation",
       "description": "General purpose ASS processing library.",
-      "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
+      "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.2.4",
-          "released": "2015-04-13",
+          "version": "0.2.5",
+          "released": "2015-04-17",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "952B9A8112C1421B8EBF1BA9823C6B496DD8B7D1"
+              "sha1": "4C232D5120B40D5290DC24AE5D3936405956276A"
             },
             {
               "name": ".lua",
@@ -125,7 +125,7 @@
             {
               "name": "/Section/Text.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B790A68997C5A1D4A6367A77C62DE3CA6EF4B41E"
+              "sha1": "820E24E704958FA073CEBBF1C6996CDAAA5C534A"
             },
             {
               "name": "/Tag/Align.lua",
@@ -208,23 +208,26 @@
               "moduleName": "a-mo.LineCollection",
               "version": "1.0.1",
               "name": "Aegisub-Motion (LineCollection)",
-              "url": "https://github.com/TypesettingCartel/Aegisub-Motion"
+              "url": "https://github.com/TypesettingTools/Aegisub-Motion",
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/master/DependencyControl.json"
             },
             {
               "moduleName": "a-mo.Line",
               "version": "1.0.0",
               "name": "Aegisub-Motion (Line)",
-              "url": "https://github.com/TypesettingCartel/Aegisub-Motion"
+              "url": "https://github.com/TypesettingTools/Aegisub-Motion",
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/master/DependencyControl.json"
             },
             {
               "moduleName": "a-mo.Log",
               "name": "Aegisub-Motion (Log)",
-              "url": "https://github.com/TypesettingCartel/Aegisub-Motion"
+              "url": "https://github.com/TypesettingTools/Aegisub-Motion",
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/master/DependencyControl.json"
             },
             {
               "moduleName": "SubInspector.Inspector",
               "version": "0.6.0",
-              "feed": "https://raw.githubusercontent.com/TypesettingCartel/SubInspector/master/DependencyControl.json"
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/SubInspector/master/DependencyControl.json"
             },
             {
               "moduleName": "YUtils",
@@ -234,6 +237,9 @@
         }
       },
       "changelog": {
+        "0.2.5": [
+          "Added a workaround for a YUtils bug that would cause Text->Drawing conversions to fail on 64-bit Windows."
+        ],
         "0.2.4": [
           "LineContents:getPosition() now also returns the origin of a line.",
           "Contours can now be temporarily disabled for committing.",
@@ -278,7 +284,7 @@
       "author": "line0",
       "name": "ASSFoundation Common Components",
       "description": "Collection of commonly used functions.",
-      "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingCartel/ASSFoundation/cmn-v@{version}-@{channel}/@{namespacePath}",
+      "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/cmn-v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
           "version": "0.2.0",
@@ -301,7 +307,8 @@
             {
               "moduleName": "a-mo.Log",
               "name": "Aegisub-Motion (Log)",
-              "url": "https://github.com/TypesettingCartel/Aegisub-Motion"
+              "url": "https://github.com/TypesettingTools/Aegisub-Motion",
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/master/DependencyControl.json"
             }
           ]
         }
