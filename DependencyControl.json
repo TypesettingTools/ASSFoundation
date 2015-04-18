@@ -21,7 +21,7 @@
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "4C232D5120B40D5290DC24AE5D3936405956276A"
+              "sha1": "A87B32F8D4B85F0771C905EDBE4CBD89A5B2D791"
             },
             {
               "name": ".lua",
@@ -30,7 +30,7 @@
             {
               "name": "/Base.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "ABADC55C37E45F0C63408909977378C20636B774"
+              "sha1": "B2D5AC588FED4AE1CC346BAFCDA4618F5BC6CFCF"
             },
             {
               "name": "/ClassFactory.lua",
@@ -50,7 +50,7 @@
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "0B7246EC84FED7E47B41E3C8E77BD355D9DA8AAD"
+              "sha1": "75CC598ACF8E123EDED0AEB3C95610A2B878E2D6"
             },
             {
               "name": "/TagList.lua",
@@ -95,7 +95,7 @@
             {
               "name": "/Primitive/Point.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "52ADFBE6FF993795F44975E7DDDC8E61BA74DE5A"
+              "sha1": "912034D3270D8E889B05E3138EA929D29FD9953F"
             },
             {
               "name": "/Primitive/String.lua",
@@ -140,7 +140,7 @@
             {
               "name": "/Tag/ClipRect.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "093BE2D1BB4B98C06404529AB6EBFE751F4BE0AF"
+              "sha1": "9E16192F16CBD9EA1DB10FD250E9A7C070DDC866"
             },
             {
               "name": "/Tag/ClipVect.lua",
@@ -155,7 +155,7 @@
             {
               "name": "/Tag/Fade.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "C04A4D0566AF6B2CA00055957560A00FCFCE5232"
+              "sha1": "070420E32C79A294355A91AEC5A78D5640510C9F"
             },
             {
               "name": "/Tag/Indexed.lua",
@@ -209,20 +209,20 @@
               "version": "1.0.1",
               "name": "Aegisub-Motion (LineCollection)",
               "url": "https://github.com/TypesettingTools/Aegisub-Motion",
-              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/master/DependencyControl.json"
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"
             },
             {
               "moduleName": "a-mo.Line",
               "version": "1.0.0",
               "name": "Aegisub-Motion (Line)",
               "url": "https://github.com/TypesettingTools/Aegisub-Motion",
-              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/master/DependencyControl.json"
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"
             },
             {
               "moduleName": "a-mo.Log",
               "name": "Aegisub-Motion (Log)",
               "url": "https://github.com/TypesettingTools/Aegisub-Motion",
-              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/master/DependencyControl.json"
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"
             },
             {
               "moduleName": "SubInspector.Inspector",
@@ -308,7 +308,7 @@
               "moduleName": "a-mo.Log",
               "name": "Aegisub-Motion (Log)",
               "url": "https://github.com/TypesettingTools/Aegisub-Motion",
-              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/master/DependencyControl.json"
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"
             }
           ]
         }
