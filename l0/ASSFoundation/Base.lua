@@ -48,9 +48,11 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
     function Base:getArgs(args, defaults, coerce, extraValidClasses)
         -- TODO: make getArgs automatically create objects
-        assertEx(type(args)=="table", "first argument to getArgs must be a table of arguments, got a %s.", type(args))
         local propTypes, propNames = self.__meta__.types, self.__meta__.order
         if not args then args={}
+        elseif type(args) ~= "table" then
+            error(string.format("first argument to getArgs must be a table of arguments, got a %s.",
+                                type(args)))
         -- process "raw" property that holds all tag parameters when parsed from a string
         elseif type(args.raw)=="table" then args=args.raw
         elseif args.raw then args={args.raw}
