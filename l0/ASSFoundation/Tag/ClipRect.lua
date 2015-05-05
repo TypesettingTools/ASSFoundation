@@ -17,7 +17,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function ClipRect:getVect()
-        local vect = ASSFInst:createTag(ASS.tagNames[ASS.ClipVect][self.__tag.inverse and 2 or 1])
+        local vect = ASSFInst:createTag(ASS.tagNames[ASS.Tag.ClipVect][self.__tag.inverse and 2 or 1])
         return vect:drawRect(self.topLeft, self.bottomRight)
     end
 
