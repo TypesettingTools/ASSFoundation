@@ -519,7 +519,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             data:replaceTags(pos)
 
             -- if desired, write a new origin to the line if the style or the override tags contain any angle
-            if writeOrigin and (#data:getTags({"angle","angle_x","angle_y"})>0 or effTags.tags["angle"]:get()~=0) then
+            -- this doesn't work with \move since there's no single \org so getPosition() doesn't return one
+            if writeOrigin and org and (#data:getTags({"angle","angle_x","angle_y"})>0 or effTags.tags["angle"]:get()~=0) then
                 data:replaceTags(org:copy())
             end
 
@@ -556,11 +557,11 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         assertEx(ASS:instanceOf(align, ASS.Tag.Align), "argument #1 (align) must be of type number or %s, got a %s.",
                  ASS.Tag.Align.typeName, ASS:instanceOf(align) or type(align))
 
-        -- TODO: check and fix for \move
         local pos = effTags.position or effTags.move
-        local org = effTags.origin or pos and ASS:createTag("origin", pos)
+        -- default origin moves with \move which can't be expressed in a single \org tag, so none is returned
+        local org = effTags.origin or pos and pos.class == ASS.Tag.Position and ASS:createTag("origin", pos)
 
-        if not forceDefault and pos then
+        if pos and not forceDefault then
             return pos, align, org
         end
 
