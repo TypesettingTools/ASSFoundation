@@ -19,7 +19,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         end
 
         self.animated = cnts:isAnimated()
-        cnts.line.assi_exhaustive = self.animated
+        cnts.line.si_exhaustive = self.animated
 
         local bounds, times = assi:getBounds{cnts.line}
         assertEx(bounds~=nil,"SubInspector Error: %s.", tostring(times))
