@@ -746,7 +746,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         end
 
         if #effTags.transforms>0 or
-        (t.move and not t.move.startPos:equal(t.move.endPos) and (t.move.startTime<t.move.endTime or t.move.endTime == 0)) or
+        (t.move and not t.move.startPos:equal(t.move.endPos) and (t.move.startTime<t.move.endTime or t.move.endTime:equal(0))) or
         (t.fade and (t.fade.startDuration>0 and not t.fade.startAlpha:equal(t.fade.midAlpha) or
                      t.fade.endDuration>0 and not t.fade.midAlpha:equal(t.fade.endAlpha))) or
         (t.fade_simple and (t.fade_simple.startDuration>0 and not t.fade_simple.startAlpha:equal(t.fade_simple.midAlpha) or
