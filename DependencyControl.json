@@ -33,7 +33,7 @@
             {
               "name": "/Base.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B2D5AC588FED4AE1CC346BAFCDA4618F5BC6CFCF"
+              "sha1": "FAA119192EDEFA1F54E9303FE6E4DB7C94686B5E"
             },
             {
               "name": "/ClassFactory.lua",
@@ -133,7 +133,7 @@
             {
               "name": "/Tag/Align.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "C99439C17C23B8DEA360F4BB7DD0F90F757B0CF2"
+              "sha1": "1686FEF8F396524551C5C6985457A88F3FF67749"
             },
             {
               "name": "/Tag/Base.lua",
