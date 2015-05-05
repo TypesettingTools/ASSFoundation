@@ -1,10 +1,13 @@
 {
-  "dependencyControlFeedFormatVersion": "0.1.0",
+  "dependencyControlFeedFormatVersion": "0.2.0",
   "name": "ASSFoundation",
   "description": "ASSFoundation and ancillary modules.",
   "baseUrl": "https://github.com/TypesettingTools/ASSFoundation",
   "url": "@{baseUrl}",
   "maintainer": "line0",
+  "knownFeeds": {
+    "a-mo": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"
+  },
   "modules": {
     "l0.ASSFoundation": {
       "url": "@{baseUrl}",
@@ -14,14 +17,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.2.5",
-          "released": "2015-04-17",
+          "version": "0.2.6",
+          "released": "2015-05-05",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "A87B32F8D4B85F0771C905EDBE4CBD89A5B2D791"
+              "sha1": "E84352B05C366307124B417B9FDAD15EAD7246C5"
             },
             {
               "name": ".lua",
@@ -45,12 +48,12 @@
             {
               "name": "/LineBounds.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "8003CD51043C9B6CBD38EB1BE58DFB254B49F6AA"
+              "sha1": "08B2EE34095E8E3393D6944F4B197B3FF6C4050F"
             },
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "75CC598ACF8E123EDED0AEB3C95610A2B878E2D6"
+              "sha1": "5C47C4ED555D6AECEB9258DDF9B6300F147FEB7E"
             },
             {
               "name": "/TagList.lua",
@@ -140,7 +143,7 @@
             {
               "name": "/Tag/ClipRect.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "9E16192F16CBD9EA1DB10FD250E9A7C070DDC866"
+              "sha1": "F9E71EF22BACB4E6C4BBCF13984CC0D64447E9BD"
             },
             {
               "name": "/Tag/ClipVect.lua",
@@ -209,20 +212,20 @@
               "version": "1.0.1",
               "name": "Aegisub-Motion (LineCollection)",
               "url": "https://github.com/TypesettingTools/Aegisub-Motion",
-              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"
+              "feed": "@{feed:a-mo}"
             },
             {
               "moduleName": "a-mo.Line",
               "version": "1.0.0",
               "name": "Aegisub-Motion (Line)",
               "url": "https://github.com/TypesettingTools/Aegisub-Motion",
-              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"
+              "feed": "@{feed:a-mo}"
             },
             {
               "moduleName": "a-mo.Log",
               "name": "Aegisub-Motion (Log)",
               "url": "https://github.com/TypesettingTools/Aegisub-Motion",
-              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"
+              "feed": "@{feed:a-mo}"
             },
             {
               "moduleName": "SubInspector.Inspector",
@@ -237,6 +240,11 @@
         }
       },
       "changelog": {
+        "0.2.6": [
+          "Fixed a bug as well as a SubInspector compatibility issue that would cause an animated line to always be detected as static (and by extension would cause an animated line that started offscreen or transparent to get a 0-width bounding box).",
+          "ASSFoundation no longer tries to come up with a default \\org tag for a line with \\move (which is not possible since the origin moves with the line position and \\org is non-transformable.",
+          "Converting a rectangular clip into a vector clip no longer results in an error."
+        ],
         "0.2.5": [
           "Added a workaround for a YUtils bug that would cause Text->Drawing conversions to fail on 64-bit Windows."
         ],
@@ -308,7 +316,7 @@
               "moduleName": "a-mo.Log",
               "name": "Aegisub-Motion (Log)",
               "url": "https://github.com/TypesettingTools/Aegisub-Motion",
-              "feed": "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"
+              "feed": "@{feed:a-mo}"
             }
           ]
         }
