@@ -413,7 +413,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         local splitLines = {}
         self:callback(function(section,_,i,j)
             local splitLine = Line(self.line, self.line.parentCollection, {ASS={}})
-            local splitSections = self:get(ASS.Section.Tag,0,i)
+            local splitSections = self:get(ASS.Section.Tag,1,i)
             splitSections[#splitSections+1] = section
             splitLine.ASS = ASS.LineContents(splitLine, splitSections)
             splitLine.ASS:cleanTags(cleanLevel)
