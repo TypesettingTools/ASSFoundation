@@ -454,7 +454,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             end
 
             while idx <= sectEndIdx do
-                nextIdx = math.ceil(callback(idx,len))
+                nextIdx = callback(idx, len)
+                assertEx(type(nextIdx) == "number", "callback must return a number, got a %s", type(nextIdx))
+                nextIdx = math.ceil(nextIdx)
                 assertEx(nextIdx>idx, "index returned by callback function must increase with every iteration, got %d<=%d.",
                          nextIdx, idx)
                 -- create a new line
