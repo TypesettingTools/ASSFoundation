@@ -17,14 +17,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.2.6",
-          "released": "2015-05-05",
+          "version": "0.2.7",
+          "released": "2015-05-07",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "E84352B05C366307124B417B9FDAD15EAD7246C5"
+              "sha1": "5FC82BC705C6DE25BC08F32930CA22ACBCFAA419"
             },
             {
               "name": ".lua",
@@ -53,7 +53,7 @@
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "5C47C4ED555D6AECEB9258DDF9B6300F147FEB7E"
+              "sha1": "F4090B106DD757FA08CDC53041321C829CBD6ACD"
             },
             {
               "name": "/TagList.lua",
@@ -240,6 +240,10 @@
         }
       },
       "changelog": {
+        "0.2.7": [
+          "Fixed LineContents:splitAtTags() throwing bad index errors.",
+          "LineContents:splitAtIntervals() now throws a descriptive error when the next-index-callback returns a non-number value."
+        ],
         "0.2.6": [
           "Fixed a bug as well as a SubInspector compatibility issue that would cause an animated line to always be detected as static (and by extension would cause an animated line that started offscreen or transparent to get a 0-width bounding box).",
           "ASSFoundation no longer tries to come up with a default \\org tag for a line with \\move (which is not possible since the origin moves with the line position and \\org is non-transformable.",
