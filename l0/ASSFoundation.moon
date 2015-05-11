@@ -545,10 +545,10 @@ ASS.tagMap = {
                             overrideName: "\\t"
                             type: ASS.Tag.Transform,
                              signatures: {
-                                default: pattern: "\\t%(([%-%d]+),([%-%d]+),([%d%.]+),([^,]+)%)", format: "\\t(%.2N,%.2N,%.2N,%s)"
-                                simple:  pattern: "\\t%(([^,]+)%)",                               format: "\\t(%s)"
-                                accel:   pattern: "\\t%(([%d%.]+),([^,]+)%)",                     format: "\\t(%.2N,%s)"
-                                time:    pattern: "\\t%(([%-%d]+),([%-%d]+),([^,]+)%)",           format: "\\t(%.2N,%.2N,%s)"
+                                default: pattern: "\\t%(([%-%d]+),([%-%d]+),([%d%.]+),(.+)%)",    format: "\\t(%.2N,%.2N,%.2N,%s)"
+                                simple:  pattern: "\\t%((\\.+)%)",                                format: "\\t(%s)"
+                                accel:   pattern: "\\t%(([%d%.]+),(\\.+)%)",                      format: "\\t(%.2N,%s)"
+                                time:    pattern: "\\t%(([%-%d]+),([%-%d]+),(\\.+)%)",            format: "\\t(%.2N,%.2N,%s)"
                             }
                         }
     unknown:            {
