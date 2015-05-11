@@ -17,14 +17,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.2.7",
-          "released": "2015-05-07",
+          "version": "0.2.8",
+          "released": "2015-05-11",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "5FC82BC705C6DE25BC08F32930CA22ACBCFAA419"
+              "sha1": "F1D9EBE068D5EE089348B411302D5CDBA84601B5"
             },
             {
               "name": ".lua",
@@ -240,6 +240,9 @@
         }
       },
       "changelog": {
+        "0.2.8": [
+          "Fixed \\t tags not being properly parsed when they contained a rectangular clip."
+        ],
         "0.2.7": [
           "Fixed LineContents:splitAtTags() throwing bad index errors.",
           "LineContents:splitAtIntervals() now throws a descriptive error when the next-index-callback returns a non-number value."
