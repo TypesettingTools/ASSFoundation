@@ -17,14 +17,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.2.8",
-          "released": "2015-05-11",
+          "version": "0.2.9",
+          "released": "2015-05-12",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F1D9EBE068D5EE089348B411302D5CDBA84601B5"
+              "sha1": "2F120C6589E7B9B2DD3F867AE64DCE9B223898C2"
             },
             {
               "name": ".lua",
@@ -53,7 +53,7 @@
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F4090B106DD757FA08CDC53041321C829CBD6ACD"
+              "sha1": "B511E2B6A32D2643BEF54FCC259E7E0B7358362C"
             },
             {
               "name": "/TagList.lua",
@@ -240,6 +240,10 @@
         }
       },
       "changelog": {
+        "0.2.9": [
+          "LineContents:replaceTags(): An argument was added to control insertion of remaining tags not previously found in the line (on by default to match old behavior).",
+          "LineContents:replaceTags() now automatically creates the missing tag section at the beginning of the line if insertion of remaining tags was requested starting at index 1."
+        ],
         "0.2.8": [
           "Fixed \\t tags not being properly parsed when they contained a rectangular clip."
         ],
