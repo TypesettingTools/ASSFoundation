@@ -199,7 +199,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return tags
     end
 
-    function LineContents:replaceTags(tagList, start, end_, relative)  -- TODO: transform and reset support
+    function LineContents:replaceTags(tagList, start, end_, relative, insertRemaining)  -- TODO: transform and reset support
+        insertRemaining = default(insertRemaining, true)
         if type(tagList)=="table" then
             if tagList.class == ASS.Section.Tag then
                 tagList = ASS.TagList(tagList)
@@ -243,7 +244,15 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         end
 
         -- insert remaining tags (not replaced) into the first processed section
-        self:insertTags(toInsert, start or 1, nil, not relative)
+        -- to easily allow for the function to be used to insert tags (overwriting existing ones)
+        -- create tag section at index 1 when it was requested as the start of the replacement
+        -- but doesn't yet exist
+        if insertRemaining then
+            start = start or 1
+            if start == 1 and not relative and not ASS:instanceOf(self.sections[1], ASS.Section.Tag) then
+                self:insertSections(ASS.Section.Tag(toInsert), 1)
+            else self:insertTags(toInsert, start, nil, not relative) end
+        end
     end
 
     function LineContents:removeTags(tags, start, end_, relative)
