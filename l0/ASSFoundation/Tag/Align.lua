@@ -45,12 +45,15 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     function Align:isCenterH() return self:getSet("centerH") end
     function Align:isRight() return self:getSet("right") end
 
-    function Align:getPositionOffset(w, h)
+    function Align:getPositionOffset(w, h, refAlign)
+        refAlign = default(refAlign, Align{7})
         if ASS:instanceOf(w, ASS.Point, nil, true) then
             w, h = w:get()
         end
         local x, y = {w, 0, w/2}, {h, h/2, 0}
         local off = ASS.Point{x[self.value%3+1], y[math.ceil(self.value/3)]}
+        off:sub(x[refAlign.value%3+1], y[math.ceil(refAlign.value/3)])
+
         return off
     end
 
