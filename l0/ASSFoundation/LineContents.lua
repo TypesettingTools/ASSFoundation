@@ -679,21 +679,21 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return ASS.LineBounds(self, noCommit)
     end
 
-    function LineContents:getMetrics(includeLineBounds, includeTypeBounds, coerce)
+    function LineContents:getTextMetrics(calculateBounds, coerce)
         local metr = {ascent=0, descent=0, internal_leading=0, external_leading=0, height=0, width=0}
-        local typeBounds = includeTypeBounds and {0,0,0,0}
+        local bounds = calculateBounds and {0,0,0,0}
         local textCnt = self:getSectionCount(ASS.Section.Text)
 
         self:callback(function(section, sections, i, j)
-            local sectMetr = section:getMetrics(includeTypeBounds, coerce)
+            local sectMetr = section:getTextMetrics(calculateBounds, coerce)
             -- combine type bounding boxes
-            if includeTypeBounds then
+            if calculateBounds then
                 if j==1 then
-                    typeBounds[1], typeBounds[2] = sectMetr.typeBounds[1] or 0, sectMetr.typeBounds[2] or 0
+                    bounds[1], bounds[2] = sectMetr.bounds[1] or 0, sectMetr.bounds[2] or 0
                 end
-                typeBounds[2] = math.min(typeBounds[2],sectMetr.typeBounds[2] or 0)
-                typeBounds[3] = typeBounds[1] + sectMetr.typeBounds.width
-                typeBounds[4] = math.max(typeBounds[4],sectMetr.typeBounds[4] or 0)
+                bounds[2] = math.min(bounds[2],sectMetr.bounds[2] or 0)
+                bounds[3] = bounds[1] + sectMetr.bounds.w
+                bounds[4] = math.max(bounds[4],sectMetr.bounds[4] or 0)
             end
 
             -- add all section widths
@@ -706,13 +706,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         end, ASS.Section.Text)
 
-        if includeTypeBounds then
-            typeBounds.width, typeBounds.height = typeBounds[3]-typeBounds[1], typeBounds[4]-typeBounds[2]
-            metr.typeBounds = typeBounds
-        end
-
-        if includeLineBounds then
-            metr.lineBounds, metr.animated = self:getLineBounds()
+        if calculateBounds then
+            bounds.w, bounds.h = bounds[3]-bounds[1], bounds[4]-bounds[2]
+            metr.bounds = bounds
         end
 
         return metr

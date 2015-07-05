@@ -39,7 +39,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return aegisub.text_extents(self:getStyleTable(nil,coerce),self.value)
     end
 
-    function TextSection:getMetrics(includeTypeBounds, coerce)
+    function TextSection:getTextMetrics(calculateBounds, coerce)
         assert(YUtils, yutilsMissingMsg)
         local fontObj, tagList, shape = self:getYutilsFont()
         extents, metrics = fontObj.text_extents(self.value), fontObj.metrics()
@@ -47,11 +47,11 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         -- in order to not ruin everything
         metrics.width, metrics.height = tonumber(extents.width), tonumber(extents.height)
 
-        if includeTypeBounds then
+        if calculateBounds then
             shape = fontObj.text_to_shape(self.value)
-            metrics.typeBounds = {YUtils.shape.bounding(shape)}
-            metrics.typeBounds.width = (metrics.typeBounds[3] or 0)-(metrics.typeBounds[1] or 0)
-            metrics.typeBounds.height = (metrics.typeBounds[4] or 0)-(metrics.typeBounds[2] or 0)
+            metrics.bounds = {YUtils.shape.bounding(shape)}
+            metrics.bounds.w = (metrics.bounds[3] or 0)-(metrics.bounds[1] or 0)
+            metrics.bounds.h = (metrics.bounds[4] or 0)-(metrics.bounds[2] or 0)
         end
 
         return metrics, tagList, shape
