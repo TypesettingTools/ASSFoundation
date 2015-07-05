@@ -53,6 +53,10 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return modes[mode]()
     end
 
+    function Number:modEq(val, div)
+        return (self%div):equal(val)
+    end
+
     function Number.__lt(a,b) return Number.cmp(a, "<", b) end
     function Number.__le(a,b) return Number.cmp(a, "<=", b) end
     function Number.__add(a,b) return type(a)=="table" and a:copy():add(b) or b:copy():add(a) end
