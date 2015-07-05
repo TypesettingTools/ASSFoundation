@@ -570,7 +570,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         local pos = effTags.position or effTags.move
         -- default origin moves with \move which can't be expressed in a single \org tag, so none is returned
-        local org = effTags.origin or pos and pos.class == ASS.Tag.Position and ASS:createTag("origin", pos)
+        local org = effTags.origin or pos and pos.class == ASS.Point and ASS:createTag("origin", pos) or nil
 
         if pos and not forceDefault then
             return pos, align, org
