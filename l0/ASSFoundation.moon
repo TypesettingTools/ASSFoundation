@@ -142,7 +142,8 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "\\fry([%-%d%.]+)", format: "\\fry%.3N"
                             }
-                            props: transformable: true, default: {0}
+                            props: transformable: true
+                            default: {0}
                         }
     angle_x:            {
                             sort: 10
