@@ -17,14 +17,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.2.9",
-          "released": "2015-05-12",
+          "version": "0.3.0",
+          "released": "2015-07-05",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "2F120C6589E7B9B2DD3F867AE64DCE9B223898C2"
+              "sha1": "064B1D587F5FF570882273ECE3FC4D1325A74A6E"
             },
             {
               "name": ".lua",
@@ -53,12 +53,12 @@
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B511E2B6A32D2643BEF54FCC259E7E0B7358362C"
+              "sha1": "59A68AF666DA20CE099938493E8BE7FD9CBEB51C"
             },
             {
               "name": "/TagList.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "EF0991C047357DB585EC1DD7A8B7FBE4640AEF14"
+              "sha1": "021746ECF3D4C79F7C66FF2FAC3506E8CA1D33F3"
             },
             {
               "name": "/Draw/Bezier.lua",
@@ -93,7 +93,7 @@
             {
               "name": "/Primitive/Number.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B0ABD2AE7B536668EE61F2722E49D36ACDBFEE54"
+              "sha1": "DD650F7BEC9A82D167AFF04B3FCFBDA6BF357F50"
             },
             {
               "name": "/Primitive/Point.lua",
@@ -128,12 +128,12 @@
             {
               "name": "/Section/Text.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "820E24E704958FA073CEBBF1C6996CDAAA5C534A"
+              "sha1": "8C857082A09A2B3402DF0017C49B298D265CCB5A"
             },
             {
               "name": "/Tag/Align.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "1686FEF8F396524551C5C6985457A88F3FF67749"
+              "sha1": "81BE42F90AFAE1D11C2DB08B61D7423D37143866"
             },
             {
               "name": "/Tag/Base.lua",
@@ -240,6 +240,15 @@
         }
       },
       "changelog": {
+        "0.3.0": [
+          "Align:getPositionOffset(): An optional parameter was added to allow for specifying a reference alignment. Previously the offset was always relative to the coordinate origin (\\an7 alignment), now it's possible to use this method to calculate the offset between any given source and target alignment.",
+          "TagList:isTagTransformed() was renamed to TagList:checkTransformed() to better reflect the option of making it return a hashtable of all tags and whether or not they're being transformed when called without an argument. ",
+          "A convenient Number:ModEq(value, divisor) comparison method was added to Number primitives.",
+          "The LineContents:getMetrics() and TagSection:getMetrics() were renamed to :getTextMetrics and had the option to also emit LineBounds removed. The type bounds table now uses .w and .h for height just as LineBounds does.",
+          "LineContents:getPosition(): a bug was fixed that could cause the returned origin value to be of type boolean instead of an ASS.Point.",
+          "LineContents:getDefaultTags(): style defaults for tags now always take precedence over generic defaults.",
+          "Fixed a bug in the tag mapping table that resulted in a missing default value for \\fry tags."
+        ],
         "0.2.9": [
           "LineContents:replaceTags(): An argument was added to control insertion of remaining tags not previously found in the line (on by default to match old behavior).",
           "LineContents:replaceTags() now automatically creates the missing tag section at the beginning of the line if insertion of remaining tags was requested starting at index 1."
