@@ -654,7 +654,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         for name,tag in pairs(ASS.tagMap) do
             -- defaults always use default signature
             tag.props.signature = "default"
-            if tag.default then tagList.tags[name] = tag.type{raw=tag.default, tagProps=tag.props} end
+            if tag.default and not tagList.tags[name] then
+                tagList.tags[name] = tag.type{raw=tag.default, tagProps=tag.props}
+            end
         end
 
         styleDefaultCache[style.raw] = tagList
