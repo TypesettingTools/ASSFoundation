@@ -95,7 +95,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return flatTagList
     end
 
-    function TagList:isTagTransformed(tagName)
+    function TagList:checkTransformed(tagName)
         local set = {}
         for i=1,#self.transforms do
             for j=1,#self.transforms[i].tags.tags do
@@ -207,7 +207,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         local defaults = ownReset and self.contentRef:getDefaultTags(ownReset)
         local otherReset = other.reset and other.contentRef:getDefaultTags(other.reset)
-        local otherTransSet = other:isTagTransformed()
+        local otherTransSet = other:checkTransformed()
 
         for name,tag in pairs(self.tags) do
             local global = tag.__tag.global and not ignoreGlobalState
