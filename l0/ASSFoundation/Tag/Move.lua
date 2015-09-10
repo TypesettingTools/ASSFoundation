@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local Move = createASSClass("Tag.Move", ASS.Tag.Base,
         {"startPos", "endPos", "startTime", "endTime"},
         {ASS.Point, ASS.Point, ASS.Time, ASS.Time}

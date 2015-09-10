@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local TagList = createASSClass("TagList", ASS.Base, {"tags", "transforms" ,"reset", "startTime", "endTime", "accel"},
                                 {"table", "table", ASS.String, ASS.Time, ASS.Time, ASS.Number})
 

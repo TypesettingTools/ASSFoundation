@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local LineBounds = createASSClass("LineBounds", ASS.Base, {1, 2, "w", "h", "fbf", "animated", "rawText"},
                                   {ASS.Point, ASS.Point, "number", "number", "table", "boolean", "string"})
     function LineBounds:new(cnts, noCommit)

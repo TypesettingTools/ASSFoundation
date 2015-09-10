@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local Contour = createASSClass("Draw.Contour", ASS.Base, {"commands"}, {"table"}, nil, nil, function(tbl, key)
         if key=="isCW" then
             return tbl:getDirection()
@@ -128,8 +128,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function Contour:flatten(coerce)
-        assert(YUtils, yutilsMissingMsg)
-        local flatStr = YUtils.shape.flatten(self:getTagParams(coerce))
+        assert(Yutils, yutilsMissingMsg)
+        local flatStr = Yutils.shape.flatten(self:getTagParams(coerce))
         local flattened = ASS.Draw.DrawingBase{str=flatStr, tagProps=self.__tag}
         self.commands = flattened.contours[1].commands
         return self, flatStr
@@ -195,8 +195,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function Contour:getBounds()
-        assert(YUtils, yutilsMissingMsg)
-        local l, t, r, b = YUtils.shape.bounding(YUtils.shape.flatten(self:getTagParams()))
+        assert(Yutils, yutilsMissingMsg)
+        local l, t, r, b = Yutils.shape.bounding(Yutils.shape.flatten(self:getTagParams()))
         return {ASS.Point{l, t}, ASS.Point{r, b}, w=r-l, h=b-t}
     end
 
@@ -262,9 +262,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function Contour:getOutline(x, y, mode, splitContours)
-        assert(YUtils, yutilsMissingMsg)
+        assert(Yutils, yutilsMissingMsg)
         y, mode = default(y,x), default(mode, "round")
-        local outline = YUtils.shape.to_outline(YUtils.shape.flatten(self:getTagParams()),x,y,mode)
+        local outline = Yutils.shape.to_outline(Yutils.shape.flatten(self:getTagParams()),x,y,mode)
         return (self.parent and self.parent.class or ASS.Draw.DrawingBase){str=outline, splitContours=splitContours}
     end
 

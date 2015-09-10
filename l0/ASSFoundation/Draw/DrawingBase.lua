@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local DrawingBase = createASSClass("Draw.DrawingBase", ASS.Tag.Base, {"contours"}, {"table"})
     -- TODO: check if these can be remapped/implemented in a way that makes sense, maybe work on strings
     DrawingBase.set, DrawingBase.mod = nil, nil
@@ -357,8 +357,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function DrawingBase:getBounds()
-        assert(YUtils, yutilsMissingMsg)
-        local l, t, r, b = YUtils.shape.bounding(YUtils.shape.flatten(self:getTagParams()))
+        assert(Yutils, yutilsMissingMsg)
+        local l, t, r, b = Yutils.shape.bounding(Yutils.shape.flatten(self:getTagParams()))
         return {ASS.Point{l, t}, ASS.Point{r, b}, w=r-l, h=b-t}
     end
 
@@ -368,9 +368,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function DrawingBase:getOutline(x,y,mode)
-        assert(YUtils, yutilsMissingMsg)
+        assert(Yutils, yutilsMissingMsg)
         y, mode = default(y,x), default(mode, "round")
-        local outline = YUtils.shape.to_outline(YUtils.shape.flatten(self:getTagParams()),x,y,mode)
+        local outline = Yutils.shape.to_outline(Yutils.shape.flatten(self:getTagParams()),x,y,mode)
         return self.class{str=outline}
     end
 
@@ -461,13 +461,13 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         end
 
         if angle%360~=0 then
-            assert(YUtils, yutilsMissingMsg)
+            assert(Yutils, yutilsMissingMsg)
             local shape = self:getTagParams()
-            local bound = {YUtils.shape.bounding(shape)}
-            local rotMatrix = YUtils.math.create_matrix().
+            local bound = {Yutils.shape.bounding(shape)}
+            local rotMatrix = Yutils.math.create_matrix().
                               translate((bound[3]-bound[1])/2,(bound[4]-bound[2])/2,0).rotate("z",angle).
                               translate(-bound[3]+bound[1]/2,(-bound[4]+bound[2])/2,0)
-            shape = YUtils.shape.transform(shape,rotMatrix)
+            shape = Yutils.shape.transform(shape,rotMatrix)
             self.contours = DrawingBase{raw=shape}.contours
         end
         return self

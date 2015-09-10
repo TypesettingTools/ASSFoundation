@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local DrawBezier = createASSClass("Draw.Bezier", ASS.Draw.CommandBase, {"p1","p2","p3"},
                                       {ASS.Point, ASS.Point, ASS.Point}, {name="b", ords=6})
 
@@ -22,14 +22,14 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function DrawBezier:getFlattened(noUpdate)
-        assert(YUtils, yutilsMissingMsg)
+        assert(Yutils, yutilsMissingMsg)
         if not (noUpdate and self.flattened) then
             if not (noUpdate and self.cursor) then
                 self.parent:getLength()
             end
             -- TODO: check
             local shapeSection = ASS.Draw.DrawingBase{ASS.Draw.Move{self.cursor:get()},self}
-            self.flattened = ASS.Draw.DrawingBase{str=YUtils.shape.flatten(shapeSection:getTagParams())}
+            self.flattened = ASS.Draw.DrawingBase{str=Yutils.shape.flatten(shapeSection:getTagParams())}
         end
         return self.flattened
     end

@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local CommandBase = createASSClass("Draw.CommandBase", ASS.Tag.Base, {}, {})
     function CommandBase:new(args)
         local args = {self:getArgs(args, 0, true)}
@@ -25,7 +25,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function CommandBase:getLength(prevCmd)
-        assert(YUtils, yutilsMissingMsg)
+        assert(Yutils, yutilsMissingMsg)
         -- get end coordinates (cursor) of previous command
         local x0, y0 = 0, 0
         if prevCmd and prevCmd.__tag.name == "b" then
@@ -39,12 +39,12 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         if name == "b" then
             -- TODO: check
             local shapeSection = ASS.Draw.DrawingBase{ASS.Draw.Move{self.cursor:get()},self}
-            self.flattened = ASS.Draw.DrawingBase{str=YUtils.shape.flatten(shapeSection:getTagParams())} --save flattened shape for further processing
+            self.flattened = ASS.Draw.DrawingBase{str=Yutils.shape.flatten(shapeSection:getTagParams())} --save flattened shape for further processing
             len = self.flattened:getLength()
         elseif name =="m" or name == "n" then len=0
         elseif name =="l" then
             local x, y = self:get()
-            len = YUtils.math.distance(x-x0, y-y0)
+            len = Yutils.math.distance(x-x0, y-y0)
         end
         -- save length for further processing
         self.length = len
@@ -52,11 +52,11 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function CommandBase:getPositionAtLength(len, noUpdate, useCurveTime)
-        assert(YUtils, yutilsMissingMsg)
+        assert(Yutils, yutilsMissingMsg)
         if not (self.length and self.cursor and noUpdate) then self.parent:getLength() end
         local name, pos = self.__tag.name
         if name == "b" and useCurveTime then
-            local px, py = YUtils.math.bezier(math.min(len/self.length,1), {{self.cursor:get()},{self.p1:get()},{self.p2:get()},{self.p3:get()}})
+            local px, py = Yutils.math.bezier(math.min(len/self.length,1), {{self.cursor:get()},{self.p1:get()},{self.p2:get()},{self.p3:get()}})
             pos = ASS.Point{px, py}
         elseif name == "b" then
             pos = self:getFlattened(true):getPositionAtLength(len, true)   -- we already know this data is up-to-date because self.parent:getLength() was run

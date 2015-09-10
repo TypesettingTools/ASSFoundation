@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local Transform = createASSClass("Transform", ASS.Tag.Base, {"tags", "startTime", "endTime", "accel"},
                                      {ASS.Section.Tag, ASS.Time, ASS.Time, ASS.Number})
 

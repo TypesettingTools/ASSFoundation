@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local Color = createASSClass("Tag.Color", ASS.Tag.Base, {"r","g","b"}, {ASS.Hex, ASS.Hex, ASS.Hex})
     function Color:new(args)
         local b,g,r = self:getArgs(args,nil,true)

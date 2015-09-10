@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local ClipVect = createASSClass("Tag.ClipVect", ASS.Draw.DrawingBase, {"commands", "scale"},
                                     {"table", ASS.Number}, {}, {ASS.Draw.DrawingBase})
     --TODO: unify setInverse and toggleInverse for VectClip and RectClip by using multiple inheritance

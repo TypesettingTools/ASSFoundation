@@ -1,11 +1,11 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local DrawLine = createASSClass("Draw.Line", ASS.Draw.CommandBase, {"x", "y"}, {ASS.Number, ASS.Number},
                                     {name="l", ords=2}, {ASS.Point, ASS.Draw.Move, ASS.Draw.MoveNc})
     function DrawLine:ScaleToLength(len,noUpdate)
-        assert(YUtils, yutilsMissingMsg)
+        assert(Yutils, yutilsMissingMsg)
         if not (self.length and self.cursor and noUpdate) then self.parent:getLength() end
         self:sub(self.cursor)
-        self:set(self.cursor:copy():add(YUtils.math.stretch(self.x.value, self.y.value, 0, len)))
+        self:set(self.cursor:copy():add(Yutils.math.stretch(self.x.value, self.y.value, 0, len)))
         return self
     end
 

@@ -1,4 +1,4 @@
-return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, YUtils)
+return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local TextSection = createASSClass("Section.Text", ASS.String, {"value"}, {"string"}, nil, nil, function(tbl, key)
         if key == "len" then
             return unicode.len(tbl.value)
@@ -40,7 +40,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function TextSection:getTextMetrics(calculateBounds, coerce)
-        assert(YUtils, yutilsMissingMsg)
+        assert(Yutils, yutilsMissingMsg)
         local fontObj, tagList, shape = self:getYutilsFont()
         extents, metrics = fontObj.text_extents(self.value), fontObj.metrics()
         -- make sure we convert uint64 (returned from ffi) to lua numbers here
@@ -49,7 +49,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         if calculateBounds then
             shape = fontObj.text_to_shape(self.value)
-            metrics.bounds = {YUtils.shape.bounding(shape)}
+            metrics.bounds = {Yutils.shape.bounding(shape)}
             metrics.bounds.w = (metrics.bounds[3] or 0)-(metrics.bounds[1] or 0)
             metrics.bounds.h = (metrics.bounds[4] or 0)-(metrics.bounds[2] or 0)
         end
@@ -87,10 +87,10 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function TextSection:getYutilsFont(coerce)
-        assert(YUtils, yutilsMissingMsg)
+        assert(Yutils, yutilsMissingMsg)
         local tagList = self:getEffectiveTags(true,true,false)
         local tags = tagList.tags
-        return YUtils.decode.create_font(tags.fontname:getTagParams(coerce), tags.bold:getTagParams(coerce)>0,
+        return Yutils.decode.create_font(tags.fontname:getTagParams(coerce), tags.bold:getTagParams(coerce)>0,
                                          tags.italic:getTagParams(coerce)>0, tags.underline:getTagParams(coerce)>0, tags.strikeout:getTagParams(coerce)>0,
                                          tags.fontsize:getTagParams(coerce), tags.scale_x:getTagParams(coerce)/100, tags.scale_y:getTagParams(coerce)/100,
                                          tags.spacing:getTagParams(coerce)

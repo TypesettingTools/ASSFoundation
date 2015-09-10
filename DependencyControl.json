@@ -233,7 +233,7 @@
               "feed": "https://raw.githubusercontent.com/TypesettingTools/SubInspector/master/DependencyControl.json"
             },
             {
-              "moduleName": "YUtils",
+              "moduleName": "Yutils",
               "optional": true
             }
           ]
@@ -266,7 +266,7 @@
           "Converting a rectangular clip into a vector clip no longer results in an error."
         ],
         "0.2.5": [
-          "Added a workaround for a YUtils bug that would cause Text->Drawing conversions to fail on 64-bit Windows."
+          "Added a workaround for a Yutils bug that would cause Text->Drawing conversions to fail on 64-bit Windows."
         ],
         "0.2.4": [
           "LineContents:getPosition() now also returns the origin of a line.",
@@ -277,7 +277,7 @@
         "0.2.3": [
           "LineContents:getPosition() now returns found \\move tags instead of the default position for the line.",
           "LineContents:getPosition() now returns the original \\an tag if one is found in the line (instead of a copy).",
-          "YUtils-based bounds detection is now available to all drawings, clips and contours.",
+          "Yutils-based bounds detection is now available to all drawings, clips and contours.",
           "Retrieval of effective tags no longer ignores the 'copyTags' parameter.",
           "Fixed a bug that would sometimes cause common operations to incorrectly process object members.",
           "Fixed incorrect function signature use in vectorial clip objects.",
