@@ -59,7 +59,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
     function TextSection:getShape(applyRotation, coerce)
         applyRotation = default(applyRotation, false)
-        local metr, tagList, shape = self:getMetrics(true)
+        local metr, tagList, shape = self:getTextMetrics(true)
         local drawing, an = ASS.Draw.DrawingBase{str=shape}, tagList.tags.align:getSet()
         -- fix position based on aligment
         drawing:sub(not an.left and (metr.width-metr.typeBounds.width)   / (an.centerH and 2 or 1) or 0,
