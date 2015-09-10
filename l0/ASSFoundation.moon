@@ -29,7 +29,7 @@ createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspect
 ASS = require("l0.ASSFoundation.FoundationMethods")(unpack modules)
 ASSFInstMeta = __index: ASS
 ASSFInstProxy = setmetatable {}, ASSFInstMeta
-yutilsMissingMsg = version\checkOptionalModules "Yutils"
+_, yutilsMissingMsg = version\checkOptionalModules "Yutils"
 
 loadClass = (name) ->
     return require("l0.ASSFoundation."..name)(ASS, ASSFInstProxy, yutilsMissingMsg, unpack modules)
