@@ -56,7 +56,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                  LineBounds.typeName, ASS:instanceOf(other) or type(other))
         if self.w + other.w == 0 then
             return true
-        elseif self.w~=other.w or self.h~=other.h or self.animated~=other.animated or self.fbf.n~=other.fbf.n then
+        elseif self.w~=other.w or self.h~=other.h or self.animated~=other.animated
+        or self.fbf.n~=other.fbf.n or self.fbf.off~=other.fbf.off then
             return false
         end
 
