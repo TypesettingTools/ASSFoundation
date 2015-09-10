@@ -17,14 +17,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.3.0",
-          "released": "2015-07-05",
+          "version": "0.3.1",
+          "released": "2015-09-10",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "064B1D587F5FF570882273ECE3FC4D1325A74A6E"
+              "sha1": "F8CB84464871CB32CA26CD216E9108203B6BD86D"
             },
             {
               "name": ".lua",
@@ -33,7 +33,7 @@
             {
               "name": "/Base.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "FAA119192EDEFA1F54E9303FE6E4DB7C94686B5E"
+              "sha1": "F593E82EF338F97A5A36A116AC3B98197E515F2E"
             },
             {
               "name": "/ClassFactory.lua",
@@ -43,152 +43,152 @@
             {
               "name": "/FoundationMethods.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "63A504DEB834B279A336F89B18B76E142A7FC03C"
+              "sha1": "D53B1B7BCCDF95F097451774AA664BEFD0E5E5C9"
             },
             {
               "name": "/LineBounds.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "08B2EE34095E8E3393D6944F4B197B3FF6C4050F"
+              "sha1": "A3449F59841D9B890B0389452A4A4FBBC1744AA4"
             },
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "59A68AF666DA20CE099938493E8BE7FD9CBEB51C"
+              "sha1": "B5DD6AC9DAD064F45207E7DFC567098CDEC5B499"
             },
             {
               "name": "/TagList.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "021746ECF3D4C79F7C66FF2FAC3506E8CA1D33F3"
+              "sha1": "2B6FB0C535B92D903E332D3305446EE7668FCC82"
             },
             {
               "name": "/Draw/Bezier.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "22799BFF13B95E589EB2CF8507DB45417AF44AA6"
+              "sha1": "5983D2CDE54756367105580BC79C692072E31701"
             },
             {
               "name": "/Draw/Close.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "C19C1B2BDF34D156930272A08FC5F2C412FBC3FA"
+              "sha1": "B98ADA6B185B5EE5A88A772F7C6CE9A76AAB5A45"
             },
             {
               "name": "/Draw/CommandBase.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B3C310179B12A367642324F4542D15152E0A8ADD"
+              "sha1": "962BEF176F15B9E345E6F4F02A3C92DC18540051"
             },
             {
               "name": "/Draw/Contour.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B551191D1F49C8E541CFDF0E4672B1926A3D3644"
+              "sha1": "15B0BCBA52D85E70CB71937AC1F5727A245CC781"
             },
             {
               "name": "/Draw/DrawingBase.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "E10DA2E8F34C9FD6A9DFCB9876DA55B304545E49"
+              "sha1": "7061201D87C7FBB4A2F1C450FB47ACEEC9C9D434"
             },
             {
               "name": "/Draw/Line.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "D0B600A2BD9ED63B6D2D5027B1DBB6170E754C83"
+              "sha1": "A77D135EAE077CC0900CC32768337CB689AFBEC5"
             },
             {
               "name": "/Primitive/Number.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "DD650F7BEC9A82D167AFF04B3FCFBDA6BF357F50"
+              "sha1": "A4AB8DCBC4D96FFFE05249C89785A9C208A38A81"
             },
             {
               "name": "/Primitive/Point.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "912034D3270D8E889B05E3138EA929D29FD9953F"
+              "sha1": "AF76096E9A0B8A97A02113240F406DCF9DD0BDFB"
             },
             {
               "name": "/Primitive/String.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "E1A9549F990E0183CCB471AA9A55FF2D0500DA37"
+              "sha1": "99E98C2D69D25764EF2A3021596D99AF6F278DC1"
             },
             {
               "name": "/Primitive/Time.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "8DA5EFE01B2D452F5B947627E91A68A3208630C2"
+              "sha1": "4B7FE7D5AB79AB862AF3C5FAC551AC56AC0DA7F6"
             },
             {
               "name": "/Section/Comment.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "BA31C90FA45BCDC46DE8EE10F8F01812A021C6B3"
+              "sha1": "155E1A36AB6143E7F1757B15CAD68D7A36248381"
             },
             {
               "name": "/Section/Drawing.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F90963A9FF97C668B61F14256DE4A57BA1BE8CA7"
+              "sha1": "CFB60846CE274C1B244B71BF25FEA5CFA5A8CBCD"
             },
             {
               "name": "/Section/Tag.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "86E7574663583EDEE2542C5D39BA016534443682"
+              "sha1": "E364B4DAF2CDA378662FBAEE12EA1AF6F791B700"
             },
             {
               "name": "/Section/Text.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "8C857082A09A2B3402DF0017C49B298D265CCB5A"
+              "sha1": "585E65E7821E0444EDA19EE6EFCDA33BBD55767C"
             },
             {
               "name": "/Tag/Align.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "81BE42F90AFAE1D11C2DB08B61D7423D37143866"
+              "sha1": "C8D82EDEF5504430E97D288EBA651C893D270701"
             },
             {
               "name": "/Tag/Base.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "234461E0A2B0910C944848D55DC9E967A2DB6892"
+              "sha1": "F21E69EB12D27E44350A9E37F59517BBB1E5BFD4"
             },
             {
               "name": "/Tag/ClipRect.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F9E71EF22BACB4E6C4BBCF13984CC0D64447E9BD"
+              "sha1": "B8353740838CE8B178E79574AA1CEC4D4204B261"
             },
             {
               "name": "/Tag/ClipVect.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "C5BA699725987AE802CB029AB0814859749A9D7D"
+              "sha1": "28CFDCC25AEFCBB2D2CB8C910A79574B0B914C95"
             },
             {
               "name": "/Tag/Color.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "1F7C61882B558DC86C12CEC45CB52A0C85D9CB75"
+              "sha1": "ABBFCF3510BD8263D9B8014679010531A4EEEA3F"
             },
             {
               "name": "/Tag/Fade.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "070420E32C79A294355A91AEC5A78D5640510C9F"
+              "sha1": "F6735FC142F6D1C21AD3C92F8EA08CA6A4B30A9A"
             },
             {
               "name": "/Tag/Indexed.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "80BCCD0BD943C8CBD954A51053B789D19206A24D"
+              "sha1": "ED5A189E529A0102F70CF4D99F41236EE76FE221"
             },
             {
               "name": "/Tag/Move.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "74F37FF451008818D8A1349377DF8012922FDEA9"
+              "sha1": "BCB78699700FCAB2D59D9FF6BFD5DFC68B841E73"
             },
             {
               "name": "/Tag/String.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F697BE32B154C2252FB8067B07B8199895000ED0"
+              "sha1": "3938D5861B31813ED043582E57AE4485A7720F02"
             },
             {
               "name": "/Tag/Toggle.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "7A96C9AA4D2735CAD48D484122A790C3455E67B9"
+              "sha1": "2F230691871113B71DFA8B7D65EE37AF6B0C5807"
             },
             {
               "name": "/Tag/Transform.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "EFC004C0FA480C18625ED3DC8579BBDC18151737"
+              "sha1": "E556857E7F9D47F9FA1D384749BA07DE3A48E44D"
             },
             {
               "name": "/Tag/Weight.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "99D24439C3AF678852C7295FFDD5FD071D02BC96"
+              "sha1": "83DBAEE55D5CECFCA647EB19A1AB1DE4B465B285"
             }
           ],
           "requiredModules": [
@@ -240,6 +240,11 @@
         }
       },
       "changelog": {
+        "0.3.1": [
+          "The Yutils module is now loaded correctly on case-sensitive platforms/file systems such as Linux.",
+          "Trying to use feature that requires Yutils now results in a proper error message in case the Yutils module is missing (rather than ASSFoundation running into an error while trying to do so).",
+          "TextSection:getShape(): A regression was fixed that would cause the text-to-shape conversion to fail on v0.3.0."
+        ],
         "0.3.0": [
           "Align:getPositionOffset(): An optional parameter was added to allow for specifying a reference alignment. Previously the offset was always relative to the coordinate origin (\\an7 alignment), now it's possible to use this method to calculate the offset between any given source and target alignment.",
           "TagList:isTagTransformed() was renamed to TagList:checkTransformed() to better reflect the option of making it return a hashtable of all tags and whether or not they're being transformed when called without an argument. ",
