@@ -62,8 +62,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         local metr, tagList, shape = self:getTextMetrics(true)
         local drawing, an = ASS.Draw.DrawingBase{str=shape}, tagList.tags.align:getSet()
         -- fix position based on aligment
-        drawing:sub(not an.left and (metr.width-metr.typeBounds.width)   / (an.centerH and 2 or 1) or 0,
-                    not an.top  and (metr.height-metr.typeBounds.height) / (an.centerV and 2 or 1) or 0
+        drawing:sub(not an.left and (metr.width-metr.bounds.w)   / (an.centerH and 2 or 1) or 0,
+                    not an.top  and (metr.height-metr.bounds.h) / (an.centerV and 2 or 1) or 0
         )
 
         -- rotate shape
