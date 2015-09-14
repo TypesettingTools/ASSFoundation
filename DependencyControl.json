@@ -17,14 +17,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.3.1",
-          "released": "2015-09-10",
+          "version": "0.3.2",
+          "released": "2015-09-15",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F8CB84464871CB32CA26CD216E9108203B6BD86D"
+              "sha1": "5CE4AF0CD508324E38A4E212B58E93AC32D285E2"
             },
             {
               "name": ".lua",
@@ -128,7 +128,7 @@
             {
               "name": "/Section/Text.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "585E65E7821E0444EDA19EE6EFCDA33BBD55767C"
+              "sha1": "944AA510A0CFFC0C72A67A8146FA2DC467D22541"
             },
             {
               "name": "/Tag/Align.lua",
@@ -240,6 +240,9 @@
         }
       },
       "changelog": {
+        "0.3.2": [
+          "TextSection:getShape(): A regression was now *actually* fixed that would cause the text-to-shape conversion to fail on v0.3.0 and v.0.3.1."
+        ],
         "0.3.1": [
           "The Yutils module is now loaded correctly on case-sensitive platforms/file systems such as Linux.",
           "Trying to use feature that requires Yutils now results in a proper error message in case the Yutils module is missing (rather than ASSFoundation running into an error while trying to do so).",
