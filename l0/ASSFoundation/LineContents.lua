@@ -314,7 +314,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         )
         if index<0 then index = index+#self.sections+1 end
         return self.sections[index] and self.sections[index]:getEffectiveTags(includeDefault,includePrevious,copyTags)
-               or ASS.TagList(nil, self)
+               or includeDefault and self:getDefaultTags(nil, copyTags) or ASS.TagList(nil, self)
     end
 
     function LineContents:getTagCount()
