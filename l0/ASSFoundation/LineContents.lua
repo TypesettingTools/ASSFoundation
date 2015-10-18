@@ -522,8 +522,13 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             local effTags = data:getEffectiveTags(-1,true,true,false)
             local sectWidth = data:getTextExtents()
 
+            -- now trim zero-bounds characters
+            -- TODO: right now this only trims known whitespace characters, but depending on the font there might be more
+            -- so we actually need to check the bounds for each character in the future
+            data:trim()
+
             -- calculate new position
-            local alignOffset = getAlignOffset[effTags.tags["align"]:get()%3](sectWidth,lineWidth)
+            local alignOffset = getAlignOffset[effTags.tags["align"]:get()%3](data:getTextExtents(), lineWidth)
             local pos = effTags.tags["position"]:copy()
             pos:add(alignOffset+xOff,0)
             -- write new position tag to first tag section
@@ -539,6 +544,20 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             data:commit()
         end
         return splitLines
+    end
+
+    function LineContents:trim()
+        local textSects, t = {}, 1
+        self:callback(function(section,sections,i)
+            textSects[t], t = section, t + 1
+        end, ASS.Section.Text)
+
+        if t == 2 then
+            textSects[1]:trim();
+        elseif t > 2 then
+            textSects[1]:trimLeft()
+            textSects[t]:trimRight()
+        end
     end
 
     function LineContents:getStyleRef(style)

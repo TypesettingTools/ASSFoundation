@@ -96,5 +96,18 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                                          tags.spacing:getTagParams(coerce)
         ), tagList
     end
+
+    function TextSection:trimLeft()
+        self.value = self.value:gsub("^%s*(.+)$", "%1")
+    end
+
+    function TextSection:trimRight()
+        self.value = self.value:gsub("^(.-)%s*$", "%1")
+    end
+
+    function TextSection:trim()
+        self.value = self.value:gsub("^%s*(.-)%s*$", "%1")
+    end
+
     return TextSection
 end
