@@ -17,14 +17,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.3.2",
-          "released": "2015-09-15",
+          "version": "0.3.3",
+          "released": "2015-10-18",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "5CE4AF0CD508324E38A4E212B58E93AC32D285E2"
+              "sha1": "95444517B9B1DC8737703122278069DEAFE54F3E"
             },
             {
               "name": ".lua",
@@ -53,7 +53,7 @@
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B5DD6AC9DAD064F45207E7DFC567098CDEC5B499"
+              "sha1": "CFD7392E4556122A3C5BA28F60026C65092F44C0"
             },
             {
               "name": "/TagList.lua",
@@ -128,7 +128,7 @@
             {
               "name": "/Section/Text.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "944AA510A0CFFC0C72A67A8146FA2DC467D22541"
+              "sha1": "22E45B32A822FCB2887157E6706360C6E8640D4C"
             },
             {
               "name": "/Tag/Align.lua",
@@ -240,6 +240,10 @@
         }
       },
       "changelog": {
+        "0.3.3": [
+          "Line splitting no longer incorrectly calculates the position for splits with leading or trailing whitespace characters.",
+          "LineContents:getEffectiveTags() now always returns requested default tags, even if the section at the specified index doesn't exist."
+        ],
         "0.3.2": [
           "TextSection:getShape(): A regression was now *actually* fixed that would cause the text-to-shape conversion to fail on v0.3.0 and v.0.3.1."
         ],
