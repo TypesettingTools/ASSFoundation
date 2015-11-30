@@ -491,7 +491,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "\\pos%(([%-%d%.]+),([%-%d%.]+)%)", format: "\\pos(%.3N,%.3N)"
                             }
-                            props: global: true
+                            props: global: true, position: true
                         }
     move:               {
                             sort: 3
@@ -501,7 +501,7 @@ ASS.tagMap = {
                                 default: pattern: "\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),(%d+),(%d+)%)", format: "\\move(%.3N,%.3N,%.3N,%.3N,%.3N,%.3N)"
                                 simple:  pattern: "\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)",             format: "\\move(%.3N,%.3N,%.3N,%.3N)"
                             }
-                            props: global: true
+                            props: global: true, position: true
                         }
     origin:             {
                             sort: 5
@@ -576,6 +576,7 @@ ASS.tagNames = {
     clips:       ASS\getTagsNamesFromProps clip: true
     karaoke:     ASS\getTagsNamesFromProps karaoke: true
     childAlpha:  ASS\getTagsNamesFromProps childAlpha: true
+    position:    ASS\getTagsNamesFromProps position: true
 }
 
 ASS.toFriendlyName, ASS.toTagName, ASS.tagSortOrder = {}, {}, {}

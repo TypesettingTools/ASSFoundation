@@ -7,6 +7,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             self.tags, self.transforms, self.contentRef = {}, {}, tags.parent
             local trIdx, transforms, ovrTransTags, transTags = 1, {}, {}
             local seenVectClip, childAlphaNames = false, ASS.tagNames.childAlpha
+            local seenPosTag = false
 
             tags:callback(function(tag)
                 local props = tag.__tag
@@ -35,6 +36,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                 -- This expects all global tags to be non-transformable which is true for ASSv4+
                 -- Since there can be only one vectorial clip or iclip at a time, only keep the first one
                 elseif not (self.tags[props.name] and props.global)
+                and not (seenPosTag and props.position)
                 and not (seenVectClip and tag.instanceOf[ASS.Tag.ClipVect]) then
                     self.tags[props.name] = tag
                     if tag.__tag.transformable then
@@ -43,8 +45,10 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                         -- If a transformable tag is encountered, its entry in the overridden transforms list
                         -- is set to the nummber of the last transform(+1), so the tag can be purged from all previous transforms.
                         ovrTransTags[tag.__tag.name] = trIdx
-                    elseif tag.instanceOf[ASS.Tag.ClipVect]  then
+                    elseif tag.instanceOf[ASS.Tag.ClipVect] then
                         seenVectClip = true
+                    elseif props.position then
+                        seenPosTag = true
                     end
                     if tag.__tag.masterAlpha then
                         for i=1,#childAlphaNames do
