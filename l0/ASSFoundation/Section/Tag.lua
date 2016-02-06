@@ -1,6 +1,6 @@
 return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local TagSection = createASSClass("Section.Tag", ASS.Base, {"tags"}, {"table"})
-    TagSection.tagMatch = re.compile("\\\\[^\\\\\\(]+(?:\\([^\\)]+\\)[^\\\\]*)?|[^\\\\]+")
+    TagSection.tagMatch = re.compile("\\\\(?:[^\\\\\\(]*(?:\\([^\\)]+\\)?[^\\\\]*)|[^\\\\]+)|[^\\\\]+")
     TagSection.getStyleTable = ASS.Section.Text.getStyleTable
 
     function TagSection:new(tags, transformableOnly, tagSortOrder)

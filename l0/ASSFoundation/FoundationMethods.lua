@@ -147,6 +147,10 @@ return function(createASSClass, re, util, unicode, Common, LineCollection, Line,
     end
 
     function ASS:getTagFromString(str)
+        -- all tags with starting brackets must have at least one closing bracket
+        -- for us to be able to freely move them around
+        str = str:gsub("%(([^)]*)%)?", "(%1)")
+
         for _,tag in pairs(self.tagMap) do
             for name, sig in pairs(tag.signatures) do
                 if sig.pattern then
