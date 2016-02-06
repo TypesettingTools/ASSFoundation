@@ -46,13 +46,32 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                         local org, skipOrd = prms[p], false
                         prms[p] = tonumber(prms[p])
                         if not prms[p] then
-                            local near, rsn = table.concat(cmdParts, " ", math.min(i+p-10,1), i+p)
+                            local reason = string.format("expected ordinate, got '%s'", org)
+
                             if org:match("^[bclmnps]$") then
                                 skipOrd = ASS.config.fixDrawings
-                                rsn = string.format("incorrect number of ordinates for command '%s': expected %d, got %d",
-                                                     lastCmdType.typeName, prmCnt, p-1)
-                            else rsn = string.format("expected ordinate, got '%s'", org) end
-                            assertEx(skipOrd, "Error: failed to parse drawing near '%s' (%s).", near, rsn)
+                                reason = string.format("incorrect number of ordinates for command '%s': expected %d, got %d",
+                                                       lastCmdType.typeName, prmCnt, p-1)
+
+                            elseif ASS.config.fixDrawings then
+                                -- ASS renderers accept and draw an ordinate with junk at the end,
+                                -- but will skip any following drawing commands in the drawing section
+                                local ord, fragment = org:match("^([%-%d%.]*)(.*)$")
+                                if ord then
+                                    prms[p] = tonumber(ord)
+                                    if not prms[p] then
+                                        fragment, skipOrd = org, true
+                                    end
+                                end
+                                -- move the junk into a comment section and stop parsing further drawing commands
+                                local unparsedFragments = table.sliceArray(cmdParts,i+p+1)
+                                self.junk = ASS.Section.Comment(fragment .. " " .. table.concat(unparsedFragments, " "))
+                                i = #cmdParts + 1
+                                break
+                            end
+
+                            local near = table.concat(cmdParts, " ", math.max(i+p-10,1), i+p)
+                            assertEx(skipOrd, "Error: failed to parse drawing near '%s' (%s).", near, reason)
                         end
                     end
                     if not skipOrd then

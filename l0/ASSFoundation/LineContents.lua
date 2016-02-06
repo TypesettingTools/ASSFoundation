@@ -1,33 +1,49 @@
 return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local LineContents = createASSClass("LineContents", ASS.Base, {"sections"}, {"table"})
     function LineContents:new(line, sections)
+        function insertContentSections(str, sections, sectCnt, drawingState)
+            if drawingState.value == 0 then
+                sections[sectCnt+1], sectCnt = ASS.Section.Text(str), sectCnt + 1
+            else
+                sections[sectCnt+1] = ASS.Section.Drawing{str = str, scale = drawingState}
+                if sections[sectCnt+1].junk then
+                    sections[sectCnt+2], sectCnt = sections[sectCnt+1].junk, sectCnt + 2
+                else sectCnt = sectCnt + 1 end
+            end
+            return sectCnt
+        end
+
         sections = self:getArgs({sections})
         assertEx(line and line.__class==Line, "argument 1 to %s() must be a Line or %s object, got %s.",
                  self.typeName, self.typeName, type(line))
         if not sections then
             sections = {}
-            local i, j, drawingState, ovrStart, ovrEnd = 1, 1, ASS:createTag("drawing",0)
-            while i<=#line.text do
+            local i, sectCnt, drawingState, ovrStart, ovrEnd = 1, 0, ASS:createTag("drawing",0)
+            while i <= #line.text do
                 ovrStart, ovrEnd = line.text:find("{.-}",i)
                 if ovrStart then
-                    if ovrStart>i then
+                    if ovrStart > i then
                         local substr = line.text:sub(i,ovrStart-1)
-                        sections[j], j = drawingState.value==0 and ASS.Section.Text(substr) or ASS.Section.Drawing{str=substr, scale=drawingState}, j+1
+                        sectCnt = insertContentSections(substr, sections, sectCnt, drawingState)
                     end
-                    sections[j] = ASS.Section.Tag(line.text:sub(ovrStart+1,ovrEnd-1))
-                    -- remove drawing tags from the tag sections so we don't have to keep state in sync with ASSSection.Drawing
-                    local drawingTags = sections[j]:removeTags("drawing")
-                    if #sections[j].tags == 0 and #drawingTags>0 then
-                        sections[j], j = nil, j-1
+                    local tagSection = ASS.Section.Tag(line.text:sub(ovrStart+1, ovrEnd-1))
+                    -- remove drawing tags from tag sections so we don't have to keep state in sync with ASSSection.Drawing
+                    if tagSection.class == ASS.Section.Tag then
+                        local drawingTags, drawingTagCnt = tagSection:removeTags("drawing")
+                        if #tagSection.tags == 0 and drawingTagCnt > 0 then
+                            tagSection = nil
+                        end
+                        drawingState = drawingTags[drawingTagCnt] or drawingState
                     end
-                    drawingState = drawingTags[#drawingTags] or drawingState
+
+                    if tagSection then
+                        sections[sectCnt+1], sectCnt = tagSection, sectCnt + 1
+                    end
                     i = ovrEnd +1
                 else
-                    local substr = line.text:sub(i)
-                    sections[j] = drawingState.value==0 and ASS.Section.Text(substr) or ASS.Section.Drawing{str=substr, scale=drawingState}
+                    insertContentSections(line.text:sub(i), sections, sectCnt, drawingState)
                     break
                 end
-                j=j+1
             end
         else sections = self:typeCheck(util.copy(sections)) end
         -- TODO: check if typeCheck works correctly with compatible classes and doesn't do useless busy work
