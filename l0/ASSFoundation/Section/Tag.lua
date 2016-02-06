@@ -24,6 +24,11 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         elseif type(tags)=="string" or type(tags)=="table" and #tags==1 and type(tags[1])=="string" then
             if type(tags)=="table" then tags=tags[1] end
             self.tags = {}
+
+            -- no tags found but string not empty -> must be a comment section
+            if not tags:match("\\") then
+                return ASS.Section.Comment(tags)
+            end
             local tagMatch, i = self.tagMatch, 1
             for match in tagMatch:gfind(tags) do
                 local tag, start, end_ = ASS:getTagFromString(match)
@@ -38,9 +43,6 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                 end
             end
 
-            if #self.tags==0 and #tags>0 then    -- no tags found but string not empty -> must be a comment section
-                return ASS.Section.Comment(tags)
-            end
         elseif tags==nil then self.tags={}
         elseif ASS:instanceOf(tags, TagSection) then
             -- does only shallow-copy, good idea?
