@@ -498,7 +498,7 @@ ASS.tagMap = {
                             overrideName: "\\move"
                             type: ASS.Tag.Move
                             signatures: {
-                                default: pattern: "\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),(%d+),(%d+)%)", format: "\\move(%.3N,%.3N,%.3N,%.3N,%.3N,%.3N)"
+                                default: pattern: "\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d]+),([%-%d]+)%)", format: "\\move(%.3N,%.3N,%.3N,%.3N,%.3N,%.3N)"
                                 simple:  pattern: "\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)",             format: "\\move(%.3N,%.3N,%.3N,%.3N)"
                             }
                             props: global: true, position: true
