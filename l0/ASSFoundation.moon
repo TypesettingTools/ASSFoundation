@@ -54,7 +54,7 @@ ASS.Time     = loadClass "Primitive.Time"
 ASS.Duration = createASSClass "Duration", ASS.Time,   {"value"}, {"number"}, {positive: true}
 ASS.Hex      = createASSClass "Hex",      ASS.Number, {"value"}, {"number"}, {range: {0,255}, base: 16, precision:0}
 
-ASS.LineContents = loadClass "LineContents"
+ASS.LineContents     = loadClassNew "LineContents"
 ASS.LineBounds   = loadClass "LineBounds"
 ASS.TagList      = loadClass "TagList"
 
