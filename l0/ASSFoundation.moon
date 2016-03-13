@@ -40,7 +40,7 @@ loadClassNew = (name) ->
     return require("l0.ASSFoundation."..name)(ASS, ASSFInstProxy, yutilsMissingMsg, createASSClass, Functional, LineCollection, Line, logger, SubInspector, Yutils)
 
 -- Base Classes
-ASS.Base             = loadClass "Base"
+ASS.Base             = loadClassNew "Base"
 ASS.Tag, ASS.Draw    = {}, {}
 ASS.Tag.Base         = loadClass "Tag.Base"
 ASS.Draw.DrawingBase = loadClassNew "Draw.DrawingBase"
