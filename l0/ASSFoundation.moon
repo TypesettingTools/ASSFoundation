@@ -80,10 +80,7 @@ ASS.Tag.Transform = loadClass "Tag.Transform"
 ASS.Tag.Toggle    = loadClass "Tag.Toggle"
 ASS.Tag.Weight    = loadClass "Tag.Weight"
 ASS.Tag.WrapStyle = createASSClass "Tag.WrapStyle", ASS.Tag.Indexed, {"value"}, {"number"}, {range: {0,3}, default: 0}
--- Unrecognized Tag
-UnknownTag = createASSClass "Tag.Unknown", ASS.Tag.String, {"value"}, {"string"}
-UnknownTag.add, UnknownTag.sub, UnknownTag.mul, UnknownTag.div, UnknownTag.pow, UnknownTag.mod = nil, nil, nil, nil, nil, nil
-ASS.Tag.Unknown = UnknownTag
+ASS.Tag.Unknown   = loadClassNew "Tag.Unknown"
 
 ASS.Draw.Contour        = loadClassNew "Draw.Contour"
 -- Drawing Command Classes
