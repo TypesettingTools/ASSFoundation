@@ -83,12 +83,14 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return signature.format:formatFancy(unpack(params))
     end
 
-    function TagBase:equal(ASSTag)  -- checks equalness only of the relevant properties
+    function TagBase:equal(ASSTag, allowCompatible)  -- checks equalness only of the relevant properties
         local vals2
         if type(ASSTag)~="table" then
             vals2 = {ASSTag}
         elseif not ASSTag.instanceOf then
             vals2 = ASSTag
+        elseif allowCompatible and self.compatible[ASSTag.class] then
+            vals2 = {ASSTag:get()}
         elseif ASSTag.class == self.class and self.__tag.name==ASSTag.__tag.name then
             vals2 = {ASSTag:get()}
         else return false end
