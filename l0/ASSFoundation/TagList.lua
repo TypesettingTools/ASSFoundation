@@ -6,7 +6,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         if ASS:instanceOf(tags, ASS.Section.Tag) then
             self.tags, self.transforms, self.contentRef = {}, {}, tags.parent
             local trIdx, transforms, ovrTransTags, transTags = 1, {}, {}
-            local seenVectClip, childAlphaNames = false, ASS.tagNames.childAlpha
+            local seenVectClip = false
             local seenPosTag = false
 
             tags:callback(function(tag)
@@ -37,7 +37,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                 -- Since there can be only one vectorial clip or iclip at a time, only keep the first one
                 elseif not (self.tags[props.name] and props.global)
                 and not (seenPosTag and props.position)
-                and not (seenVectClip and tag.instanceOf[ASS.Tag.ClipVect]) then
+                and not (seenVectClip and tag.instanceOf[ASS.Tag.ClipVect])
+                and not (props.master and tag:equal(self.tags[props.master], true)) then
                     self.tags[props.name] = tag
                     if tag.__tag.transformable then
                         -- When the list is converted back into an ASSTagSection, the transforms are written to its end,
@@ -45,14 +46,21 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                         -- If a transformable tag is encountered, its entry in the overridden transforms list
                         -- is set to the nummber of the last transform(+1), so the tag can be purged from all previous transforms.
                         ovrTransTags[tag.__tag.name] = trIdx
+                        if tag.__tag.children then
+                            for i=1, #tag.__tag.children do
+                                ovrTransTags[tag.__tag.children[i]] = trIdx
+                            end
+                        end
                     elseif tag.instanceOf[ASS.Tag.ClipVect] then
                         seenVectClip = true
                     elseif props.position then
                         seenPosTag = true
                     end
-                    if tag.__tag.masterAlpha then
-                        for i=1,#childAlphaNames do
-                            self.tags[childAlphaNames[i]] = nil
+
+                    -- purge all overriden child tags (such as \1a, \2a, etc in the case of \alpha)
+                    if tag.__tag.children then
+                        for i = 1 , #tag.__tag.children do
+                            self.tags[tag.__tag.children[i]] = nil
                         end
                     end
                 end
@@ -117,7 +125,6 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         local merged, ovrTransTags, resetIdx = TagList(self), {}, 0
         local seenTransform, seenVectClip = #self.transforms>0, self.clip_vect or self.iclip_vect
-        local childAlphaNames = ASS.tagNames.childAlpha
 
         if expandResets and self.reset then
             local expReset = merged.contentRef:getDefaultTags(merged.reset)
@@ -156,9 +163,9 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                     if seenTransform and tag.__tag.transformable then
                         ovrTransTags[tag.__tag.name] = i
                     end
-                    if tag.__tag.masterAlpha then
-                        for i=1,#childAlphaNames do
-                            self.tags[childAlphaNames[i]] = nil
+                    if tag.__tag.children then
+                        for i = 1 , #tag.__tag.children do
+                            merged.tags[tag.__tag.children[i]] = nil
                         end
                     end
                 end
@@ -232,7 +239,11 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             -- check local tags for equality in reference list
             or not (global or tag:equal(ref.tags[name]) or otherReset and tag:equal(otherReset.tags[name]))
             -- don't decimate section-local tags like karaoke
-            or tag.__tag.noOverride then
+            or tag.__tag.noOverride
+            -- tags with master tags (such as \1a and \2a in the case of \alpha) also change the state ...
+            or tag.__tag.master and (not tag:equal(ref.tags[tag.__tag.master], true)
+                                     or self.tags[tag.__tag.master]
+                                        and not self.tags[tag.__tag.master]:equal(ref.tags[tag.__tag.master], true)) then
                 if returnOnly then diff.tags[name] = tag end
 
             elseif not returnOnly then
