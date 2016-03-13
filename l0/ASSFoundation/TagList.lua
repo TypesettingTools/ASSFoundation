@@ -128,7 +128,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         if expandResets and self.reset then
             local expReset = merged.contentRef:getDefaultTags(merged.reset)
-            merged.tags = merged:getDefaultTags(merged.reset):merge(merged.tags, false)
+            merged.tags = (merged:getDefaultTags(merged.reset):merge(merged.tags, false)).tags
         end
 
         for i=1,#tagLists do
@@ -138,7 +138,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             if tagLists[i].reset then
                 if expandResets then
                     local expReset = tagLists[i].contentRef:getDefaultTags(tagLists[i].reset)
-                    merged.tags = overrideGlobalTags and expReset or expReset:merge(merged:getGlobal(true),false)
+                    merged.tags = overrideGlobalTags and expReset or (expReset:merge(merged:getGlobal(true),false)).tags
                 else
                     -- discard all previous non-global tags when a reset is encountered
                     merged.tags, merged.reset = merged:getGlobal(true), tagLists[i].reset
@@ -209,7 +209,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
 
         local diff, ownReset = TagList(nil, self.contentRef), self.reset
 
-        if #other.tags == 0 and self.reset and (
+        if self.reset and table.length(other.tags) == 0 and (
             other.reset and self.reset.value == other.reset.value
             or not other.reset and (self.reset.value == "" or self.reset.value == other.contentRef:getStyleRef().name)
         ) then
