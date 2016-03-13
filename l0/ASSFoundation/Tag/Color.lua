@@ -1,7 +1,7 @@
 return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local Color = createASSClass("Tag.Color", ASS.Tag.Base, {"r","g","b"}, {ASS.Hex, ASS.Hex, ASS.Hex})
     function Color:new(args)
-        local b,g,r = self:getArgs(args,nil,true)
+        local b,g,r = unpack(self:getArgs(args,nil,true))
         self:readProps(args)
         self.r, self.g, self.b = ASS.Hex{r}, ASS.Hex{g}, ASS.Hex{b}
         return self

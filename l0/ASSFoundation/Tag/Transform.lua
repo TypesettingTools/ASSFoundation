@@ -16,7 +16,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
             else r = args.raw end
             args.raw = r
         end
-        tags, startTime, endTime, accel = self:getArgs(args,{"",0,0,1},true)
+        tags, startTime, endTime, accel = unpack(self:getArgs(args,{"",0,0,1},true))
 
         self.tags, self.accel = ASS.Section.Tag(tags,args.transformableOnly), ASS.Number{accel, tagProps={positive=true}}
         self.startTime, self.endTime = ASS.Time{startTime}, ASS.Time{endTime}

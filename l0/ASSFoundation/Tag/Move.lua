@@ -4,7 +4,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         {ASS.Point, ASS.Point, ASS.Time, ASS.Time}
     )
     function Move:new(args)
-        local startX, startY, endX, endY, startTime, endTime = self:getArgs(args, 0, true)
+        local startX, startY, endX, endY, startTime, endTime = unpack(self:getArgs(args, 0, true))
 
         assertEx(startTime<=endTime, "argument #4 (endTime) to %s may not be smaller than argument #3 (startTime), got %d>=%d.",
                  self.typeName, endTime, startTime)

@@ -2,7 +2,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     local TagBase = createASSClass("TagBase", ASS.Base)
 
     function TagBase:commonOp(method, callback, default, ...)
-        local args = {self:getArgs({...}, default, false)}
+        local args = self:getArgs({...}, default, false)
         local j, valNames = 1, self.__meta__.order
         for i=1,#valNames do
             if ASS:instanceOf(self[valNames[i]]) then
@@ -12,7 +12,7 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
                 j = j + subCnt
             else
                 self[valNames[i]]=callback(self[valNames[i]], args[j])
-                j = self[valNames[i]], j+1
+                j = j+1
             end
         end
         return self

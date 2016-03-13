@@ -1,7 +1,7 @@
 return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local Weight = createASSClass("Tag.Weight", ASS.Tag.Base, {"weightClass","bold"}, {ASS.Number, ASS.Tag.Toggle})
     function Weight:new(args)
-        local weight, bold = self:getArgs(args,{0,false},true)
+        local weight, bold = unpack(self:getArgs(args,{0,false},true))
                         -- also support signature Weight{bold} without weight
         if args.raw or (#args==1 and not ASS:instanceOf(args[1], Weight)) then
             weight, bold = weight~=1 and weight or 0, weight==1

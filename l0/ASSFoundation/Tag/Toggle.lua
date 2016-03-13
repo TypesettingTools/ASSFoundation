@@ -1,9 +1,9 @@
 return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils)
     local Toggle = createASSClass("Tag.Toggle", ASS.Tag.Base, {"value"}, {"boolean"})
     function Toggle:new(args)
-        self.value = self:getArgs(args,false,true)
+        self.value = self:getArgs(args,false,true)[1]
         self:readProps(args)
-        self:typeCheck(self.value)
+        self:typeCheck{self.value}
         return self
     end
 
@@ -14,8 +14,8 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return self.value
     end
 
-    function Toggle:getTagParams(coerce)
-        if not coerce then self:typeCheck(self.value) end
+    function Toggle:getTagParams()
+        self:typeCheck{self.value}
         return self.value and 1 or 0
     end
     return Toggle

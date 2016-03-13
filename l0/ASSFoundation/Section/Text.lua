@@ -6,13 +6,17 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end)
 
     function TextSection:new(value)
-        self.value = self:typeCheck(self:getArgs({value},"",true))
+        self.value = self:getArgs({value},"",true)[1]
+        self:typeCheck{self.value}
         return self
     end
 
     function TextSection:getString(coerce)
         if coerce then return tostring(self.value)
-        else return self:typeCheck(self.value) end
+        else
+            self:typeCheck{self.value}
+            return self.value
+        end
     end
 
     function TextSection:getEffectiveTags(includeDefault, includePrevious, copyTags)
