@@ -28,7 +28,7 @@ version = DependencyControl{
 
 modules, logger = {version\requireModules!}, version\getLogger!
 createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Functional, Yutils = unpack modules
-ASS = require("l0.ASSFoundation.FoundationMethods")(unpack modules)
+ASS = require("l0.ASSFoundation.FoundationMethods")(createASSClass, Functional, LineCollection, Line, logger)
 ASSFInstMeta = __index: ASS
 ASSFInstProxy = setmetatable {}, ASSFInstMeta
 _, yutilsMissingMsg = version\checkOptionalModules "Yutils"
@@ -108,7 +108,7 @@ ASS.tagMap = {
                             overrideName: "\\fscx"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\fscx([%d%.]+)", format: "\\fscx%.3N"
+                                default: pattern: "^\\fscx([%d%.]+)", format: "\\fscx%.3N"
                             }
                             props: transformable: true
                         }
@@ -117,7 +117,7 @@ ASS.tagMap = {
                             overrideName: "\\fscy"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\fscy([%d%.]+)", format: "\\fscy%.3N"
+                                default: pattern: "^\\fscy([%d%.]+)", format: "\\fscy%.3N"
                             }
                             props: transformable: true
                         }
@@ -126,7 +126,7 @@ ASS.tagMap = {
                             overrideName: "\\an"
                             type: ASS.Tag.Align
                             signatures: {
-                                default: pattern: "\\an([1-9])", format: "\\an%d"
+                                default: pattern: "^\\an([1-9])", format: "\\an%d"
                             }
                             props: global: true
                         },
@@ -135,7 +135,7 @@ ASS.tagMap = {
                             overrideName: "\\frz"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\frz?([%-%d%.]+)", format: "\\frz%.3N"
+                                default: pattern: "^\\frz?([%-%d%.]+)", format: "\\frz%.3N"
                             }
                             props: transformable: true
                         }
@@ -144,7 +144,7 @@ ASS.tagMap = {
                             overrideName: "\\fry"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\fry([%-%d%.]+)", format: "\\fry%.3N"
+                                default: pattern: "^\\fry([%-%d%.]+)", format: "\\fry%.3N"
                             }
                             props: transformable: true
                             default: {0}
@@ -154,7 +154,7 @@ ASS.tagMap = {
                             overrideName: "\\frx"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\frx([%-%d%.]+)", format: "\\frx%.3N"
+                                default: pattern: "^\\frx([%-%d%.]+)", format: "\\frx%.3N"
                             }
                             props: transformable: true
                             default: {0}
@@ -164,7 +164,7 @@ ASS.tagMap = {
                             overrideName:"\\bord"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\bord([%d%.]+)", format: "\\bord%.2N"
+                                default: pattern: "^\\bord([%d%.]+)", format: "\\bord%.2N"
                             }
                             props: positive: true, transformable: true
                         }
@@ -173,7 +173,7 @@ ASS.tagMap = {
                             overrideName: "\\xbord"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\xbord([%d%.]+)", format: "\\xbord%.2N"
+                                default: pattern: "^\\xbord([%d%.]+)", format: "\\xbord%.2N"
                             }
                             props: positive: true, transformable: true
                         }
@@ -182,7 +182,7 @@ ASS.tagMap = {
                             overrideName: "\\ybord"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\ybord([%d%.]+)", format: "\\ybord%.2N"
+                                default: pattern: "^\\ybord([%d%.]+)", format: "\\ybord%.2N"
                             }
                             props: positive: true, transformable: true
                         }
@@ -191,7 +191,7 @@ ASS.tagMap = {
                             overrideName: "\\shad"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\shad([%-%d%.]+)", format: "\\shad%.2N"
+                                default: pattern: "^\\shad([%-%d%.]+)", format: "\\shad%N"
                             }
                             props: transformable: true
                         }
@@ -200,7 +200,7 @@ ASS.tagMap = {
                             overrideName: "\\xshad"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\xshad([%-%d%.]+)", format: "\\xshad%.2N"
+                                default: pattern: "^\\xshad([%-%d%.]+)", format: "\\xshad%N"
                             }
                             props: transformable: true
                         }
@@ -209,7 +209,7 @@ ASS.tagMap = {
                             overrideName: "\\yshad"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\yshad([%-%d%.]+)", format: "\\yshad%.2N"
+                                default: pattern: "^\\yshad([%-%d%.]+)", format: "\\yshad%N"
                             }
                             props: transformable: true
                         }
@@ -217,7 +217,7 @@ ASS.tagMap = {
                             overrideName: "\\r"
                             type: ASS.Tag.String
                             signatures: {
-                                default: pattern: "\\r([^\\}]*)", format: "\\r%s"
+                                default: pattern: "^\\r([^\\}]*)", format: "\\r%s"
                             }
                             props: transformable: true
                         }
@@ -226,7 +226,7 @@ ASS.tagMap = {
                             overrideName: "\\alpha"
                             type: ASS.Hex
                             signatures: {
-                                default: pattern: "\\alpha&H(%x%x)&", format: "\\alpha&H%02X&"
+                                default: pattern: "^\\alpha&H(%x%x)&", format: "\\alpha&H%02X&"
                             }
                             props: transformable: true, masterAlpha: true
                             default: {0}
@@ -236,7 +236,7 @@ ASS.tagMap = {
                             overrideName: "\\1a"
                             type: ASS.Hex
                             signatures: {
-                                default: pattern: "\\1a&H(%x%x)&", format: "\\1a&H%02X&"
+                                default: pattern: "^\\1a&H(%x%x)&", format: "\\1a&H%02X&"
                             }
                             props: transformable: true, childAlpha: true
                         }
@@ -245,7 +245,7 @@ ASS.tagMap = {
                             overrideName: "\\2a"
                             type: ASS.Hex
                             signatures: {
-                                default: pattern: "\\2a&H(%x%x)&", format: "\\2a&H%02X&"
+                                default: pattern: "^\\2a&H(%x%x)&", format: "\\2a&H%02X&"
                             }
                             props: transformable: true, childAlpha: true
                         }
@@ -254,7 +254,7 @@ ASS.tagMap = {
                             overrideName: "\\3a"
                             type: ASS.Hex
                             signatures: {
-                                default: pattern: "\\3a&H(%x%x)&", format: "\\3a&H%02X&"
+                                default: pattern: "^\\3a&H(%x%x)&", format: "\\3a&H%02X&"
                             }
                             props: transformable: true, childAlpha: true
                         }
@@ -263,7 +263,7 @@ ASS.tagMap = {
                             overrideName: "\\4a"
                             type: ASS.Hex
                             signatures: {
-                                default: pattern: "\\4a&H(%x%x)&", format: "\\4a&H%02X&"
+                                default: pattern: "^\\4a&H(%x%x)&", format: "\\4a&H%02X&"
                             }
                             props: transformable: true, childAlpha: true
                         }
@@ -272,8 +272,8 @@ ASS.tagMap = {
                             overrideName: "\\1c"
                             type: ASS.Tag.Color
                             signatures: {
-                                default: pattern: "\\1c&H(%x%x)(%x%x)(%x%x)&", format: "\\1c&H%02X%02X%02X&"
-                                short:   pattern: "\\c&H(%x%x)(%x%x)(%x%x)&",  format: "\\c&H%02X%02X%02X&"
+                                default: pattern: "^\\1c&H(%x%x)(%x%x)(%x%x)&", format: "\\1c&H%02X%02X%02X&"
+                                short:   pattern: "^\\c&H(%x%x)(%x%x)(%x%x)&",  format: "\\c&H%02X%02X%02X&"
                             }
                             friendlyName: "\\1c  & \\c"
                             props: transformable: true
@@ -283,7 +283,7 @@ ASS.tagMap = {
                             overrideName: "\\2c"
                             type: ASS.Tag.Color
                             signatures: {
-                                default: pattern: "\\2c&H(%x%x)(%x%x)(%x%x)&", format: "\\2c&H%02X%02X%02X&"
+                                default: pattern: "^\\2c&H(%x%x)(%x%x)(%x%x)&", format: "\\2c&H%02X%02X%02X&"
                             }
                             props: transformable: true
                         }
@@ -292,7 +292,7 @@ ASS.tagMap = {
                             overrideName: "\\3c"
                             type: ASS.Tag.Color
                             signatures: {
-                                default: pattern: "\\3c&H(%x%x)(%x%x)(%x%x)&", format: "\\3c&H%02X%02X%02X&"
+                                default: pattern: "^\\3c&H(%x%x)(%x%x)(%x%x)&", format: "\\3c&H%02X%02X%02X&"
                             }
                             props: transformable: true
                         }
@@ -301,7 +301,7 @@ ASS.tagMap = {
                             overrideName: "\\4c"
                             type: ASS.Tag.Color
                             signatures: {
-                                default: pattern: "\\4c&H(%x%x)(%x%x)(%x%x)&", format: "\\4c&H%02X%02X%02X&"
+                                default: pattern: "^\\4c&H(%x%x)(%x%x)(%x%x)&", format: "\\4c&H%02X%02X%02X&"
                             }
                             props: transformable: true
                         }
@@ -310,8 +310,8 @@ ASS.tagMap = {
                             overrideName: "\\clip"
                             type: ASS.Tag.ClipVect
                             signatures: {
-                                default:  pattern: "\\clip%(([mnlbspc] .-)%)",       format: "\\clip(%s)"
-                                scale:    pattern: "\\clip%((%d+),([mnlbspc] .-)%)", format: "\\clip(%d,%s)"
+                                default:  pattern: "^\\clip%(([mnlbspc] .-)%)",       format: "\\clip(%s)"
+                                scale:    pattern: "^\\clip%((%d+),([mnlbspc] .-)%)", format: "\\clip(%d,%s)"
                             }
                             friendlyName: "\\clip  (Vector)"
                             props: global: true, clip: true
@@ -321,8 +321,8 @@ ASS.tagMap = {
                             overrideName: "\\iclip"
                             type: ASS.Tag.ClipVect
                             signatures: {
-                                default:  pattern: "\\iclip%(([mnlbspc] .-)%)",       format: "\\iclip(%s)"
-                                scale:    pattern: "\\iclip%((%d+),([mnlbspc] .-)%)", format: "\\iclip(%d,%s)"
+                                default:  pattern: "^\\iclip%(([mnlbspc] .-)%)",       format: "\\iclip(%s)"
+                                scale:    pattern: "^\\iclip%((%d+),([mnlbspc] .-)%)", format: "\\iclip(%d,%s)"
                             }
                             friendlyName: "\\iclip  (Vector)",
                             props: inverse: true, global: true, clip: true
@@ -333,7 +333,7 @@ ASS.tagMap = {
                             overrideName: "\\clip"
                             type: ASS.Tag.ClipRect
                             signatures: {
-                                default: pattern: "\\clip%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)", format: "\\clip(%.2N,%.2N,%.2N,%.2N)"
+                                default: pattern: "^\\clip%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)", format: "\\clip(%.2N,%.2N,%.2N,%.2N)"
                             }
                             friendlyName: "\\clip  (Rectangle)"
                             props: transformable: true, global: false, clip: true
@@ -343,7 +343,7 @@ ASS.tagMap = {
                             overrideName: "\\iclip"
                             type: ASS.Tag.ClipRect
                             signatures: {
-                                default: pattern: "\\iclip%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)", format: "\\iclip(%.2N,%.2N,%.2N,%.2N)"
+                                default: pattern: "^\\iclip%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)", format: "\\iclip(%.2N,%.2N,%.2N,%.2N)"
                             }
                             friendlyName: "\\iclip  (Rectangle)",
                             props: inverse: true, global: false, transformable: true, clip: true
@@ -354,7 +354,7 @@ ASS.tagMap = {
                             overrideName: "\\p"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\p(%d+)", format: "\\p%d"
+                                default: pattern: "^\\p(%d+)", format: "\\p%d"
                             }
                             props: positive: true, integer: true, precision: 0
                             default: {0}
@@ -364,7 +364,7 @@ ASS.tagMap = {
                             overrideName: "\\be"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\be([%d%.]+)", format: "\\be%.2N"
+                                default: pattern: "^\\be([%d%.]+)", format: "\\be%.2N"
                             }
                            props: positive: true, transformable: true
                            default: {0}
@@ -374,7 +374,7 @@ ASS.tagMap = {
                             overrideName: "\\blur"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\blur([%d%.]+)", format: "\\blur%.2N"
+                                default: pattern: "^\\blur([%d%.]+)", format: "\\blur%.2N"
                             }
                             props: positive: true, transformable: true
                             default: {0}
@@ -404,7 +404,7 @@ ASS.tagMap = {
                             overrideName: "\\b"
                             type: ASS.Tag.Weight
                             signatures: {
-                                default: pattern: "\\b(%d+)", format: "\\b%d"
+                                default: pattern: "^\\b(%d+)", format: "\\b%d"
                             }
                         }
     italic:             {
@@ -412,7 +412,7 @@ ASS.tagMap = {
                             overrideName: "\\i"
                             type: ASS.Tag.Toggle
                             signatures: {
-                                default: pattern: "\\i([10])", format: "\\i%d"
+                                default: pattern: "^\\i([10])", format: "\\i%d"
                             }
                         }
     underline:          {
@@ -420,7 +420,7 @@ ASS.tagMap = {
                             overrideName: "\\u"
                             type: ASS.Tag.Toggle
                             signatures: {
-                                default: pattern: "\\u([10])", format: "\\u%d"
+                                default: pattern: "^\\u([10])", format: "\\u%d"
                             }
                         }
     strikeout:          {
@@ -428,7 +428,7 @@ ASS.tagMap = {
                             overrideName: "\\s"
                             type: ASS.Tag.Toggle
                             signatures: {
-                                default: pattern: "\\s([10])", format: "\\s%d"
+                                default: pattern: "^\\s([10])", format: "\\s%d"
                             }
                         }
     spacing:            {
@@ -436,7 +436,7 @@ ASS.tagMap = {
                             overrideName: "\\fsp"
                             type: ASS.Number,
                             signatures: {
-                                default: pattern: "\\fsp([%-%d%.]+)", format: "\\fsp%.2N"
+                                default: pattern: "^\\fsp([%-%d%.]+)", format: "\\fsp%.2N"
                             }
                             props: transformable: true
                         }
@@ -445,7 +445,7 @@ ASS.tagMap = {
                             overrideName: "\\fs"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\fs([%d%.]+)", format: "\\fs%.2N"
+                                default: pattern: "^\\fs([%d%.]+)", format: "\\fs%.2N"
                             }
                             props: positive: true, transformable: true
                         }
@@ -454,7 +454,7 @@ ASS.tagMap = {
                             overrideName: "\\fn"
                             type: ASS.Tag.String
                             signatures: {
-                                default: pattern: "\\fn([^\\}]*)", format: "\\fn%s"
+                                default: pattern: "^\\fn([^\\}]*)", format: "\\fn%s"
                             }
                         }
     k_fill:             {
@@ -462,7 +462,7 @@ ASS.tagMap = {
                             overrideName: "\\k"
                             type: ASS.Duration
                             signatures: {
-                                default: pattern: "\\k([%d]+)", format: "\\k%d"
+                                default: pattern: "^\\k([%d]+)", format: "\\k%d"
                             }
                             props: scale: 10, karaoke: true, noOverride: true
                             default: {0}
@@ -472,8 +472,8 @@ ASS.tagMap = {
                             overrideName: "\\kf"
                             type: ASS.Duration
                             signatures: {
-                                default:     pattern: "\\kf([%d]+)", format: "\\kf%d"
-                                short:       pattern: "\\K([%d]+)",  format: "\\K%d"
+                                default:     pattern: "^\\kf([%d]+)", format: "\\kf%d"
+                                short:       pattern: "^\\K([%d]+)",  format: "\\K%d"
                             }
                             props: scale: 10, karaoke: true, noOverride: true
                             default: {0}
@@ -483,7 +483,7 @@ ASS.tagMap = {
                             overrideName: "\\ko"
                             type: ASS.Duration
                             signatures: {
-                                default: pattern: "\\ko([%d]+)", format: "\\ko%d"
+                                default: pattern: "^\\ko([%d]+)", format: "\\ko%d"
                             }
                             props: scale: 10,  karaoke: true, noOverride: true
                             default: {0}
@@ -493,7 +493,7 @@ ASS.tagMap = {
                             overrideName: "\\pos"
                             type: ASS.Point
                             signatures: {
-                                default: pattern: "\\pos%(([%-%d%.]+),([%-%d%.]+)%)", format: "\\pos(%.3N,%.3N)"
+                                default: pattern: "^\\pos%(([%-%d%.]+),([%-%d%.]+)%)", format: "\\pos(%.3N,%.3N)"
                             }
                             props: global: true, position: true
                         }
@@ -502,8 +502,8 @@ ASS.tagMap = {
                             overrideName: "\\move"
                             type: ASS.Tag.Move
                             signatures: {
-                                default: pattern: "\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d]+),([%-%d]+)%)", format: "\\move(%.3N,%.3N,%.3N,%.3N,%.3N,%.3N)"
-                                simple:  pattern: "\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)",             format: "\\move(%.3N,%.3N,%.3N,%.3N)"
+                                default: pattern: "^\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d]+),([%-%d]+)%)", format: "\\move(%.3N,%.3N,%.3N,%.3N,%.3N,%.3N)"
+                                simple:  pattern: "^\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)",             format: "\\move(%.3N,%.3N,%.3N,%.3N)"
                             }
                             props: global: true, position: true
                         }
@@ -512,7 +512,7 @@ ASS.tagMap = {
                             overrideName: "\\org"
                             type: ASS.Point
                             signatures: {
-                                default: pattern: "\\org%(([%-%d%.]+),([%-%d%.]+)%)", format: "\\org(%.3N,%.3N)"
+                                default: pattern: "^\\org%(([%-%d%.]+),([%-%d%.]+)%)", format: "\\org(%.3N,%.3N)"
                             }
                             props: global: true
                         }
@@ -521,7 +521,7 @@ ASS.tagMap = {
                             overrideName: "\\q"
                             type: ASS.Tag.WrapStyle
                             signatures: {
-                                default: pattern: "\\q(%d)", format: "\\q%d"
+                                default: pattern: "^\\q(%d)", format: "\\q%d"
                             }
                             props: global: true
                             default: {0}
@@ -531,7 +531,7 @@ ASS.tagMap = {
                             overrideName: "\\fad"
                             type: ASS.Tag.Fade
                             signatures: {
-                                default: pattern: "\\fad%((%d+),(%d+)%)", format: "\\fad(%d,%d)"
+                                default: pattern: "^\\fad%((%d+),(%d+)%)", format: "\\fad(%d,%d)"
                             }
                             props: simple: true, global: true
                             default: {0,0}
@@ -541,7 +541,7 @@ ASS.tagMap = {
                             overrideName: "\\fade"
                             type: ASS.Tag.Fade
                             signatures: {
-                                default: pattern: "\\fade%((%d+),(%d+),(%d+),([%-%d]+),([%-%d]+),([%-%d]+),([%-%d]+)%)", format: "\\fade(%d,%d,%d,%d,%d,%d,%d)"
+                                default: pattern: "^\\fade%((%d+),(%d+),(%d+),([%-%d]+),([%-%d]+),([%-%d]+),([%-%d]+)%)", format: "\\fade(%d,%d,%d,%d,%d,%d,%d)"
                             }
                             props: global: true
                             default: {255,0,255,0,0,0,0}
@@ -550,10 +550,10 @@ ASS.tagMap = {
                             overrideName: "\\t"
                             type: ASS.Tag.Transform,
                              signatures: {
-                                default: pattern: "\\t%(([%-%d]+),([%-%d]+),([%d%.]+),(.+)%)",    format: "\\t(%.2N,%.2N,%.2N,%s)"
-                                simple:  pattern: "\\t%((\\.+)%)",                                format: "\\t(%s)"
-                                accel:   pattern: "\\t%(([%d%.]+),(\\.+)%)",                      format: "\\t(%.2N,%s)"
-                                time:    pattern: "\\t%(([%-%d]+),([%-%d]+),(\\.+)%)",            format: "\\t(%.2N,%.2N,%s)"
+                                default: pattern: "^\\t%(([%-%d]+),([%-%d]+),([%d%.]+),(.+)%)",    format: "\\t(%.2N,%.2N,%.2N,%s)"
+                                simple:  pattern: "^\\t%((\\.+)%)",                                format: "\\t(%s)"
+                                accel:   pattern: "^\\t%(([%d%.]+),(\\.+)%)",                      format: "\\t(%.2N,%s)"
+                                time:    pattern: "^\\t%(([%-%d]+),([%-%d]+),(\\.+)%)",            format: "\\t(%.2N,%.2N,%s)"
                             }
                         }
     unknown:            {
