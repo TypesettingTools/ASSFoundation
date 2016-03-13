@@ -582,10 +582,11 @@ ASS.tagNames = {
 
 ASS.toFriendlyName, ASS.toTagName, ASS.tagSortOrder = {}, {}, {}
 
-for name,tag in pairs ASS.tagMap
+for name, tag in pairs ASS.tagMap
     -- insert tag name into props
-    tag.props = tag.props or {}
-    tag.props.name = tag.props.name or name
+    tag.props or= {}
+    tag.props.name or= name
+
     -- generate properties for treating rectangular clips as global tags
     tag.props.globalOrRectClip = tag.props.global or tag.type==ASS.Tag.ClipRect
     -- fill in missing friendly names
