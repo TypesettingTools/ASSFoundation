@@ -47,10 +47,10 @@ ASS.Draw.DrawingBase = loadClassNew "Draw.DrawingBase"
 ASS.Draw.CommandBase = loadClassNew "Draw.CommandBase"
 
 -- Primitives
-ASS.Number   = loadClass "Primitive.Number"
-ASS.String   = loadClass "Primitive.String"
-ASS.Point    = loadClass "Primitive.Point"
-ASS.Time     = loadClass "Primitive.Time"
+ASS.Number   = loadClassNew "Primitive.Number"
+ASS.String   = loadClassNew "Primitive.String"
+ASS.Point    = loadClassNew "Primitive.Point"
+ASS.Time     = loadClassNew "Primitive.Time"
 ASS.Duration = createASSClass "Duration", ASS.Time,   {"value"}, {"number"}, {positive: true}
 ASS.Hex      = createASSClass "Hex",      ASS.Number, {"value"}, {"number"}, {range: {0,255}, base: 16, precision:0}
 
