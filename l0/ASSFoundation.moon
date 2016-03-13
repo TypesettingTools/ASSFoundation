@@ -43,8 +43,8 @@ loadClassNew = (name) ->
 ASS.Base             = loadClass "Base"
 ASS.Tag, ASS.Draw    = {}, {}
 ASS.Tag.Base         = loadClass "Tag.Base"
-ASS.Draw.DrawingBase = loadClass "Draw.DrawingBase"
-ASS.Draw.CommandBase = loadClass "Draw.CommandBase"
+ASS.Draw.DrawingBase = loadClassNew "Draw.DrawingBase"
+ASS.Draw.CommandBase = loadClassNew "Draw.CommandBase"
 
 -- Primitives
 ASS.Number   = loadClass "Primitive.Number"
@@ -84,15 +84,13 @@ UnknownTag = createASSClass "Tag.Unknown", ASS.Tag.String, {"value"}, {"string"}
 UnknownTag.add, UnknownTag.sub, UnknownTag.mul, UnknownTag.div, UnknownTag.pow, UnknownTag.mod = nil, nil, nil, nil, nil, nil
 ASS.Tag.Unknown = UnknownTag
 
-ASS.Draw.Contour        = loadClass "Draw.Contour"
+ASS.Draw.Contour        = loadClassNew "Draw.Contour"
 -- Drawing Command Classes
-ASS.Draw.Bezier         = loadClass "Draw.Bezier"
-ASS.Draw.Close          = loadClass "Draw.Close"
-ASS.Draw.Line           = loadClass "Draw.Line"
-ASS.Draw.Move           = createASSClass "Draw.Move",   ASS.Draw.CommandBase, {"x", "y"}, {ASS.Number, ASS.Number},
-                                         {name: "m", ords: 2}, {ASS.Point}
-ASS.Draw.MoveNc         = createASSClass "Draw.MoveNc", ASS.Draw.CommandBase, {"x", "y"}, {ASS.Number, ASS.Number},
-                                         {name: "n", ords: 2}, {ASS.Draw.Move, ASS.Point}
+ASS.Draw.Bezier         = loadClassNew "Draw.Bezier"
+ASS.Draw.Close          = loadClassNew "Draw.Close"
+ASS.Draw.Line           = loadClassNew "Draw.Line"
+ASS.Draw.Move           = loadClassNew "Draw.Move"
+ASS.Draw.MoveNc         = loadClassNew "Draw.MoveNc"
 
 ASS.Draw.commands = {ASS.Draw.Bezier, ASS.Draw.Close, ASS.Draw.Line, ASS.Draw.Move, ASS.Draw.MoveNc}
 table.arrayToSet ASS.Draw.commands, true
@@ -635,8 +633,14 @@ ASS.defaults = {
     }
 }
 
+ASS.Quirks = {
+    VSFilter: 1
+    libass: 2
+}
+
 ASS.config = {
     fixDrawings: false
+    quirks: ASS.Quirks.VSFilter
 }
 
 ASS.version = version
