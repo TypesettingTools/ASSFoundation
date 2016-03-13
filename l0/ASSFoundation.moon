@@ -20,12 +20,14 @@ version = DependencyControl{
          feed: "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"},
         {"SubInspector.Inspector", version: "0.6.0", url: "https://github.com/TypesettingTools/SubInspector",
          feed: "https://raw.githubusercontent.com/TypesettingTools/SubInspector/master/DependencyControl.json"},
-        {"Yutils", optional: true},
+        {"l0.Functional", version: "0.3.0", url: "https://github.com/TypesettingTools/Functional",
+         feed: "https://raw.githubusercontent.com/TypesettingTools/Functional/master/DependencyControl.json"},
+        {"Yutils", optional: true}
     }
 }
 
-modules = {version\requireModules!}
-createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Yutils = unpack modules
+modules, logger = {version\requireModules!}, version\getLogger!
+createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Functional, Yutils = unpack modules
 ASS = require("l0.ASSFoundation.FoundationMethods")(unpack modules)
 ASSFInstMeta = __index: ASS
 ASSFInstProxy = setmetatable {}, ASSFInstMeta
@@ -33,6 +35,9 @@ _, yutilsMissingMsg = version\checkOptionalModules "Yutils"
 
 loadClass = (name) ->
     return require("l0.ASSFoundation."..name)(ASS, ASSFInstProxy, yutilsMissingMsg, unpack modules)
+
+loadClassNew = (name) ->
+    return require("l0.ASSFoundation."..name)(ASS, ASSFInstProxy, yutilsMissingMsg, createASSClass, Functional, LineCollection, Line, logger, SubInspector, Yutils)
 
 -- Base Classes
 ASS.Base             = loadClass "Base"
