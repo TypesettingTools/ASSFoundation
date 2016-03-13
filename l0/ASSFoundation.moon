@@ -55,8 +55,9 @@ ASS.Duration = createASSClass "Duration", ASS.Time,   {"value"}, {"number"}, {po
 ASS.Hex      = createASSClass "Hex",      ASS.Number, {"value"}, {"number"}, {range: {0,255}, base: 16, precision:0}
 
 ASS.LineContents     = loadClassNew "LineContents"
-ASS.LineBounds   = loadClass "LineBounds"
-ASS.TagList      = loadClass "TagList"
+ASS.LineBounds       = loadClassNew "LineBounds"
+ASS.LineBoundsBatch  = loadClassNew "LineBoundsBatch"
+ASS.TagList          = loadClass "TagList"
 
 -- Sections
 ASS.Section         = {}
