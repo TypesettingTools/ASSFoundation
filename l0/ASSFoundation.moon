@@ -70,10 +70,10 @@ table.mergeInto ASS.Section, table.values(ASS.Section)
 -- Tags
 ASS.Tag.ClipRect  = loadClass "Tag.ClipRect"
 ASS.Tag.ClipVect  = loadClass "Tag.ClipVect"
-ASS.Tag.Color     = loadClass "Tag.Color"
+ASS.Tag.Color     = loadClassNew "Tag.Color"
 ASS.Tag.Fade      = loadClass "Tag.Fade"
-ASS.Tag.Indexed   = loadClass "Tag.Indexed"
-ASS.Tag.Align     = loadClass "Tag.Align"
+ASS.Tag.Indexed   = loadClassNew "Tag.Indexed"
+ASS.Tag.Align     = loadClassNew "Tag.Align"
 ASS.Tag.Move      = loadClass "Tag.Move"
 ASS.Tag.String    = loadClass "Tag.String"
 ASS.Tag.Transform = loadClass "Tag.Transform"
