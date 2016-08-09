@@ -20,7 +20,7 @@ return function (typeName, baseClasses, order, types, tagProps, compatibleClasse
     setmetatable(cls, {
     __call = function(cls, ...)
         local self = setmetatable({__tag = util.copy(cls.__defProps)}, cls)
-        self = self:new(...)
+        self:new(...)
         return self
     end})
 
