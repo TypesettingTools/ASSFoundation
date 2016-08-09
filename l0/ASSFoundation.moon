@@ -57,7 +57,7 @@ ASS.Hex      = createASSClass "Hex",      ASS.Number, {"value"}, {"number"}, {ra
 ASS.LineContents     = loadClassNew "LineContents"
 ASS.LineBounds       = loadClassNew "LineBounds"
 ASS.LineBoundsBatch  = loadClassNew "LineBoundsBatch"
-ASS.TagList          = loadClass "TagList"
+ASS.TagList          = loadClassNew "TagList"
 
 -- Sections
 ASS.Section         = {}
