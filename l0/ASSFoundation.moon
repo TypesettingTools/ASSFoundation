@@ -225,7 +225,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "^\\alpha&H(%x%x)&", format: "\\alpha&H%02X&"
                             }
-                            props: transformable: true, masterAlpha: true
+                            props: transformable: true
                             default: {0}
                         }
     alpha1:             {
@@ -235,7 +235,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "^\\1a&H(%x%x)&", format: "\\1a&H%02X&"
                             }
-                            props: transformable: true, childAlpha: true
+                            props: transformable: true, master: "alpha"
                         }
     alpha2:             {
                             sort: 32
@@ -244,7 +244,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "^\\2a&H(%x%x)&", format: "\\2a&H%02X&"
                             }
-                            props: transformable: true, childAlpha: true
+                            props: transformable: true, master: "alpha"
                         }
     alpha3:             {
                             sort: 33
@@ -253,7 +253,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "^\\3a&H(%x%x)&", format: "\\3a&H%02X&"
                             }
-                            props: transformable: true, childAlpha: true
+                            props: transformable: true, master: "alpha"
                         }
     alpha4:             {
                             sort: 34
@@ -262,7 +262,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "^\\4a&H(%x%x)&", format: "\\4a&H%02X&"
                             }
-                            props: transformable: true, childAlpha: true
+                            props: transformable: true, master: "alpha"
                         }
     color1:             {
                             sort: 26
@@ -576,7 +576,6 @@ ASS.tagNames = {
     noPos:       table.keys ASS.tagMap, "position"
     clips:       ASS\getTagsNamesFromProps clip: true
     karaoke:     ASS\getTagsNamesFromProps karaoke: true
-    childAlpha:  ASS\getTagsNamesFromProps childAlpha: true
     position:    ASS\getTagsNamesFromProps position: true
 }
 
@@ -611,6 +610,14 @@ for name, tag in pairs ASS.tagMap
     -- fill sort order table
     if tag.sort
         ASS.tagSortOrder[tag.sort] = name
+
+    -- create master/child relations
+    if tag.props.master
+        masterTag = ASS.tagMap[tag.props.master]
+        masterTag.props or= {}
+        masterTag.props.children or= {}
+        masterTag.props.children[#masterTag.props.children+1] = name
+
 
 ASS.tagSortOrder = table.reduce ASS.tagSortOrder
 
