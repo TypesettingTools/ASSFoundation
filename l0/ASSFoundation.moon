@@ -68,7 +68,7 @@ ASS.Section.Drawing = loadClassNew "Section.Drawing"
 table.mergeInto ASS.Section, table.values(ASS.Section)
 
 -- Tags
-ASS.Tag.ClipRect  = loadClass "Tag.ClipRect"
+ASS.Tag.ClipRect  = loadClassNew "Tag.ClipRect"
 ASS.Tag.ClipVect  = loadClass "Tag.ClipVect"
 ASS.Tag.Color     = loadClassNew "Tag.Color"
 ASS.Tag.Fade      = loadClass "Tag.Fade"
