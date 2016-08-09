@@ -61,10 +61,10 @@ ASS.TagList          = loadClassNew "TagList"
 
 -- Sections
 ASS.Section         = {}
-ASS.Section.Text    = loadClass "Section.Text"
+ASS.Section.Text    = loadClassNew "Section.Text"
 ASS.Section.Tag     = loadClass "Section.Tag"
-ASS.Section.Comment = loadClass "Section.Comment"
-ASS.Section.Drawing = loadClass "Section.Drawing"
+ASS.Section.Comment = loadClassNew "Section.Comment"
+ASS.Section.Drawing = loadClassNew "Section.Drawing"
 table.mergeInto ASS.Section, table.values(ASS.Section)
 
 -- Tags
