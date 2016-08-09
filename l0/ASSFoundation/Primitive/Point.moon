@@ -58,4 +58,12 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
         return ASS\createTag("angle", deg), cw
 
+
+    Point.lerp = (a, b, t) ->
+        c = a\copy!
+        c.x = a.x + (b.x - a.x) * t
+        c.y = a.y + (b.y - a.y) * t
+        return c
+
+
     return Point

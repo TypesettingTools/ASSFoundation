@@ -65,6 +65,10 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
             when "<=" then a <= b
             when ">=" then a >= b
 
+    Number.lerp = (a, b, t) ->
+        c = a\copy!
+        c.value = a.value + (b.value - a.value) * t
+        return c
 
     Number.modEq = (val, div) ->
         return (@%div)\equal val
