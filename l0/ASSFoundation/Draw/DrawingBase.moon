@@ -249,13 +249,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     @readProps args
     return @
 
-  DrawingBase.callback = (callback, start = 1, end_ = #@contours, includeCW = true, includeCCW = true, args) =>
+  DrawingBase.callback = (callback, first = 1, last = #@contours, includeCW = true, includeCCW = true, a1, a2, a3, a4, a5, a6) =>
     j, rmCnt, removed = 1, 0
 
-    for i = start, end_
+    for i = first, last
       cnt = @contours[i]
       if (includeCW or not cnt.isCW) and (includeCCW or cnt.isCW)
-        res = callback cnt, @contours, i, j, @toRemove, args
+        res = callback cnt, @contours, i, j, @toRemove, a1, a2, a3, a4, a5, a6
         j += 1
 
         if res == false
