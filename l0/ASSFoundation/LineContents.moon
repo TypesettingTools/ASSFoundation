@@ -135,7 +135,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
             return true
         else return false
 
-    LineContents.getString = (includeEmptySections = true, currDrawingState, predicate, predicateLookAhead = true) =>
+    LineContents.getString = (includeEmptySections = true, currDrawingState, predicate, predicateLookAhead = true, a1, a2, a3) =>
         defDrawingState = ASS\createTag "drawing", 0
         sections, sectCnt, currSectType = @sections, #@sections
         currDrawingState or= defDrawingState
@@ -147,7 +147,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
         for i, currSect in ipairs sections
             currSectType = sections[i].class
-            if predicate and not predicate currSect, i, sections, currSectType, false
+            if predicate and not predicate currSect, i, sections, currSectType, a1, a2, a3
                 continue
             elseif currSectType == ASS.Section.Text or currSectType == ASS.Section.Drawing
                 -- insert a new tag section with a drawing tag if drawing state wasn't synced, yet
@@ -167,7 +167,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
                 if i < sectCnt
                     -- add a drawing tag to this section if drawing mode changes in the next section
                     nextSectType = sections[i+1].class
-                    if not predicate or not predicateLookAhead or predicate sections[i+1], i+1, sections, nextSectType
+                    if not predicate or not predicateLookAhead or predicate sections[i+1], i+1, sections, nextSectType, a1, a2, a3 -- TODO: don't run predicate on drawing section twice
                         nextDrawingState = nextSectType == ASS.Section.Drawing and sections[i+1].scale or defDrawingState
 
                         if (nextSectType == ASS.Section.Drawing or nextSectType == ASS.Section.Text) and currDrawingState != nextDrawingState
