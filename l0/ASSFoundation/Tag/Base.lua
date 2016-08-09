@@ -63,13 +63,13 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
     end
 
     function TagBase:readProps(args)
-        if type(args[1])=="table" and args[1].instanceOf and args[1].instanceOf[self.class] then
-            for k, v in pairs(args[1].__tag) do
-                self.__tag[k] = v
-            end
-        elseif args.tagProps then
+        if args.tagProps then
             for key, val in pairs(args.tagProps) do
                 self.__tag[key] = val
+            end
+        elseif type(args[1])=="table" and args[1].instanceOf and args[1].instanceOf[self.class] then
+            for k, v in pairs(args[1].__tag) do
+                self.__tag[k] = v
             end
         end
     end
