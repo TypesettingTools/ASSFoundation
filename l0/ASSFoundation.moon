@@ -582,6 +582,7 @@ ASS.tagMap = {
 
 ASS.tagNames = {
     all:         table.keys ASS.tagMap,
+    ASSv4Plus:   table.keys ASS.tagMap, {"unknown", "junk"}
     noPos:       table.keys ASS.tagMap, "position"
     clips:       ASS\getTagsNamesFromProps clip: true
     karaoke:     ASS\getTagsNamesFromProps karaoke: true
