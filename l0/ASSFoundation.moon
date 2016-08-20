@@ -199,7 +199,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "^\\shad([%-%d%.]+)", format: "\\shad%N"
                             }
-                            props: transformable: true
+                            props: transformable: true, precision: math.huge
                         }
     shadow_x:           {
                             sort: 24
@@ -208,7 +208,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "^\\xshad([%-%d%.]+)", format: "\\xshad%N"
                             }
-                            props: transformable: true
+                            props: transformable: true, precision: math.huge
                         }
     shadow_y:           {
                             sort: 25
@@ -217,7 +217,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: pattern: "^\\yshad([%-%d%.]+)", format: "\\yshad%N"
                             }
-                            props: transformable: true
+                            props: transformable: true, precision: math.huge
                         }
     reset:              {
                             overrideName: "\\r"
