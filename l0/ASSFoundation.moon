@@ -33,6 +33,8 @@ ASSFInstMeta = __index: ASS
 ASSFInstProxy = setmetatable {}, ASSFInstMeta
 _, yutilsMissingMsg = version\checkOptionalModules "Yutils"
 
+
+-- Temporary submodule loaders until DepCtrl feature is ready
 loadClass = (name) ->
     return require("l0.ASSFoundation."..name)(ASS, ASSFInstProxy, yutilsMissingMsg, unpack modules)
 
@@ -62,7 +64,7 @@ ASS.TagList          = loadClassNew "TagList"
 -- Sections
 ASS.Section         = {}
 ASS.Section.Text    = loadClassNew "Section.Text"
-ASS.Section.Tag     = loadClass "Section.Tag"
+ASS.Section.Tag     = loadClassNew "Section.Tag"
 ASS.Section.Comment = loadClassNew "Section.Comment"
 ASS.Section.Drawing = loadClassNew "Section.Drawing"
 table.mergeInto ASS.Section, table.values(ASS.Section)
@@ -96,6 +98,13 @@ table.arrayToSet ASS.Draw.commands, true
 ASS.Draw.commandMapping = {}
 for i=1,#ASS.Draw.commands
     ASS.Draw.commandMapping[ASS.Draw.commands[i].__defProps.name] = ASS.Draw.commands[i]
+
+-- Parser
+ASS.Parser = {
+    Drawing: loadClassNew "Parser.Drawing"
+    LineText: loadClassNew "Parser.LineText"
+    Sections: loadClassNew "Parser.Sections"
+}
 
 
 -- Tag Mapping

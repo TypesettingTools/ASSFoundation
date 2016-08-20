@@ -218,7 +218,7 @@ return (createASSClass, Functional, LineCollection, Line, logger) ->
 
 
     ASS.parse = (line) =>
-        line.ASS = @.LineContents line
+        line.ASS = ASS.Parser.LineText\getLineContents line
         return line.ASS
 
     -- DEPRECATED, do not use

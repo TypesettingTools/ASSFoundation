@@ -62,51 +62,15 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     LineContents = createASSClass "LineContents", ASS.Base, {"sections"}, {"table"}
 
-    insertContentSections = (str, sections, sectCnt, drawingState) ->
-        if drawingState.value == 0
-            sections[sectCnt+1], sectCnt = ASS.Section.Text(str), sectCnt + 1
-        else
-            sections[sectCnt+1] = ASS.Section.Drawing{:str, scale: drawingState}
-            if sections[sectCnt+1].junk
-                sections[sectCnt+2], sectCnt = sections[sectCnt+1].junk, sectCnt + 2
-            else sectCnt = sectCnt + 1
-        return sectCnt
-
-    LineContents.new = (line, sections) =>
+    LineContents.new = (line, sections, copyAndCheckSections = true) =>
         sections = @getArgs({sections})[1] if sections
         logger\assert line and line.__class == Line, msgs.new.badLine, @typeName, @typeName, type line
 
-        unless sections
-            sections = {}
-            i, sectCnt, drawingState, ovrStart, ovrEnd = 1, 0, ASS\createTag "drawing",0
-            while i <= #line.text
-                ovrStart, ovrEnd = line.text\find "{.-}", i
-                if ovrStart
-                    if ovrStart > i
-                        substr = line.text\sub i, ovrStart-1
-                        sectCnt = insertContentSections substr, sections, sectCnt, drawingState
-
-                    tagSection = ASS.Section.Tag line.text\sub ovrStart+1, ovrEnd-1
-                    -- remove drawing tags from tag sections so we don't have to keep state in sync with ASSSection.Drawing
-                    if tagSection.class == ASS.Section.Tag
-                        drawingTags, drawingTagCnt = tagSection\removeTags "drawing"
-                        if #tagSection.tags == 0 and drawingTagCnt > 0
-                            tagSection = nil
-
-                        drawingState = drawingTags[drawingTagCnt] or drawingState
-
-                    if tagSection
-                        sections[sectCnt+1], sectCnt = tagSection, sectCnt + 1
-
-                    i = ovrEnd +1
-                else
-                    insertContentSections line.text\sub(i), sections, sectCnt, drawingState
-                    break
-
-
-        else
-            sections = util.copy sections
+        sections = if not sections
+            ASS.Parser.LineText\getSections line
+        elseif copyAndCheckSections
             @typeCheck {sections}
+            util.copy sections
 
         -- TODO: check if typeCheck works correctly with compatible classes and doesn't do useless busy work
         if line.parentCollection
