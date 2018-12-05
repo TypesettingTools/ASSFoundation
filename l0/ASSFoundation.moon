@@ -390,7 +390,7 @@ ASS.tagMap = {
                             overrideName: "\\fax"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\fax([%-%d%.]+)", format: "\\fax%.3N"
+                                default: pattern: "^\\fax([%-%d%.]+)", format: "\\fax%.3N"
                             }
                             props: transformable: true
                             default: {0}
@@ -400,7 +400,7 @@ ASS.tagMap = {
                             overrideName: "\\fay"
                             type: ASS.Number
                             signatures: {
-                                default: pattern: "\\fay([%-%d%.]+)", format: "\\fay%.3N"
+                                default: pattern: "^\\fay([%-%d%.]+)", format: "\\fay%.3N"
                             }
                             props: transformable: true
                             default: {0}
