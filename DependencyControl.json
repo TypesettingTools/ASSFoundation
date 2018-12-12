@@ -17,14 +17,14 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.3.3",
-          "released": "2015-10-18",
+          "version": "0.3.4",
+          "released": "2018-12-12",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "95444517B9B1DC8737703122278069DEAFE54F3E"
+              "sha1": "DA26B340248121A00E6A4043A1BBD8B52B86A380"
             },
             {
               "name": ".lua",
@@ -43,7 +43,7 @@
             {
               "name": "/FoundationMethods.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "D53B1B7BCCDF95F097451774AA664BEFD0E5E5C9"
+              "sha1": "3D6CD8024E23B181EFD8E3871D57003A7E2402A4"
             },
             {
               "name": "/LineBounds.lua",
@@ -53,12 +53,12 @@
             {
               "name": "/LineContents.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "CFD7392E4556122A3C5BA28F60026C65092F44C0"
+              "sha1": "D608C7DFD954695BFD1C698AA49B7A452022059D"
             },
             {
               "name": "/TagList.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "2B6FB0C535B92D903E332D3305446EE7668FCC82"
+              "sha1": "075538D9F801CADFC0A3AAC9BC880137B269C9D1"
             },
             {
               "name": "/Draw/Bezier.lua",
@@ -83,7 +83,7 @@
             {
               "name": "/Draw/DrawingBase.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "7061201D87C7FBB4A2F1C450FB47ACEEC9C9D434"
+              "sha1": "19FA0937F9EB66274EE1EAD60A413CDB8A74D144"
             },
             {
               "name": "/Draw/Line.lua",
@@ -123,7 +123,7 @@
             {
               "name": "/Section/Tag.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "E364B4DAF2CDA378662FBAEE12EA1AF6F791B700"
+              "sha1": "087FC84DF128DFA2555D3E8CF31A9560150D1F63"
             },
             {
               "name": "/Section/Text.lua",
@@ -158,7 +158,7 @@
             {
               "name": "/Tag/Fade.lua",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F6735FC142F6D1C21AD3C92F8EA08CA6A4B30A9A"
+              "sha1": "C6E2BFC2511DE7D076D04F21AC6ABE12D430B480"
             },
             {
               "name": "/Tag/Indexed.lua",
@@ -240,6 +240,15 @@
         }
       },
       "changelog": {
+        "0.3.4": [
+          "TagList now discards any \\pos or \\move tags after the first one was seen, avoiding failure on lines where their order doesn't match the sort order.",
+          "\\move now works with negative start and end times.",
+          "Junk drawing data is now emitted as a comment at the end of the drawing section.",
+          "Comment sections are now detected more reliably instead of being handled like a tag section.",
+          "Broken tags without proper closing brackets are now given one automatically.",
+          "Removed a check within the \\fade tag that did not work correctly with negative values in complex fades.",
+          "Shear tags now output decimals with a maximum precision of 3 digits, raised from the previous limit of 2."
+        ],
         "0.3.3": [
           "Line splitting no longer incorrectly calculates the position for splits with leading or trailing whitespace characters.",
           "LineContents:getEffectiveTags() now always returns requested default tags, even if the section at the specified index doesn't exist."
