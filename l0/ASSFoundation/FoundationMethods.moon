@@ -95,7 +95,7 @@ return (createASSClass, Functional, LineCollection, Line, logger) ->
 
         elseif type(cnts) == "string"
             error msgs.createLine.missingCollection unless ref
-            p, s, num = {}, {cnts\match("^Dialogue: (%d+),(.-),(.-),(.-),(.-),(%d*),(%d*),(%d*),(.-),(.-)$")}, tonumber
+            p, s, num = {}, {cnts\match "^Dialogue: (%d+),(.-),(.-),(.-),(.-),(%d*),(%d*),(%d*),(.-),(.-)$"}, tonumber
 
             if #s == 0
                 p = util.copy defaults
