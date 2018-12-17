@@ -554,7 +554,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     LineContents.trim = =>
         textSects, t = {}, 1
-        @callback((section, sections, i) -> textSects[t], t = section, t + 1), ASS.Section.Text
+        @callback ((section, sections, i) -> textSects[t], t = section, t + 1), ASS.Section.Text
 
         return if t < 1
         if t != 2
