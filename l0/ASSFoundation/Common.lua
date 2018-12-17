@@ -89,7 +89,7 @@ table.arrayToSet = function(tbl, reuse)
 end
 
 -- difference, union and intersection for hashtables (comparison is done on key-val pair)
-table.diff = function(left, right, preferLeft)
+table.diffLegacy = function(left, right, preferLeft)
     local diff={}
     if preferLeft then
         left, right = right, left
@@ -118,7 +118,7 @@ table.diffValues = function(left, right, preferLeft)
     return diff
 end
 
-table.union = function(left, right, preferLeft)
+table.unionLegacy = function(left, right, preferLeft)
     if preferLeft then
         left, right = right, left
     end
