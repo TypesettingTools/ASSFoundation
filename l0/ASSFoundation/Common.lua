@@ -219,14 +219,6 @@ table.keys = function(tbl, exclude)
     return keys
 end
 
-table.merge = function(...)
-    local tbl = {}
-    for _, arg in ipairs({...}) do
-        for key, val in pairs(arg) do tbl[key] = val end
-    end
-    return tbl
-end
-
 table.mergeInto = function(target, ...)
     local sources = {...}
     for i=1,#sources do

@@ -1,5 +1,6 @@
 local common = require("l0.ASSFoundation.Common")
 local util = require("aegisub.util")
+local Functional = require("l0.Functional");
 
 return function (typeName, baseClasses, order, types, tagProps, compatibleClasses, customIndex)
     if not baseClasses or type(baseClasses)=="table" and baseClasses.instanceOf then
@@ -27,7 +28,7 @@ return function (typeName, baseClasses, order, types, tagProps, compatibleClasse
     cls.__index = customIndex and customIndex or cls
     cls.instanceOf, cls.typeName, cls.class = {[cls] = true}, typeName, cls
     cls.__meta__ = {order = order, types = types}
-    cls.__defProps = table.merge(cls.__defProps or {},tagProps or {})
+    cls.__defProps = Functional.table.union(tagProps or {}, cls.__defProps or {})
 
     -- compatible classes
     cls.compatible = table.arrayToSet(compatibleClasses)
