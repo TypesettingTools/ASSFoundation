@@ -309,7 +309,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     color = @getTagParams colorName, false, true
 
     combined = alpha and "&H%02X"\format(alpha) or styleRef[colorName]\sub 1,4
-    combined ..= #color == 3 and "%02X%02X%02X&"\format(unpack color) or styleRef[colorName]\sub 5
+    combined ..= color and #color == 3 and "%02X%02X%02X&"\format(unpack color) or styleRef[colorName]\sub 5
     return combined
 
   TagList.getStyleTable = (styleRef, name, coerce) =>
