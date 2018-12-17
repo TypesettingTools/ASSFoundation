@@ -295,7 +295,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       return @
 
 
-  getTagParams = (name, asBool, multiValue) =>
+  TagList.getTagParams = (name, asBool, multiValue) =>
     if @tags[name]
       vals = multiValue and {@tags[name]\getTagParams!} or @tags[name]\getTagParams!
       return if asBool and not multiValue
@@ -303,7 +303,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       else vals
 
 
-  getCombinedColor = (num, styleRef) =>
+  TagList.getCombinedColor = (num, styleRef) =>
     alphaName, colorName = "alpha" .. tostring(num), "color" .. tostring(num)
     alpha = @getTagParams alphaName
     color = @getTagParams colorName, false, true
