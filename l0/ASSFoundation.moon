@@ -44,7 +44,7 @@ loadClassNew = (name) ->
 -- Base Classes
 ASS.Base             = loadClassNew "Base"
 ASS.Tag, ASS.Draw    = {}, {}
-ASS.Tag.Base         = loadClass "Tag.Base"
+ASS.Tag.Base         = loadClassNew "Tag.Base"
 ASS.Draw.DrawingBase = loadClassNew "Draw.DrawingBase"
 ASS.Draw.CommandBase = loadClassNew "Draw.CommandBase"
 
@@ -71,7 +71,7 @@ table.mergeInto ASS.Section, table.values(ASS.Section)
 
 -- Tags
 ASS.Tag.ClipRect  = loadClassNew "Tag.ClipRect"
-ASS.Tag.ClipVect  = loadClass "Tag.ClipVect"
+ASS.Tag.ClipVect  = loadClassNew "Tag.ClipVect"
 ASS.Tag.Color     = loadClassNew "Tag.Color"
 ASS.Tag.Fade      = loadClass "Tag.Fade"
 ASS.Tag.Indexed   = loadClassNew "Tag.Indexed"
