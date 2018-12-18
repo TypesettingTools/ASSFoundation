@@ -10,7 +10,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       val = @[valName]
       if type(val) == "table" and val.class
         subArgCount = val.__meta__.rawArgCnt
-        val[method] val, unpack subArgs, a, a+subArgCount-1
+        val[method] val, unpack args, a, a+subArgCount-1
         a += subArgCount
       else
         val = callback val, args[a]
