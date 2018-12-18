@@ -6,7 +6,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         }
         coerce: {
             cantCastTable: "can't cast a table to a %s. Table contents: %s"
-            noNumber: "failed coercing value '%s' of type %s to a number on creation of %s object."
+            noNumber: "failed coercing value '%s' of type %s to a base-%d number on creation of %s object."
             badTargetType: "unsupported conversion target type '%s'"
         }
 
@@ -51,7 +51,8 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
             when valType == "boolean" and "number"
                 value and 1 or 0
             when "number"
-                tonumber(value, tagProps.base or 10) or error msgs.coerce.noNumber\format tostring(value), valType, @typeName
+                base = tagProps.base or 10
+                tonumber(value, base) or error msgs.coerce.noNumber\format tostring(value), valType, base, @typeName
             when "string"
                 tostring value
             when "boolean"
