@@ -399,15 +399,14 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
         -- 1: remove empty sections, 2: dedup tags locally, 3: dedup tags globally
         -- 4: remove tags matching style default and not changing state, end: remove empty sections
-        tagListPrev = ASS.TagList nil, @
+        local tagListPrev
 
-        local tagListDef
-        if level >= 3
-            tagListDef = @getDefaultTags!
+        if level > 3
+            tagListPrev = @getDefaultTags!
             if not defaultToKeep or #defaultToKeep == 1 and defaultToKeep[1] == "position"
                 -- speed up the default mode a little by using a precomputed tag name table
-                tagListDef\filterTags ASS.tagNames.noPos
-            else tagListDef\filterTags defaultToKeep, nil, false, true
+                tagListPrev\filterTags ASS.tagNames.noPos
+            else tagListPrev\filterTags defaultToKeep, nil, false, true
 
         if level >= 1
             cb = (section, sections, i) ->
@@ -415,12 +414,22 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
                 isLastSection = i == #sections
 
                 tagList = section\getEffectiveTags false, false, false
-                tagList\diff tagListPrev if level >= 3
+                if level == 3 and tagListPrev
+                    -- strip any tags that don't change the current state excluding defaults
+                    tagList\diff tagListPrev
                 if level >= 4
+                    -- strip any non-global, non-clip tags from last section (they don't have any effect)
                     tagList\filterTags nil, {globalOrRectClip: true} if isLastSection
-                    tagList\diff tagListDef\merge(tagListPrev, false, true), false, true
 
-                tagListPrev\merge tagList, false, false, false, true unless isLastSection
+                    -- strip any tags that don't change the current state including defaults
+                    tagList\diff tagListPrev, false, true
+
+                return if isLastSection
+
+                if tagListPrev
+                    -- update the tag state with this current section
+                    tagListPrev\merge tagList, false, false, false, true
+                else tagListPrev = tagList
 
                 return false if tagList\isEmpty!
                 return ASS.Section.Tag tagList, false, tagSortOrder
