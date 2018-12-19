@@ -5,21 +5,25 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     tagMatchPattern = re.compile "\\\\[^\\\\\\(]+(?:\\([^\\)]+\\)[^\\\\]*)?|[^\\\\]+"
 
     @getTagOrCommentSection = (rawTags) =>
-      tagSection = ASS.Section.Tag!
-      return tagSection if #rawTags == 0
-      tags, t = tagSection.tags, 1
+      tags = @parseTags rawTags
+      return ASS.Section.Comment tags if #tags == 0
+
+      tagSection = ASS.Section.Tag tags
+      return tagSection
+
+    @parseTags = (rawTags) =>
+      tags, t = {}, 1
+      return tags if #rawTags == 0
 
       for match in tagMatchPattern\gfind rawTags
         tag, _, last = ASS\getTagFromString match
-        tags[t], tag.parent = tag, tagSection
+        tags[t] = tag
         t += 1
 
         -- comments inside tag sections are read into ASS.Tag.Unknowns
         if last < #match
           afterStr = match\sub last + 1
           tags[t] = ASS\createTag afterStr\sub(1,1)=="\\" and "unknown" or "junk", afterStr
-          tags[t].parent = tagSection
           t += 1
 
-      -- no tags found means we have a comment section
-      return #tags > 0 and tagSection or ASS.Section.Comment tags
+      return tags

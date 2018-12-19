@@ -62,6 +62,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
           @tags[j].parent = @
           j += 1
 
+    -- parse raw tags
+    elseif tagsType == "string" or tagsType == "table" and #tags == 1 and type(tags[1]) == "string"
+      tags = tags[1] if tagsType == "table"
+      @tags = ASS.Parser.Sections\parseTags tags
+      for tag in *@tags
+        tag.parent = @
+
     -- create a tag section from a list of tag objects
     elseif type(tags) == "table"
       @tags = {}
