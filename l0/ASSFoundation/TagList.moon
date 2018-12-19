@@ -217,8 +217,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
 
   -- gets the change in tag state caused by applying this line state onto a previous line state
-  -- important usage note: will calculate sparse diff if sparse line state is supplied
-  -- If you need a full diff, make sure previous list is exhaustive (e.g. by expanding style)
   -- returnOnly note: only provided because copying the tag list before diffing may be much slower
   -- TODO: change "returnOnly" -> "mutate" to when breaking API
   TagList.diff = (previous, returnOnly, ignoreGlobalState) =>
@@ -267,7 +265,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         not tag\equal ref.tags[name]
       elseif previousResetDefaults and tag\equal previousResetDefaults.tags[name]
         -- decimate tags that are identical to the state set by a reset in the previous section
-        true
+        false
       elseif tag.__tag.master
         -- child tags (such as \1a and \2a in the case of \alpha) change the state
         -- if they differ from a non-overriden master in the previous section
@@ -277,7 +275,8 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         if not tag\equal ref.tags[masterTagName] then true
         elseif @tags[masterTagName] and not @tags[masterTagName]\equal ref.tags[masterTagName], true
           true
-      else false
+        else false
+      else not ref.tags[name] -- TODO: optimize away second lookup into ref.tags[name]
 
       if isDiff and returnOnly
         diff.tags[name] = tag
