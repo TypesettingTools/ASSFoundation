@@ -94,7 +94,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     for i, aVal in ipairs aVals
       if type(aVal) == "table"
-        return false unless utils.equal aVal, bVals[i], "table"
+        return false unless util.equals aVal, bVals[i], "table"
       else return false if aVal != bVals[i]
 
     return true
