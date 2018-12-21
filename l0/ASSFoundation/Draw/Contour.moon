@@ -254,14 +254,18 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
             -- optimized inlined versions of the respective \getTagParams methods
             if cmd.class == Bezier
                 precision = cmd.__tag.precision
-                cmdStr[j], cmdStr[j+1] =   round(cmd.p1.x, precision), round(cmd.p1.y, precision)
-                cmdStr[j+2], cmdStr[j+3] = round(cmd.p2.x, precision), round(cmd.p2.y, precision)
-                cmdStr[j+4], cmdStr[j+5] = round(cmd.p3.x, precision), round(cmd.p3.y, precision)
+                cmdStr[j] = round(scale>1 and cmd.p1.x*(2^(scale-1)) or cmd.p1.x, precision)
+                cmdStr[j+1] = round(scale>1 and cmd.p1.y*(2^(scale-1)) or cmd.p1.y, precision)
+                cmdStr[j+2] = round(scale>1 and cmd.p2.x*(2^(scale-1)) or cmd.p2.x, precision)
+                cmdStr[j+3] = round(scale>1 and cmd.p2.y*(2^(scale-1)) or cmd.p2.y, precision)
+                cmdStr[j+4] = round(scale>1 and cmd.p3.x*(2^(scale-1)) or cmd.p3.x, precision)
+                cmdStr[j+5] = round(scale>1 and cmd.p3.y*(2^(scale-1)) or cmd.p3.y, precision)
                 j += 6
 
             elseif cmd.compatible[Point]
                 precision = cmd.__tag.precision
-                cmdStr[j], cmdStr[j+1] =   round(cmd.x, precision), round(cmd.y, precision)
+                cmdStr[j] = round(scale>1 and cmd.x*(2^(scale-1)) or cmd.x, precision)
+                cmdStr[j+1] = round(scale>1 and cmd.y*(2^(scale-1)) or cmd.y, precision)
                 j += 2
 
             -- generic case
