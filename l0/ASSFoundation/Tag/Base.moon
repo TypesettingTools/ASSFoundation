@@ -13,8 +13,10 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         val[method] val, unpack args, a, a+subArgCount-1
         a += subArgCount
       else
-        val = callback val, args[a]
+        @[valName] = callback val, args[a]
         a += 1
+
+    return @
 
 
   TagBase.add = (...) =>
