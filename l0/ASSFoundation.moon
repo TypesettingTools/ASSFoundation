@@ -78,9 +78,9 @@ ASS.Tag.Indexed   = loadClassNew "Tag.Indexed"
 ASS.Tag.Align     = loadClassNew "Tag.Align"
 ASS.Tag.Move      = loadClass "Tag.Move"
 ASS.Tag.String    = loadClass "Tag.String"
-ASS.Tag.Transform = loadClass "Tag.Transform"
+ASS.Tag.Transform = loadClassNew "Tag.Transform"
 ASS.Tag.Toggle    = loadClass "Tag.Toggle"
-ASS.Tag.Weight    = loadClass "Tag.Weight"
+ASS.Tag.Weight    = loadClassNew "Tag.Weight"
 ASS.Tag.WrapStyle = createASSClass "Tag.WrapStyle", ASS.Tag.Indexed, {"value"}, {"number"}, {range: {0,3}, default: 0}
 ASS.Tag.Unknown   = loadClassNew "Tag.Unknown"
 
