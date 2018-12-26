@@ -569,6 +569,7 @@ ASS.tagMap = {
                             signatures: {
                                 default: format: "%s"
                             }
+                            props: noOverride: true
                         }
     junk:               {
                             sort: 99
