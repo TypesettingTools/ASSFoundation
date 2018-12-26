@@ -278,8 +278,8 @@ ASS.tagMap = {
                             overrideName: "\\1c"
                             type: ASS.Tag.Color
                             signatures: {
-                                default: pattern: "^\\1c&H(%x%x)(%x%x)(%x%x)&", format: "\\1c&H%02X%02X%02X&"
-                                short:   pattern: "^\\c&H(%x%x)(%x%x)(%x%x)&",  format: "\\c&H%02X%02X%02X&"
+                                default: pattern: "^\\1c&H%x-(%x%x)(%x%x)(%x%x)&", format: "\\1c&H%02X%02X%02X&"
+                                short:   pattern: "^\\c&H%x-(%x%x)(%x%x)(%x%x)&",  format: "\\c&H%02X%02X%02X&"
                             }
                             friendlyName: "\\1c  & \\c"
                             props: transformable: true
@@ -289,7 +289,7 @@ ASS.tagMap = {
                             overrideName: "\\2c"
                             type: ASS.Tag.Color
                             signatures: {
-                                default: pattern: "^\\2c&H(%x%x)(%x%x)(%x%x)&", format: "\\2c&H%02X%02X%02X&"
+                                default: pattern: "^\\2c&H%x-(%x%x)(%x%x)(%x%x)&", format: "\\2c&H%02X%02X%02X&"
                             }
                             props: transformable: true
                         }
@@ -298,7 +298,7 @@ ASS.tagMap = {
                             overrideName: "\\3c"
                             type: ASS.Tag.Color
                             signatures: {
-                                default: pattern: "^\\3c&H(%x%x)(%x%x)(%x%x)&", format: "\\3c&H%02X%02X%02X&"
+                                default: pattern: "^\\3c&H%x-(%x%x)(%x%x)(%x%x)&", format: "\\3c&H%02X%02X%02X&"
                             }
                             props: transformable: true
                         }
@@ -307,7 +307,7 @@ ASS.tagMap = {
                             overrideName: "\\4c"
                             type: ASS.Tag.Color
                             signatures: {
-                                default: pattern: "^\\4c&H(%x%x)(%x%x)(%x%x)&", format: "\\4c&H%02X%02X%02X&"
+                                default: pattern: "^\\4c&H%x-(%x%x)(%x%x)(%x%x)&", format: "\\4c&H%02X%02X%02X&"
                             }
                             props: transformable: true
                         }
