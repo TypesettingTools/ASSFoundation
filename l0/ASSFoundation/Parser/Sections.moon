@@ -2,7 +2,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
   {:list, :math, :string, :table, :unicode, :util, :re } = Functional
 
   class Sections
-    tagMatchPattern = re.compile "\\\\[^\\\\\\(]+(?:\\([^\\)]+\\)[^\\\\]*)?|[^\\\\]+"
+    tagMatchPattern = re.compile "\\\\[^\\\\\\(]+(?:\\([^\\)]+\\)?[^\\\\]*)?|[^\\\\]+"
 
     @getTagOrCommentSection = (rawTags) =>
       tags = @parseTags rawTags
