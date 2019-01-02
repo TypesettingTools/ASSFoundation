@@ -9,7 +9,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     DrawBezier.new = (args) =>
         -- this whole constructor is an optimization of the generic CommandBase constructor
         -- creating beziers works without this constructor, albeit slower
-        args = {@getArgs args, nil, true} unless args.__raw
+        args = @getArgs args, nil, true unless args.__raw
         args[1] or= 0
 
         @p1 = Point args[1], args[2] or args[1]
@@ -35,9 +35,9 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
             if type(default)=="table" and #default <= 2
                 default = {default[1], default[2], default[1], default[2]}
 
-        args = {@getArgs args, default, false}
+        args = @getArgs args, default, false
 
-        for valName in *@__meta_.order
+        for valName in *@__meta__.order
             subCnt = #@[valName].__meta__.order
             @[valName][method] @[valName], unpack args, j, j+subCnt-1
             j += subCnt
