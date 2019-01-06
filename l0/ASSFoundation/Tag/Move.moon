@@ -24,21 +24,22 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     return @
 
 
-  Move.getTagParams = =>
-    @__tag.signature = if @startTime\equal(0) and @endTime\equal(0)
+  Move.getSignature = =>
+    @__tag.signature = if @startTime\equal(0) and @endTime\equal(0) -- TODO: remove legacy property
       "simple"
     else "default"
+    return @__tag.signature
 
+
+  Move.getTagParams = =>
     startX, startY = @startPos\getTagParams!
     endX, endY = @endPos\getTagParams!
 
     if @__tag.signature == "simple"
-      logger\dump {"simple", startX, startY, endX, endY}
       return startX, startY, endX, endY
 
     t1, t2 = @startTime\getTagParams!, @endTime\getTagParams!
     logger\assert t1 <= t2, msgs.getTagParams, t1, t2
-    logger\dump {"complex", startX, startY, endX, endY, {math.min t1, t2}, {math.max t2, t1}}
-    return startX, startY, endX, endY, {math.min t1, t2}, {math.max t2, t1}
+    return startX, startY, endX, endY, math.min(t1, t2), math.max(t2, t1)
 
   return Move

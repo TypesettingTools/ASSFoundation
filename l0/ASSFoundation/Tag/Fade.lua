@@ -25,20 +25,19 @@ return function(ASS, ASSFInst, yutilsMissingMsg, createASSClass, re, util, unico
         return self
     end
 
-    function Fade:getTagParams(coerce)
+    function Fade:getTagParams()
         if self.__tag.simple then
-            return self.startDuration:getTagParams(coerce), self.endDuration:getTagParams(coerce)
+            return self.startDuration:getTagParams(), self.endDuration:getTagParams()
         else
-            local t1, t4 = self.startTime:getTagParams(coerce), self.endTime:getTagParams(coerce)
-            local startDuration, endDuration = self.startDuration:getTagParams(coerce), self.endDuration:getTagParams(coerce)
+            local t1, t4 = self.startTime:getTagParams(), self.endTime:getTagParams()
+            local startDuration, endDuration = self.startDuration:getTagParams(), self.endDuration:getTagParams()
             local t2 = t1 + startDuration
             local t3 = t4 - endDuration
-            if not coerce then
-                 self:checkPositive(startDuration,endDuration)
-                 assertEx(t1<=t2 and t2<=t3 and t3<=t4, "fade times must evaluate to t1<=t2<=t3<=t4, got %d<=%d<=%d<=%d.",
-                          t1,t2,t3,t4)
-            end
-            return self.startAlpha:getTagParams(coerce), self.midAlpha:getTagParams(coerce), self.endAlpha:getTagParams(coerce),
+            self:checkPositive(startDuration,endDuration)
+            assertEx(t1<=t2 and t2<=t3 and t3<=t4, "fade times must evaluate to t1<=t2<=t3<=t4, got %d<=%d<=%d<=%d.",
+                    t1,t2,t3,t4)
+
+            return self.startAlpha:getTagParams(), self.midAlpha:getTagParams(), self.endAlpha:getTagParams(),
                    math.min(t1,t2), util.clamp(t2,t1,t3), util.clamp(t3,t2,t4), math.max(t4,t3)
         end
     end

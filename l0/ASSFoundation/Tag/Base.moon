@@ -71,23 +71,30 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       @__tag[k] = v for k, v in pairs args[1].__tag
 
 
+  TagBase.getSignature = =>
+    return @__tag.signature or "default"
+
+
+  TagBase.toString = () =>
+    format = ASS.tagMap[@__tag.name].signatures[@getSignature!].format
+    string.formatEx format, @getTagParams!
+
+  -- legacy
   TagBase.getTagString = (caller) =>
     -- disabled tags or tags marked for deletion are not emitted
     return "" if @disabled or caller and caller.toRemove and caller.toRemove[@]
-
-    signature = ASS.tagMap[@__tag.name].signatures[@__tag.signature or "default"]
-    return string.formatEx signature.format, @getTagParams!
+    return @toString!
 
 
   -- checks equality only of the relevant properties
-  TagBase.equal = (a, b, acceptCompatible) ->
+  TagBase.equal = (a, b, acceptCompatible, ignoreTagNames) ->
     bVals = if type(b) != "table"
       {b}
     elseif not b.instanceOf
       b
     elseif acceptCompatible and a.compatible[b.class]
       {b\get!}
-    elseif b.class == a.class and a.__tag.name == b.__tag.name
+    elseif b.class == a.class and (a.__tag.name == b.__tag.name or ignoreTagNames)
       {b\get!}
     else return false
 

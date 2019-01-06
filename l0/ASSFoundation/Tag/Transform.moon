@@ -42,8 +42,15 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return @__tag.signature, @__tag.typeLocked
 
+  Transform.getSignature = =>
+    unless @__tag.typeLocked
+      noTime = @startTime\equal(0) and @endTime\equal 0
+      @__tag.signature = @accel\equal(1) and (noTime and "simple" or "time") or noTime and "accel" or "default"
+
+    return @__tag.signature or "default"
+
   Transform.getTagParams = =>
-    signature = @__tag.signature
+    signature = @getSignature!
     t1, t2 = @startTime\getTagParams!, @endTime\getTagParams!
 
     logger\assert t1 <= t2 or t2 == 0, msgs.getTagParams.transformStartTimeGreaterEndTime, t1, t2
