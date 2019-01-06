@@ -37,7 +37,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       -- TODO: check if it's a good idea to work with refs instead of copies
       @tags, t = {}, 1
       if tags.reset
-        @tags[1], j = tags.reset, 2
+        @tags[1], t = tags.reset, 2
 
       for i = 1, #tagSortOrder
         tag = tags.tags[tagSortOrder[i]]
