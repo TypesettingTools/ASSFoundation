@@ -41,5 +41,4 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
       return sections
 
-    @getLineContents = (line) =>
-      return ASS.LineContents line, @getSections(line), false
+    @getLineContents = (line) => ASS.LineContents line, @getSections(line), false

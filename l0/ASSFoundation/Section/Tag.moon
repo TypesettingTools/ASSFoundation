@@ -76,7 +76,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       for i = 1, #tags
         tag = tags[i]
         logger\assert allTags[tag.__tag.name or false], msgs.new.unsupportedTag,
-             i, type(tag)=="table" and tags[i].typeName or type(tag), tag.__tag and tag.__tag.name
+          i, type(tag)=="table" and tags[i].typeName or type(tag), tag.__tag and tag.__tag.name
         @tags[i], tag.parent = tag, @
 
     else
@@ -85,22 +85,21 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return @
 
-
   TagSection.callback = (callback, tagNames, first = 1, last, relative, reverse) =>
     tagSet, prevCnt = {}, #@tags
     last or= first >= 1 and math.max(prevCnt,1) or -1
     reverse = relative and first<0 or reverse
 
     logger\assert math.isInt(first) and math.isInt(last), msgs.callback.badFirstLastType,
-         type(first), type(last)
+      type(first), type(last)
     logger\assert (first>0) == (last>0) and first != 0 and last != 0 and first <= last,
-                  msgs.callback.badRange, first, last
+      msgs.callback.badRange, first, last
 
     if type(tagNames) == "string"
       tagNames = {tagNames}
     if tagNames
       logger\assert type(tagNames) == "table", msgs.callback.badTagNames,
-                    type(tagNames)
+        type(tagNames)
       tagSet[name] = true for name in *tagNames
 
     j, numRun, tags, rmCnt = 0, 0, @tags, 0
@@ -131,27 +130,21 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return numRun > 0 and numRun or false
 
-
   TagSection.modTags = (tagNames, callback, first, last, relative) =>
-    return @callback callback, tagNames, first, last, relative
-
+    @callback callback, tagNames, first, last, relative
 
   TagSection.getTags = (tagNames, first, last, relative) =>
     tags = {}
     @callback ((tag) -> tags[#tags+1] = tag),
-              tagNames, first, last, relative
+      tagNames, first, last, relative
     return tags
 
-
-  TagSection.remove = =>
-    return not @parent and @ or @parent\removeSections @
-
+  TagSection.remove = => not @parent and @ or @parent\removeSections @
 
   TagSection.removeTags = (tags, first, last, relative) =>
     if type(tags) == "number" and relative == nil
       -- when called without tags parameter, delete all tags in range
       tags, first, last, relative = nil, tags, first, last
-
 
     if #@tags == 0
       return {}, 0
@@ -160,7 +153,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       -- remove all tags if called without parameters
       removed, @tags = @tags, {}
       return removed, #removed
-
 
     first or= 1
     last or= first and first<0 and -1 or #@tags
@@ -192,16 +184,15 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
           return false
 
     @callback callback, nil, not relative and first or nil,
-              not relative and last or nil, false, reverse
+      not relative and last or nil, false, reverse
 
     return removed, matched
-
 
   TagSection.insertTags = (tags, index) =>
     prevCnt, inserted = #@tags, {}
     index = math.max prevCnt, 1 if index == nil
     logger\assert math.isInt(index) and index != 0,
-                  msgs.insertTags.badIndex, tostring(index), type index
+      msgs.insertTags.badIndex, tostring(index), type index
 
     tags = if type(tags) == "table"
       if tags.instanceOf[TagSection]
@@ -219,11 +210,10 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       tagData = ASS.tagMap[tags[i].__tag.name]
       if not tagData
         logger\error msgs.insertTags.unrecognizedTag,
-                     i, tags[i].typeName, tags[i].__tag.name
+          i, tags[i].typeName, tags[i].__tag.name
       elseif cls != tagData.type
         logger\error msgs.insertTags.tagNameClassMismatch,
-                  i, tags[i].__tag.name, tagData.type.typeName, tags[i].typeName
-
+          i, tags[i].__tag.name, tagData.type.typeName, tags[i].typeName
 
       insertIdx = index<0 and prevCnt+index+i or index+i-1
       table.insert @tags, insertIdx, tags[i]
@@ -232,11 +222,9 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return #inserted>1 and inserted or inserted[1]
 
-
   TagSection.insertDefaultTags = (tagNames, index) =>
     defaultTags = @parent\getDefaultTags!\getTags tagNames
     return @insertTags defaultTags, index
-
 
   TagSection.getString = =>
     tagStrings = {}
@@ -244,7 +232,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       tagStrings[i] = tag\getTagString @
 
     return table.concat tagStrings
-
 
   -- TODO: properly handle transforms, include forward sections for global tags
   TagSection.getEffectiveTags = (includeDefault, includePrevious = true, copyTags = true) =>

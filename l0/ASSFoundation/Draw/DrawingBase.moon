@@ -43,7 +43,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   local cmdMap, cmdSet, Close, Draw, Move, Contour, Bezier
 
-
   DrawingBase.new = (args = {}) =>
     unless cmdMap -- import often accessed information into local scope
       cmdMap, cmdSet = ASS.Draw.commandMapping, ASS.Draw.commands
@@ -204,7 +203,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         list.removeIndices @contours, @toRemove
         @length, @toRemove = nil
 
-
   DrawingBase.insertCommands = (cmds, index) =>
     prevCnt = #@contours
     index or= math.max prevCnt, 1
@@ -275,14 +273,14 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     -- insert a table of contours
     for i, cnt in ipairs cnts
       if type(cnt) != "table" or cnt.class != Contour
-        logger\error msgs.insertContours.badContour, Contour.typeName, type(cnt) == "table" and cnt.typeName or type cnt
+        logger\error msgs.insertContours.badContour, Contour.typeName, 
+          type(cnt) == "table" and cnt.typeName or type cnt
 
         table.insert @contours, index + i-1, cnt
         cnt.parent = @
 
     @length = nil if #cnts > 0
     return cnts
-
 
   DrawingBase.getTagParams = =>
     cmds, c = {}, 1
@@ -294,19 +292,16 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return table.concat cmds, " "
 
-
   DrawingBase.commonOp = (method, callback, default, x, y) => -- drawing commands only have x and y in common
     for cnt in *@contours
       cnt\commonOp method, callback, default, x, y
     return @
-
 
   DrawingBase.drawRect = (tl, br) => -- TODO: contour direction
     rect = ASS.Draw.Contour{ASS.Draw.Move(tl), ASS.Draw.Line(br.x, tl.y),
                             ASS.Draw.Line(br), ASS.Draw.Line(tl.x, br.y)}
     @insertContours rect
     return @, rect
-
 
   DrawingBase.expand = (x, y) =>
     holes, others, covered = @getHoles!
@@ -355,7 +350,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     return false unless cmd
     return cmd\getPositionAtLength(remLen, true, useCurveTime), cmd, cnt
 
-
   DrawingBase.getAngleAtLength = (len, useCachedLength) =>
     @getLength! unless useCachedLength and @length
     cmd, remLen, cnt = @getCommandAtLength len, true
@@ -363,7 +357,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     fCmd = cmd.class == Bezier and cmd.flattened\getCommandAtLength(remLen, true) or cmd
     return fCmd\getAngle(nil, false, true), cmd, cnt
-
 
   DrawingBase.getExtremePoints = (allowCompatible) =>
     return {w: 0, h: 0} if #@contours == 0
@@ -379,23 +372,19 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     ext.w, ext.h = ext.right.x - ext.left.x, ext.bottom.y - ext.top.y
     return ext
 
-
   DrawingBase.getBounds = =>
     logger\assert Yutils, yutilsMissingMsg
     l, t, r, b = Yutils.shape.bounding Yutils.shape.flatten @getTagParams!
     return {ASS.Point(l, t), ASS.Point(r, b), w: r-l, h: b-t}
 
-
   DrawingBase.outline = (x, y, mode) =>
     @contours = @getOutline(x, y, mode).contours
     @length = nil
-
 
   DrawingBase.getOutline = (x, y = x, mode = "round") =>
     logger\assert Yutils, yutilsMissingMsg
     outline = Yutils.shape.to_outline Yutils.shape.flatten(@getTagParams!), x, y, mode
     return @class {str: outline}
-
 
   DrawingBase.removeContours = (cnts, first = 1, last, includeCW = true, includeCCW = true) =>
     -- calling this without any arguments removes all contours
@@ -416,7 +405,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     cntsSet = list.makeSet cnts
     @callback((cnt,_,i) -> not cntsSet[cnt] and not cntsSet[i]), first, last, includeCW, includeCCW
 
-
   DrawingBase.getFullyCoveredContours = =>
     scriptInfo, parentContents = ASS\getScriptInfo @
     parentCollection = parentContents and parentContents.line.parentCollection or LineCollection ASSFInst.cache.lastSub
@@ -431,7 +419,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
             covCnts[c] = covered == cnt and i or j
 
     return covCnts
-
 
   DrawingBase.getHoles = =>
     scriptInfo, parentContents = ASS\getScriptInfo @
@@ -472,21 +459,23 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
   DrawingBase.rotate = (angle = 0) =>
     if ASS\instanceOf angle, ASS.Number
       angle = angle\getTagParams!
-    else logger\assert type(angle) == "number", msgs.rotate.badAngle,ASS.Number.typeName,
-                       type(angle) == "table" and angle.typeName or type angle
+    else logger\assert type(angle) == "number", msgs.rotate.badAngle,ASS.Number.typeName, 
+      type(angle) == "table" and angle.typeName or type angle
 
     if angle % 360 != 0
       logger\assert Yutils, yutilsMissingMsg
       shape = @getTagParams!
       bnd = {Yutils.shape.bounding shape }
 
-      rotMatrix = Yutils.math.create_matrix!.translate((bnd[3]-bnd[1])/2,(bnd[4]-bnd[2])/2,0).rotate("z",angle).translate(-bnd[3]+bnd[1]/2,(-bnd[4]+bnd[2])/2,0)
+      rotMatrix = with Yutils.math.create_matrix!
+        .translate((bnd[3]-bnd[1])/2,(bnd[4]-bnd[2])/2,0)
+        .rotate("z",angle)
+        .translate(-bnd[3]+bnd[1]/2,(-bnd[4]+bnd[2])/2,0)
 
       shape = Yutils.shape.transform shape, rotMatrix
       @contours = DrawingBase({raw: shape}).contours
 
     return @
-
 
   DrawingBase.get = =>
     if #@contours == 1
@@ -497,7 +486,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       commands[c], c = cmd, c + 1 for cmd in *cnt\get!
 
     return commands, @scale\get!
-
 
   DrawingBase.getSection = =>
     section = ASS.Section.Drawing!

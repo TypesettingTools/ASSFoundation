@@ -1,6 +1,6 @@
 return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollection, Line, logger, SubInspector, Yutils) ->
   ClipVect = createASSClass "Tag.ClipVect", ASS.Draw.DrawingBase, {"commands", "scale"},
-                {"table", ASS.Number}, {}, {ASS.Draw.DrawingBase}
+    {"table", ASS.Number}, {}, {ASS.Draw.DrawingBase}
 
   msgs = {
     getDrawing: {
@@ -14,9 +14,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     @__tag.name = state and "iclip_vect" or "clip_vect"
     return state
 
-
   ClipVect.toggleInverse = => @setInverse not @__tag.inverse
-
 
   ClipVect.getDrawing = (trimDrawing, pos, an) =>
     if ASS\instanceOf pos, ASS.TagList
@@ -31,9 +29,9 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     posType = type pos
     logger\assert not pos or ASS\instanceOf(pos, ASS.Point, nil, true), msgs.getDrawing.badPosition,
-                  ASS.Point.typeName, posType == "table" and pos.typeName or posType
+      ASS.Point.typeName, posType == "table" and pos.typeName or posType
     logger\assert ASS\instanceOf(an, ASS.Tag.Align), msgs.getDrawing.badAlign,
-         ASS.Tag.Align.typeName, posType =="table" and an.typeName or type an
+      ASS.Tag.Align.typeName, posType =="table" and an.typeName or type an
 
     drawing = ASS.Section.Drawing{@}
     extremePoints = @getExtremePoints!
@@ -46,6 +44,5 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       drawing\sub topLeft
       return drawing, topLeft\add anOffset
     else return drawing\add(anOffset)\sub pos
-
 
   return ClipVect

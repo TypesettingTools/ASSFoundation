@@ -21,11 +21,9 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     color\addHSV h, s, v
     return color
 
-  Color.getHSV = =>
-    return util.RGB_to_HSV @r\get!, @g\get!, @b\get!
+  Color.getHSV = => util.RGB_to_HSV @r\get!, @g\get!, @b\get!
 
-  Color.getTagParams = =>
-    return @b\getTagParams!, @g\getTagParams!, @r\getTagParams!
+  Color.getTagParams = => @b\getTagParams!, @g\getTagParams!, @r\getTagParams!
 
   Color.lerp = (a, b, t) ->
     c = a\copy!

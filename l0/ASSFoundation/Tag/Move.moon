@@ -12,7 +12,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   Move.new = (args) =>
     startX, startY, endX, endY, startTime, endTime = unpack @getArgs args, 0, true
-
     logger\assert startTime <= endTime, msgs.new.endsBeforeStart, @typeName, endTime, startTime
 
     @readProps args
@@ -23,13 +22,11 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return @
 
-
   Move.getSignature = =>
     @__tag.signature = if @startTime\equal(0) and @endTime\equal(0) -- TODO: remove legacy property
       "simple"
     else "default"
     return @__tag.signature
-
 
   Move.getTagParams = =>
     startX, startY = @startPos\getTagParams!

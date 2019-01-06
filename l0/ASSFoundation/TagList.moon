@@ -22,7 +22,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
   }
 
   TagList = createASSClass "TagList", ASS.Base, {"tags", "transforms" ,"reset", "startTime", "endTime", "accel"},
-                           {"table", "table", ASS.String, ASS.Time, ASS.Time, ASS.Number}
+    {"table", "table", ASS.String, ASS.Time, ASS.Time, ASS.Number}
 
   TagList.new = (tags, contentRef) =>
     if ASS\instanceOf tags, ASS.Section.Tag
@@ -84,8 +84,9 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
           seenPosTag = true
 
         -- purge all overriden child tags (such as \1a, \2a, etc in the case of \alpha)
+        -- TODO: do not purge children that appear after master transforms
         if tagProps.children
-           @tags[tagProps.children[i]] = nil for i = 1 , #tagProps.children
+          @tags[tagProps.children[i]] = nil for i = 1 , #tagProps.children
 
       -- filter tags by overridden transform list, keep transforms that have still tags left at the end
       t = 1
@@ -114,10 +115,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     @contentRef or= contentRef
 
-
-  TagList.get = =>
-    {name, tag\get! for name, tag in pairs @tags}
-
+  TagList.get = => {name, tag\get! for name, tag in pairs @tags}
 
   TagList.checkTransformed = (tagName) =>
     set = {}
@@ -126,7 +124,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         set[@transforms[i].tags.tags[j].__tag.name] = true
 
     return tagName and set[tagName] or set
-
 
   TagList.merge = (tagLists, copyTags = true, returnOnly, overrideGlobalTags, expandResets) =>
     tagLists = {tagLists} if ASS\instanceOf tagLists, TagList
@@ -140,7 +137,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     for i = 1, #tagLists
       logger\assert ASS\instanceOf(tagLists[i],TagList), msgs.merge.badTagList,
-                    TagList.typeName, type(tagLists[i]), i
+        TagList.typeName, type(tagLists[i]), i
 
       -- apply resets
       if tagLists[i].reset
@@ -163,11 +160,11 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       for name, tag in pairs tagLists[i].tags
         tagProps = tag.__tag
 
-        if not overrideGlobalTags
-            -- discard all except the first instance of global tags
-            continue if merged.tags[name] and tagProps.global
-            -- discard all vectorial clips if one (\clip or \iclip) was already seen
-            continue if seenVectClip and tag.instanceOf[ASS.Tag.ClipVect]
+        unless overrideGlobalTags
+          -- discard all except the first instance of global tags
+          continue if merged.tags[name] and tagProps.global
+          -- discard all vectorial clips if one (\clip or \iclip) was already seen
+          continue if seenVectClip and tag.instanceOf[ASS.Tag.ClipVect]
 
         -- when overriding tags, make sure vectorial \iclip and \clip overwrite each other
         elseif tag.instanceOf[ASS.Tag.ClipVect]
@@ -206,7 +203,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
             merged.transforms[t] = transform
             t += 1
 
-
     merged = merged\copy! if copyTags
 
     if returnOnly
@@ -215,13 +211,12 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       @tags, @reset, @transforms = merged.tags, merged.reset, merged.transforms
       return @
 
-
   -- gets the change in tag state caused by applying this line state onto a previous line state
   -- returnOnly note: only provided because copying the tag list before diffing may be much slower
   -- TODO: change "returnOnly" -> "mutate" to when breaking API
   TagList.diff = (previous, returnOnly, ignoreGlobalState) =>
     logger\assert ASS\instanceOf(previous,TagList), msgs.diff.badTagList,
-                  TagList.typeName, type(previous)
+      TagList.typeName, type(previous)
 
     -- resets can only be identical if the previous section didn't modify the state after its reset
     reset = @reset
@@ -283,9 +278,11 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         -- changes state from the previous section
         masterTagName = tag.__tag.master
         if not tag\equal ref.tags[masterTagName] then true
+        -- TODO: if the child tag is following a transform tag, then the reference master tag is actually the one in the transform (if present)
         elseif @tags[masterTagName] and not @tags[masterTagName]\equal ref.tags[masterTagName], true
           true
         else false
+
       else not ref.tags[name] -- TODO: optimize away second lookup into ref.tags[name]
 
       if isDiff and returnOnly
@@ -303,14 +300,12 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       @reset = reset
       return @
 
-
   TagList.getTagParams = (name, asBool, multiValue) =>
     if @tags[name]
       vals = multiValue and {@tags[name]\getTagParams!} or @tags[name]\getTagParams!
       return if asBool and not multiValue
         vals > 0
       else vals
-
 
   TagList.getCombinedColor = (num, styleRef) =>
     alphaName, colorName = "alpha" .. tostring(num), "color" .. tostring(num)
@@ -324,7 +319,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
   TagList.getStyleTable = (styleRef, name, coerce) =>
     styleRefType = type styleRef
     logger\assert styleRefType == "table" and styleRef.class == "style",
-                  msgs.getStyleTable.badStyleRef, styleRefType
+      msgs.getStyleTable.badStyleRef, styleRefType
 
     sTbl = table.merge {
       name: name or styleRef.name
@@ -350,10 +345,10 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     }, styleRef, false
 
     sTbl.raw = string.formatEx "Style: %s,%s,%N,%s,%s,%s,%s,%B,%B,%B,%B,%N,%N,%N,%N,%d,%N,%N,%d,%d,%d,%d,%d",
-           sTbl.name, sTbl.fontname, sTbl.fontsize, sTbl.color1, sTbl.color2, sTbl.color3, sTbl.color4,
-           sTbl.bold, sTbl.italic, sTbl.underline, sTbl.strikeout, sTbl.scale_x, sTbl.scale_y,
-           sTbl.spacing, sTbl.angle, sTbl.borderstyle, sTbl.outline, sTbl.shadow, sTbl.align,
-           sTbl.margin_l, sTbl.margin_r, sTbl.margin_t, sTbl.encoding
+      sTbl.name, sTbl.fontname, sTbl.fontsize, sTbl.color1, sTbl.color2, sTbl.color3, sTbl.color4,
+      sTbl.bold, sTbl.italic, sTbl.underline, sTbl.strikeout, sTbl.scale_x, sTbl.scale_y,
+      sTbl.spacing, sTbl.angle, sTbl.borderstyle, sTbl.outline, sTbl.shadow, sTbl.align,
+      sTbl.margin_l, sTbl.margin_r, sTbl.margin_t, sTbl.encoding
 
     return sTbl
 
@@ -397,7 +392,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       if name == "reset"
         target.reset = haveTag
       elseif name == "transform"
-        transformTarget = included         -- TODO: filter transforms by type
+        transformTarget = included -- TODO: filter transforms by type
       elseif @tags[name]
         target.tags[name] = haveTag
 
@@ -409,13 +404,10 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     @tags, @reset, @transforms = included.tags, included.reset, included.transforms
     return @, removed
 
-
   TagList.isEmpty = =>
     table.length(@tags) < 1 and not @reset and #@transforms == 0
 
-
   TagList.getGlobal = (includeRectClips) =>
     {name, tag for name, tag in pairs @tags when includeRectClips and tag.__tag.globalOrRectClip or tag.__tag.global}
-
 
   return TagList

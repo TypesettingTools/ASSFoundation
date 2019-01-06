@@ -12,17 +12,14 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       return unicode.len tbl.value
     else return getmetatable(tbl)[key]
 
-
   TextSection.new = (value) =>
     @value = @getArgs({value},"",true)[1]
     @typeCheck {@value}
     return @
 
-
   TextSection.getString = =>
     @typeCheck {@value}
     return @value
-
 
   TextSection.getEffectiveTags = (includeDefault, includePrevious = true, copyTags = true) =>
     -- previous and default tag lists
@@ -35,14 +32,11 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return effTags or ASS.TagList nil, @parent
 
-
   TextSection.getStyleTable = (name) =>
     return @getEffectiveTags(false,true,false)\getStyleTable @parent.line.styleRef, name
 
-
   TextSection.getTextExtents = =>
     return aegisub.text_extents @getStyleTable(nil,coerce), @value
-
 
   TextSection.getTextMetrics = (calculateBounds) =>
     logger\assert Yutils, yutilsMissingMsg
@@ -62,7 +56,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return metrics, tagList, shape
 
-
   TextSection.getShape = (applyRotation = false) =>
     metrics, tagList, shape = @getTextMetrics true
     drawing, align = ASS.Draw.DrawingBase{str: shape}
@@ -70,7 +63,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     with metrics -- fix position based on aligment
       drawing\sub not align.left and (.width  - .bounds.w) / (align.centerH and 2 or 1) or 0,
-            not align.top  and (.height - .bounds.h) / (align.centerV and 2 or 1) or 0
+        not align.top and (.height - .bounds.h) / (align.centerV and 2 or 1) or 0
 
     -- rotate shape
     if applyRotation
@@ -79,27 +72,24 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return drawing
 
-
   TextSection.convertToDrawing = (applyRotation) =>
     shape = @getShape(applyRotation)
     @value, @contours, @scale = nil, shape.contours, shape.scale
     setmetatable @, ASS.Section.Drawing
     return @
 
-
   TextSection.expand = (x, y) =>
     @convertToDrawing!
     return @expand x, y
-
 
   TextSection.getYutilsFont = =>
     logger\assert Yutils, yutilsMissingMsg
     tagList = @getEffectiveTags true, true, false
     tags = tagList.tags
     font = with tags do Yutils.decode.create_font .fontname\getTagParams!,
-     .bold\getTagParams! > 0, .italic\getTagParams! > 0, tags.underline\getTagParams! > 0,
-     .strikeout\getTagParams! > 0, .fontsize\getTagParams!, tags.scale_x\getTagParams! / 100,
-     .scale_y\getTagParams! / 100, .spacing\getTagParams!
+      .bold\getTagParams! > 0, .italic\getTagParams! > 0, tags.underline\getTagParams! > 0,
+      .strikeout\getTagParams! > 0, .fontsize\getTagParams!, tags.scale_x\getTagParams! / 100,
+      .scale_y\getTagParams! / 100, .spacing\getTagParams!
 
     return font, tagList
 
@@ -117,7 +107,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   TextSection.insertTagsAtChar = (index, tags) =>
     logger\error msgs.insertTagsAtChar.badTags, ASS.Section.Tag.typeName,
-                 ASS.TagList.typeName, type tags if "table" != type tags
+      ASS.TagList.typeName, type tags if "table" != type tags
 
     tags = if tags.class != ASS.Section.Tag
       ASS.Section.Tag tags
@@ -127,13 +117,10 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
   TextSection.trimLeft = =>
     @value = @value\gsub "^%s*(.+)$", "%1"
 
-
   TextSection.trimRight = =>
     @value = @value\gsub "^(.-)%s*$", "%1"
 
-
   TextSection.trim = =>
     @value = @value\gsub "^%s*(.-)%s*$", "%1"
-
 
   return TextSection

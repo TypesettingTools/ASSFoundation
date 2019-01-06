@@ -18,50 +18,38 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return @
 
-
   TagBase.add = (...) =>
     @commonOp "add", ((a,b) -> a + b), 0, ...
-
 
   TagBase.sub = (...) =>
     @commonOp "sub", ((a,b) -> a - b), 0, ...
 
-
   TagBase.mul = (...) =>
     @commonOp "mul", ((a,b) -> a * b), 1, ...
-
 
   TagBase.div = (...) =>
     @commonOp "div", ((a,b) -> a / b), 1, ...
 
-
   TagBase.pow = (...) =>
     @commonOp "pow", ((a,b) -> a ^ b), 1, ...
-
 
   TagBase.mod = (...) =>
     @commonOp "mod", ((a,b) -> a % b), 1, ...
 
-
   TagBase.set = (...) =>
     @commonOp "set", ((_,b) -> b), nil, ...
-
 
   TagBase.round = (...) =>
     @commonOp "round", ((a,b) -> math.round(a,b)), nil, ...
 
-
   TagBase.ceil = =>
     @commonOp "ceil", ((a) -> math.ceil a), nil
-
 
   TagBase.floor = =>
     @commonOp "floor", ((a) -> math.floor a), nil
 
-
   TagBase.modify = (callback, ...) =>
     @set callback @get ...
-
 
   TagBase.readProps = (args) =>
     if args.tagProps
@@ -70,10 +58,8 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     elseif type(args[1]) == "table" and args[1].instanceOf and args[1].instanceOf[@class]
       @__tag[k] = v for k, v in pairs args[1].__tag
 
-
   TagBase.getSignature = =>
     return @__tag.signature or "default"
-
 
   TagBase.toString = () =>
     format = ASS.tagMap[@__tag.name].signatures[@getSignature!].format
@@ -84,7 +70,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     -- disabled tags or tags marked for deletion are not emitted
     return "" if @disabled or caller and caller.toRemove and caller.toRemove[@]
     return @toString!
-
 
   -- checks equality only of the relevant properties
   TagBase.equal = (a, b, acceptCompatible, ignoreTagNames) ->

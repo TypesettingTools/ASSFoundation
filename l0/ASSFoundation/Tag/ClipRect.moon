@@ -9,18 +9,15 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     @bottomRight = ASS.Point{right, bottom}
     @setInverse @__tag.inverse or false
 
-
   ClipRect.getTagParams = =>
     @setInverse @__tag.inverse or false
     xTopLeft, yTopLeft = @topLeft\getTagParams!
     xBottomRight, yBottomRight = @bottomRight\getTagParams!
     return xTopLeft, yTopLeft, xBottomRight, yBottomRight
 
-
   ClipRect.getVect = =>
     vect = ASSFInst\createTag ASS.tagNames[ASS.Tag.ClipVect][@__tag.inverse and 2 or 1]
     return vect\drawRect @topLeft, @bottomRight
-
 
   ClipRect.getDrawing = (trimDrawing, pos, an) =>
     if ASS\instanceOf pos, ASS.TagList
@@ -33,12 +30,10 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     return @getVect!\getDrawing trimDrawing, pos, an
 
-
   ClipRect.lerp = (a, b, t) ->
     c = a\copy!
     c.topLeft = a.topLeft\lerp b.topLeft, t
     c.bottomRight = a.bottomRight\lerp b.bottomRight, t
-
 
   ClipRect.setInverse = (state = true) =>
     @__tag.inverse = state
