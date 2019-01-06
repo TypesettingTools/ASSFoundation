@@ -260,6 +260,16 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       elseif tag.__tag.noOverride
         -- never decimate section-local tags like karaoke
         true
+      elseif tag.__tag.children
+        if ref.tags[name] and not tag\equal ref.tags[name]
+          true
+        else
+          isDifferentFromRefChildren = false
+          for childTagName in *tag.__tag.children
+            if not ref.tags[childTagName] or not ref.tags[childTagName]\equal tag, false, true
+              isDifferentFromRefChildren = true
+              break
+          isDifferentFromRefChildren
       elseif ref.tags[name]
         -- decimate tags that are both present and equal in this and the previous section
         not tag\equal ref.tags[name]
