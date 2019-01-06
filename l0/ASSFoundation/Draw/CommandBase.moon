@@ -25,13 +25,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
         return @
 
-    CommandBase.getTagParams = (coerce, precision = @__tag.precision) =>
+    CommandBase.getTagParams = (precision = @__tag.precision) =>
         return round(@x, precision), round(@y, precision) if @compatible[ASS.Point]
 
         params, parts = @__meta__.order, {}
         i, j = 1, 1
         while i <= @__meta__.rawArgCnt
-            parts[i], parts[i+1] = @[params[j]]\getTagParams coerce
+            parts[i], parts[i+1] = @[params[j]]\getTagParams!
             i += @[params[j]].__meta__.rawArgCnt
             j += 1
 
