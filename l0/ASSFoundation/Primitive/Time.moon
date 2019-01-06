@@ -11,7 +11,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     Time = createASSClass "Time", ASS.Number, {"value"}, {"number"}, {precision: 0}
     -- TODO: implement adding by framecount
 
-    Time.getTagParams = (_, precision = 0) =>
+    Time.getTagParams = (precision = 0) =>
         val = @value
         if precision > 0
             logger\error msgs.getTagParams.noFloatMs @typeName

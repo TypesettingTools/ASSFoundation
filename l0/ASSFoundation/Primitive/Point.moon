@@ -24,7 +24,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         return @
 
 
-    Point.getTagParams = (coerce, precision = @__tag.precision) =>
+    Point.getTagParams = (precision = @__tag.precision) =>
         x, y = @x, @y
         x, y %= @__tag.mod if @__tag.mod
 
