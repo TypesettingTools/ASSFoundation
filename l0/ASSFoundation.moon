@@ -76,7 +76,7 @@ ASS.Tag.Color     = loadClassNew "Tag.Color"
 ASS.Tag.Fade      = loadClass "Tag.Fade"
 ASS.Tag.Indexed   = loadClassNew "Tag.Indexed"
 ASS.Tag.Align     = loadClassNew "Tag.Align"
-ASS.Tag.Move      = loadClass "Tag.Move"
+ASS.Tag.Move      = loadClassNew "Tag.Move"
 ASS.Tag.String    = loadClass "Tag.String"
 ASS.Tag.Transform = loadClassNew "Tag.Transform"
 ASS.Tag.Toggle    = loadClass "Tag.Toggle"
@@ -509,7 +509,7 @@ ASS.tagMap = {
                             type: ASS.Tag.Move
                             signatures: {
                                 default: pattern: "^\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d]+),([%-%d]+)%)", format: "\\move(%.3N,%.3N,%.3N,%.3N,%.3N,%.3N)"
-                                simple:  pattern: "^\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)",             format: "\\move(%.3N,%.3N,%.3N,%.3N)"
+                                simple:  pattern: "^\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)", format: "\\move(%.3N,%.3N,%.3N,%.3N)"
                             }
                             props: global: true, position: true
                         }
