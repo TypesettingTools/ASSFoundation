@@ -116,10 +116,11 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
           -- set the marker for skipping input/type checking in the drawing command constructors
           prms.__raw = true
 
-          -- use the superfast internal constructor if available
-          contour[d] = if prevCmdType.__defNew
-            prevCmdType.__defNew prms
-          else prevCmdType prms
+          if #prms > 0 or prevCmdType.__defProps.ords == 0
+            -- use the superfast internal constructor if available
+            contour[d] = if prevCmdType.__defNew
+              prevCmdType.__defNew prms
+            else prevCmdType prms
 
           i += prmCnt
 
