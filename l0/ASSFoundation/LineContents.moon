@@ -196,13 +196,15 @@
     @updateRefs prevCnt
     return numRun > 0 and numRun or false
 
+  local assSectionTypes
   LineContents.insertSections = (sections, index) =>
     index = index or #@sections+1
     if type(sections) != "table" or sections.instanceOf
       sections = {sections}
 
+    assSectionTypes = table.values ASS.Section unless assSectionTypes  -- cache Section types list for performance
     for i, section in ipairs sections
-      unless ASS\instanceOf section, ASS.Section
+      unless ASS\instanceOf section, assSectionTypes
         logger\error msgs.insertSections.invalidSectionType,
           table.concat(table.pluck(ASS.Section, "typeName"), ", "),
           type(section) == "table" and section.typeName or type section
