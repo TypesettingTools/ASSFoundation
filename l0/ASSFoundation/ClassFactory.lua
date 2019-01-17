@@ -31,7 +31,7 @@ return function (typeName, baseClasses, order, types, tagProps, compatibleClasse
     cls.__defProps = Functional.table.union(tagProps or {}, cls.__defProps or {})
 
     -- compatible classes
-    cls.compatible = table.arrayToSet(compatibleClasses)
+    cls.compatible = Functional.list.makeSet(compatibleClasses)
     -- set mutual compatibility in reference classes
     for i=1,#compatibleClasses do
         compatibleClasses[i].compatible[cls] = true

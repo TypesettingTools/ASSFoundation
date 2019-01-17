@@ -1,4 +1,4 @@
-return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollection, Line, logger, SubInspector, Yutils) ->
+ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollection, Line, logger, SubInspector, Yutils) ->
   min, max = math.min, math.max
   {:list, :math, :string, :table, :unicode, :util, :re } = Functional
 
@@ -166,7 +166,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     end_ or= start < 1 and -1 or max prevCnt, 1
     reverse = relative and start<0 or reverse
 
-    --  assertEx(math.isInt(start) and math.isInt(end_),
+    -- logger\assert (math.isInt(start) and math.isInt(end_),
     --         "arguments 'start' and 'end' to callback() must be integers, got %s and %s.", type(start), type(end_))
 
     logger\assert (start>0)==(end_>0) and start != 0 and end_ != 0, msgs.callback.noMixedStartEndSigns, start, end_
@@ -177,7 +177,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       start, end_ = relative and math.abs(end_) or prevCnt+start+1, relative and math.abs(start) or prevCnt+end_+1
 
     for i = reverse and prevCnt or 1, reverse and 1 or prevCnt, reverse and -1 or 1
-      if ASS\instanceOf sects[i], ASS.Section, sectionClasses
+      if sectionClasses == nil or ASS\instanceOf sects[i], sectionClasses
         j += 1
         if (relative and j >= start and j <= end_) or (not relative and i >= start and i <= end_)
           numRun += 1

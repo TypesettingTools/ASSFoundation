@@ -28,6 +28,8 @@ version = DependencyControl{
 
 modules, logger = {version\requireModules!}, version\getLogger!
 createASSClass, re, util, unicode, Common, LineCollection, Line, Log, SubInspector, Functional, Yutils = unpack modules
+{:list, :math, :string, :table, :unicode, :util, :re } = Functional
+
 ASS = require("l0.ASSFoundation.FoundationMethods") createASSClass, Functional, LineCollection, Line, logger
 ASSFInstMeta = __index: ASS
 ASSFInstProxy = setmetatable {}, ASSFInstMeta
@@ -67,19 +69,18 @@ ASS.Section.Text = loadClassNew "Section.Text"
 ASS.Section.Tag = loadClassNew "Section.Tag"
 ASS.Section.Comment = loadClassNew "Section.Comment"
 ASS.Section.Drawing = loadClassNew "Section.Drawing"
-table.mergeInto ASS.Section, table.values(ASS.Section)
 
 -- Tags
 ASS.Tag.ClipRect = loadClassNew "Tag.ClipRect"
 ASS.Tag.ClipVect = loadClassNew "Tag.ClipVect"
 ASS.Tag.Color = loadClassNew "Tag.Color"
-ASS.Tag.Fade = loadClass "Tag.Fade"
+ASS.Tag.Fade = loadClassNew "Tag.Fade"
 ASS.Tag.Indexed = loadClassNew "Tag.Indexed"
 ASS.Tag.Align = loadClassNew "Tag.Align"
 ASS.Tag.Move = loadClassNew "Tag.Move"
-ASS.Tag.String = loadClass "Tag.String"
+ASS.Tag.String = loadClassNew "Tag.String"
 ASS.Tag.Transform = loadClassNew "Tag.Transform"
-ASS.Tag.Toggle = loadClass "Tag.Toggle"
+ASS.Tag.Toggle = loadClassNew "Tag.Toggle"
 ASS.Tag.Weight = loadClassNew "Tag.Weight"
 ASS.Tag.WrapStyle = createASSClass "Tag.WrapStyle", ASS.Tag.Indexed, {"value"}, {"number"}, {range: {0,3}, default: 0}
 ASS.Tag.Unknown = loadClassNew "Tag.Unknown"
@@ -93,7 +94,7 @@ ASS.Draw.Move = loadClassNew "Draw.Move"
 ASS.Draw.MoveNc = loadClassNew "Draw.MoveNc"
 
 ASS.Draw.commands = {ASS.Draw.Bezier, ASS.Draw.Close, ASS.Draw.Line, ASS.Draw.Move, ASS.Draw.MoveNc}
-table.arrayToSet ASS.Draw.commands, true
+list.makeSet ASS.Draw.commands, ASS.Draw.commands
 -- Drawing Command -> Class Mappings
 ASS.Draw.commandMapping = {}
 for i=1, #ASS.Draw.commands
@@ -476,7 +477,7 @@ ASS.tagMap = {
     signatures: {
       default: pattern: "^\\k([%d]+)", format: "\\k%d"
     }
-    props: scale: 10, karaoke: true, noOverride: true
+    props: scale: 10, karaoke: true, multi: true
     default: {0}
   }
   k_sweep: {
@@ -487,7 +488,7 @@ ASS.tagMap = {
       default: pattern: "^\\kf([%d]+)", format: "\\kf%d"
       short: pattern: "^\\K([%d]+)", format: "\\K%d"
     }
-    props: scale: 10, karaoke: true, noOverride: true
+    props: scale: 10, karaoke: true, multi: true
     default: {0}
   }
   k_bord: {
@@ -497,7 +498,7 @@ ASS.tagMap = {
     signatures: {
       default: pattern: "^\\ko([%d]+)", format: "\\ko%d"
     }
-    props: scale: 10, karaoke: true, noOverride: true
+    props: scale: 10, karaoke: true, multi: true
     default: {0}
   }
   position: {
@@ -584,7 +585,7 @@ ASS.tagMap = {
     signatures: {
       default: format: "%s"
     }
-    props: noOverride: true
+    props: nonOverriding: true, multi: true
   }
   junk: {
     sort: 99
@@ -645,12 +646,12 @@ for name, tag in pairs ASS.tagMap
     masterTag.props.children[#masterTag.props.children+1] = name
 
 
-ASS.tagSortOrder = table.reduce ASS.tagSortOrder
+ASS.tagSortOrder = table.continuous ASS.tagSortOrder
 
 -- make name tables also work as sets
 for _,names in pairs ASS.tagNames
   names.n = #names unless names.n
-  table.arrayToSet names, true
+  list.makeSet names, names
 
 
 ASS.defaults = {
