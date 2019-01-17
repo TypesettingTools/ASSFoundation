@@ -85,11 +85,12 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
   TextSection.getYutilsFont = =>
     logger\assert Yutils, yutilsMissingMsg
     tagList = @getEffectiveTags true, true, false
-    tags = tagList.tags
-    font = with tags do Yutils.decode.create_font .fontname\getTagParams!,
-      .bold\getTagParams! > 0, .italic\getTagParams! > 0, tags.underline\getTagParams! > 0,
-      .strikeout\getTagParams! > 0, .fontsize\getTagParams!, tags.scale_x\getTagParams! / 100,
-      .scale_y\getTagParams! / 100, .spacing\getTagParams!
+    local font
+    with tagList.tags
+      font = Yutils.decode.create_font .fontname\getTagParams!,
+        .bold\getTagParams! > 0, .italic\getTagParams! > 0, .underline\getTagParams! > 0,
+        .strikeout\getTagParams! > 0, .fontsize\getTagParams!, .scale_x\getTagParams! / 100,
+        .scale_y\getTagParams! / 100, .spacing\getTagParams!
 
     return font, tagList
 
