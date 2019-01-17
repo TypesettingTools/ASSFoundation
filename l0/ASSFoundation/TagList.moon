@@ -21,12 +21,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     }
   }
 
-  TagList = createASSClass "TagList", ASS.Base, {"tags", "transforms" ,"reset", "startTime", "endTime", "accel"},
-    {"table", "table", ASS.String, ASS.Time, ASS.Time, ASS.Number}
+  TagList = createASSClass "TagList", ASS.Base, {"tags", "transforms", "multiTags" ,"reset", "startTime", "endTime", "accel"},
+    {"table", "table", "table", ASS.String, ASS.Time, ASS.Time, ASS.Number}
 
   TagList.new = (tags, contentRef) =>
     if ASS\instanceOf tags, ASS.Section.Tag
-      @tags, @transforms, @contentRef = {}, {}, tags.parent
+      @tags, @transforms, @multiTags = {}, {}, {}
+      @contentRef = tags.parent
       transIdx, transforms, ovrTransTags, transTags = 1, {}, {}
       seenVectClip = false
       seenPosTag = false
@@ -57,6 +58,10 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
           transforms[transIdx] = ASS.Tag.Transform{tag, transformableOnly: true}
           transTags = transforms[transIdx].tags.tags
           transIdx += 1
+          return
+
+        elseif tag.__tag.multi
+          @multiTags[#@multiTags+1] = tag
           return
 
         -- Discard all except the first instance of global tags.
@@ -104,14 +109,16 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
           @transforms[t] = transforms[i]
           t += 1
 
-
     elseif ASS\instanceOf(tags, TagList)
-      @tags, @transforms = util.copy(tags.tags), util.copy tags.transforms
+      @tags = util.copy tags.tags
+      @transforms = util.copy tags.transforms
+      @multiTags = util.copy tags.multiTags
+
       @reset, @contentRef = tags.reset, tags.contentRef
     elseif tags == nil
-      @tags, @transforms = {}, {}
+      @tags, @transforms, @multiTags = {}, {}, {}
     else logger\error msgs.new.badTagSource, TagList.typeName, ASS.Section.Tag.typeName, TagList.typeName,
-                      ASS\instanceOf(tags) and tags.typeName or type tags
+      ASS\instanceOf(tags) and tags.typeName or type tags
 
     @contentRef or= contentRef
 
@@ -181,6 +188,23 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
           for i = 1, #tagProps.children
             merged.tags[tagProps.children[i]] = nil
 
+      -- Tags w/ multiple possible appearances require special treatment because a single instance doesn't fully
+      -- overwrite the state established by the previous tag instance.
+      -- Karaoke tags cause karaoke timings to be offset in the following sections, so we have to keep all of them
+      -- around in some way. When using more than 1 karaoke tag in a section, the time parameters of first n-1 tags
+      -- are added together to make up the timing offset.
+      -- We know nothing about unknown tags, so we must assume every one of them contributes to the state and
+      -- keep them all around
+      -- Conveniently all of the multi tags we know (which are the 3 karaoke tags and possibly every unknown tag)
+      -- are not affected by resets so we can ignore any we encounter.
+      for tag in *tagLists[i].multiTags
+        -- karaoke tags are a special case  that do never override state but potentially all contribute to it
+        -- within or between sections making it necessary to keep all of them around when merging.
+        -- Such a tag may or may not exist in the wild but (it does not in ASSv4+), so we err on the side of caution
+        -- and assume this behavior of all unknown tags we encounter
+        logger\assert tag.__tag.karaoke or tag.__tag.nonOverriding, msgs.merge.noMergeStrategyForMultiTag, tag.__tag.name
+        merged.multiTags[#merged.multiTags+1] = tag
+
     -- merge transforms
     merged.transforms = {}
     if seenTransform
@@ -208,7 +232,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     if returnOnly
       return merged
     else
-      @tags, @reset, @transforms = merged.tags, merged.reset, merged.transforms
+      @tags, @reset, @transforms, @multiTags = merged.tags, merged.reset, merged.transforms, merged.multiTags
       return @
 
   -- gets the change in tag state caused by applying this line state onto a previous line state
@@ -252,9 +276,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         -- unless they are nuked by a reset which affects every non-global tag except rectangular clips
         if reset and not tag.instanceOf[ASS.Tag.ClipRect] then false
         else true
-      elseif tag.__tag.noOverride
-        -- never decimate section-local tags like karaoke
-        true
       elseif tag.__tag.children
         if ref.tags[name] and not tag\equal ref.tags[name]
           true
@@ -290,10 +311,21 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       elseif not isDiff and not returnOnly
         @tags[name] = nil
 
+    -- Tags w/ multiple possible appearances require special treatment because a single instance doesn't fully
+    -- overwrite the state established by the previous tag instance.
+    -- The offset and duration parameters of karaoke tags are relative to those of karaoke tags in previous sections
+    -- so they always must be part of the diff even if parameters are identical. We know nothing about the behavior
+    -- of unknown tags, so we consider them as non-overriding and keep them in the diff as well.
+    -- conveniently all of the multi tags we know (which are the 3 karaoke tags and possibly every unknown tag)
+    -- are not affected by resets so we can ignore any we encounter.
+    for tag in *previous.multiTags
+      logger\assert tag.__tag.karaoke or tag.__tag.nonOverriding, msgs.diff.noDiffStrategyForMultiTag, tag.__tag.name
+
     if returnOnly
       diff.reset = reset
       -- transforms can't be deduplicated so all of them will be kept in the diff
       diff.transforms = @transforms
+      diff.multiTags = @multiTags
       return diff
 
     else
@@ -405,7 +437,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     return @, removed
 
   TagList.isEmpty = =>
-    table.length(@tags) < 1 and not @reset and #@transforms == 0
+    table.length(@tags) < 1 and not @reset and #@transforms == 0 and #@multiTags == 0
 
   TagList.getGlobal = (includeRectClips) =>
     {name, tag for name, tag in pairs @tags when includeRectClips and tag.__tag.globalOrRectClip or tag.__tag.global}

@@ -45,7 +45,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
           @tags[t] = tag
           t += 1
 
-      list.joinInto @tags, tags.transforms
+      list.joinInto @tags, tags.transforms, tags.multiTags
 
     -- create a blank tag section
     elseif tags == nil
