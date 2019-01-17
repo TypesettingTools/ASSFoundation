@@ -48,11 +48,12 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     -- in order to not ruin everything
     metrics.width, metrics.height = tonumber(extents.width), tonumber(extents.height)
 
-    shape = if calculateBounds
+    local shape
+    if calculateBounds
+      shape = fontObj.text_to_shape @value
       metrics.bounds = {Yutils.shape.bounding shape}
       metrics.bounds.w = (metrics.bounds[3] or 0) - (metrics.bounds[1] or 0)
       metrics.bounds.h = (metrics.bounds[4] or 0) - (metrics.bounds[2] or 0)
-      fontObj.text_to_shape @value
 
     return metrics, tagList, shape
 
