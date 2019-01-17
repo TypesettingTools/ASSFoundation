@@ -2,7 +2,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
   {:list, :math, :string, :table, :unicode, :util, :re } = Functional
   defProps = {name: "n", ords: 2, precision: 3, scale: 1}
 
-  DrawMoveNc = createASSClass "Draw.MoveNc", {ASS.Draw.Move}, {"x", "y"}, {"number", "number"}, 
+  DrawMoveNc = createASSClass "Draw.MoveNc", {ASS.Draw.Move}, {"x", "y"}, {"number", "number"},
     defProps, {ASS.Draw.Move, ASS.Point}
 
   -- optimized superfast constructor for internal use

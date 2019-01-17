@@ -273,7 +273,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     -- insert a table of contours
     for i, cnt in ipairs cnts
       if type(cnt) != "table" or cnt.class != Contour
-        logger\error msgs.insertContours.badContour, Contour.typeName, 
+        logger\error msgs.insertContours.badContour, Contour.typeName,
           type(cnt) == "table" and cnt.typeName or type cnt
 
         table.insert @contours, index + i-1, cnt
@@ -459,7 +459,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
   DrawingBase.rotate = (angle = 0) =>
     if ASS\instanceOf angle, ASS.Number
       angle = angle\getTagParams!
-    else logger\assert type(angle) == "number", msgs.rotate.badAngle,ASS.Number.typeName, 
+    else logger\assert type(angle) == "number", msgs.rotate.badAngle,ASS.Number.typeName,
       type(angle) == "table" and angle.typeName or type angle
 
     if angle % 360 != 0

@@ -36,7 +36,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     return @
 
   Fade.getTagParams = =>
-    if @__tag.simple 
+    if @__tag.simple
       return @startDuration\getTagParams!, @endDuration\getTagParams!
 
     t1, t4 = @startTime\getTagParams!, @endTime\getTagParams!

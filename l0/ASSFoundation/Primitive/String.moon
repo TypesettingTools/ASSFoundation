@@ -2,7 +2,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
   {:list, :math, :string, :table, :unicode, :util, :re } = Functional
 
   String = createASSClass "String", ASS.Tag.Base, {"value"}, {"string"}
-  
+
   String.new = (args) =>
     @value = @getArgs(args, "", true)[1]
     @readProps args

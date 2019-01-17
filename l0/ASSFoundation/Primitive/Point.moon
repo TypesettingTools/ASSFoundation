@@ -36,7 +36,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     rx, ry = if ref.class == ASS.Draw.Bezier
       ref.p3.x, ref.p3.y
     elseif not ref.class
-      logger\assert type(ref[1]) == "number" and type(ref[2]) == "number", msgs.getAngle.badTuple, 
+      logger\assert type(ref[1]) == "number" and type(ref[2]) == "number", msgs.getAngle.badTuple,
         tostring(ref[1]), tostring ref[2]
       ref[1], ref[2]
     elseif ref.compatible[Point]

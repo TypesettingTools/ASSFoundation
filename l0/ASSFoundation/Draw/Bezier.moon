@@ -3,7 +3,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
   round = math.round
   defProps, ptsDefProps = {name: "b", ords: 6, precision: 3}, {precision: 3, scale: 1}
 
-  DrawBezier = createASSClass "Draw.Bezier", ASS.Draw.CommandBase, {"p1","p2","p3"}, 
+  DrawBezier = createASSClass "Draw.Bezier", ASS.Draw.CommandBase, {"p1","p2","p3"},
     {ASS.Point, ASS.Point, ASS.Point}, defProps
   Point = ASS.Point
 

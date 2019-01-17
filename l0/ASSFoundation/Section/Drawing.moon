@@ -1,5 +1,5 @@
 return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollection, Line, logger, SubInspector, Yutils) ->
-  DrawingSection = createASSClass "Section.Drawing", ASS.Draw.DrawingBase, {"contours","scale"}, 
+  DrawingSection = createASSClass "Section.Drawing", ASS.Draw.DrawingBase, {"contours","scale"},
     {"table", ASS.Number}, {}, {ASS.Draw.DrawingBase, ASS.Tag.ClipVect}
 
   DrawingSection.getStyleTable = ASS.Section.Text.getStyleTable
