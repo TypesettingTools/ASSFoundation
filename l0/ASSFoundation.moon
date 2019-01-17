@@ -35,63 +35,59 @@ ASSFInstMeta = __index: ASS
 ASSFInstProxy = setmetatable {}, ASSFInstMeta
 _, yutilsMissingMsg = version\checkOptionalModules "Yutils"
 
--- Temporary submodule loaders until DepCtrl feature is ready
 loadClass = (name) ->
-  require("l0.ASSFoundation."..name) ASS, ASSFInstProxy, yutilsMissingMsg, unpack modules
-
-loadClassNew = (name) ->
-  require("l0.ASSFoundation."..name) ASS, ASSFInstProxy, yutilsMissingMsg, createASSClass, Functional, 
+  require("l0.ASSFoundation."..name) ASS, ASSFInstProxy, yutilsMissingMsg, createASSClass, Functional,
     LineCollection, Line, logger, SubInspector, Yutils
 
 -- Base Classes
-ASS.Base = loadClassNew "Base"
+ASS.Base = loadClass "Base"
 ASS.Tag, ASS.Draw = {}, {}
-ASS.Tag.Base = loadClassNew "Tag.Base"
-ASS.Draw.DrawingBase = loadClassNew "Draw.DrawingBase"
-ASS.Draw.CommandBase = loadClassNew "Draw.CommandBase"
+ASS.Tag.Base = loadClass "Tag.Base"
+ASS.Draw.DrawingBase = loadClass "Draw.DrawingBase"
+ASS.Draw.CommandBase = loadClass "Draw.CommandBase"
 
 -- Primitives
-ASS.Number = loadClassNew "Primitive.Number"
-ASS.String = loadClassNew "Primitive.String"
-ASS.Point = loadClassNew "Primitive.Point"
-ASS.Time = loadClassNew "Primitive.Time"
+ASS.Number = loadClass "Primitive.Number"
+ASS.String = loadClass "Primitive.String"
+ASS.Point = loadClass "Primitive.Point"
+ASS.Time = loadClass "Primitive.Time"
 ASS.Duration = createASSClass "Duration", ASS.Time, {"value"}, {"number"}, {positive: true}
 ASS.Hex = createASSClass "Hex", ASS.Number, {"value"}, {"number"}, {range: {0,255}, base: 16, precision:0}
 
-ASS.LineContents = loadClassNew "LineContents"
-ASS.LineBounds = loadClassNew "LineBounds"
-ASS.LineBoundsBatch = loadClassNew "LineBoundsBatch"
-ASS.TagList = loadClassNew "TagList"
+ASS.LineContents = loadClass "LineContents"
+ASS.LineBounds = loadClass "LineBounds"
+ASS.LineBoundsBatch = loadClass "LineBoundsBatch"
+ASS.TagList = loadClass "TagList"
 
 -- Sections
 ASS.Section = {}
-ASS.Section.Text = loadClassNew "Section.Text"
-ASS.Section.Tag = loadClassNew "Section.Tag"
-ASS.Section.Comment = loadClassNew "Section.Comment"
-ASS.Section.Drawing = loadClassNew "Section.Drawing"
+ASS.Section.Text = loadClass "Section.Text"
+ASS.Section.Tag = loadClass "Section.Tag"
+ASS.Section.Comment = loadClass "Section.Comment"
+ASS.Section.Drawing = loadClass "Section.Drawing"
 
 -- Tags
-ASS.Tag.ClipRect = loadClassNew "Tag.ClipRect"
-ASS.Tag.ClipVect = loadClassNew "Tag.ClipVect"
-ASS.Tag.Color = loadClassNew "Tag.Color"
-ASS.Tag.Fade = loadClassNew "Tag.Fade"
-ASS.Tag.Indexed = loadClassNew "Tag.Indexed"
-ASS.Tag.Align = loadClassNew "Tag.Align"
-ASS.Tag.Move = loadClassNew "Tag.Move"
-ASS.Tag.String = loadClassNew "Tag.String"
-ASS.Tag.Transform = loadClassNew "Tag.Transform"
-ASS.Tag.Toggle = loadClassNew "Tag.Toggle"
-ASS.Tag.Weight = loadClassNew "Tag.Weight"
+ASS.Tag.ClipRect = loadClass "Tag.ClipRect"
+ASS.Tag.ClipVect = loadClass "Tag.ClipVect"
+ASS.Tag.Color = loadClass "Tag.Color"
+ASS.Tag.Fade = loadClass "Tag.Fade"
+ASS.Tag.Indexed = loadClass "Tag.Indexed"
+ASS.Tag.Align = loadClass "Tag.Align"
+ASS.Tag.Move = loadClass "Tag.Move"
+ASS.Tag.String = loadClass "Tag.String"
+ASS.Tag.Transform = loadClass "Tag.Transform"
+ASS.Tag.Toggle = loadClass "Tag.Toggle"
+ASS.Tag.Weight = loadClass "Tag.Weight"
 ASS.Tag.WrapStyle = createASSClass "Tag.WrapStyle", ASS.Tag.Indexed, {"value"}, {"number"}, {range: {0,3}, default: 0}
-ASS.Tag.Unknown = loadClassNew "Tag.Unknown"
+ASS.Tag.Unknown = loadClass "Tag.Unknown"
 
-ASS.Draw.Contour = loadClassNew "Draw.Contour"
+ASS.Draw.Contour = loadClass "Draw.Contour"
 -- Drawing Command Classes
-ASS.Draw.Bezier = loadClassNew "Draw.Bezier"
-ASS.Draw.Close = loadClassNew "Draw.Close"
-ASS.Draw.Line = loadClassNew "Draw.Line"
-ASS.Draw.Move = loadClassNew "Draw.Move"
-ASS.Draw.MoveNc = loadClassNew "Draw.MoveNc"
+ASS.Draw.Bezier = loadClass "Draw.Bezier"
+ASS.Draw.Close = loadClass "Draw.Close"
+ASS.Draw.Line = loadClass "Draw.Line"
+ASS.Draw.Move = loadClass "Draw.Move"
+ASS.Draw.MoveNc = loadClass "Draw.MoveNc"
 
 ASS.Draw.commands = {ASS.Draw.Bezier, ASS.Draw.Close, ASS.Draw.Line, ASS.Draw.Move, ASS.Draw.MoveNc}
 list.makeSet ASS.Draw.commands, ASS.Draw.commands
@@ -102,9 +98,9 @@ for i=1, #ASS.Draw.commands
 
 -- Parser
 ASS.Parser = {
-  Drawing: loadClassNew "Parser.Drawing"
-  LineText: loadClassNew "Parser.LineText"
-  Sections: loadClassNew "Parser.Sections"
+  Drawing: loadClass "Parser.Drawing"
+  LineText: loadClass "Parser.LineText"
+  Sections: loadClass "Parser.Sections"
 }
 
 -- Tag Mapping
