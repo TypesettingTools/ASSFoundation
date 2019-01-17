@@ -75,8 +75,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       allTags = ASS.tagNames.all
       for i = 1, #tags
         tag = tags[i]
-        logger\assert allTags[tag.__tag.name or false], msgs.new.unsupportedTag,
-          i, type(tag)=="table" and tags[i].typeName or type(tag), tag.__tag and tag.__tag.name
+
+        tagType = type tag
+        unless tagType == "table" and tag.__tag and allTags[tag.__tag.name or false]
+          logger\error msgs.new.unsupportedTag, i,
+            tagType == "table" and tags[i].typeName or tagType,
+            tagType == "table" and tag.__tag and tag.__tag.name or "none"
+
         @tags[i], tag.parent = tag, @
 
     else
