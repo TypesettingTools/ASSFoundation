@@ -45,6 +45,10 @@
       badArg: "Error: invalid parameter #1. Expected a range, an ASSObject or a table of ASSObjects, got a %s."
     }
 
+    insertSections: {
+      invalidSectionType: "can only insert sections of type {%s}, got %s."
+    }
+
     replaceTags: {
       badTagList: "argument #1 must be a tag object, a table of tag objects, an %s or an ASSTagList; got a %s."
     }
@@ -199,10 +203,9 @@
 
     for i, section in ipairs sections
       unless ASS\instanceOf section, ASS.Section
-        -- TODO: use logger.error
-        error string.format "can only insert sections of type {%s}, got %s.",
-          table.concat(ASS.Section.typeName, ", "),
-          type section
+        logger\error msgs.insertSections.invalidSectionType,
+          table.concat(table.pluck(ASS.Section, "typeName"), ", "),
+          type(section) == "table" and section.typeName or type section
 
       table.insert @sections, index+i-1, section
 
