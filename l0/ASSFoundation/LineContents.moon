@@ -1,4 +1,4 @@
- return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollection, Line, logger, SubInspector, Yutils) ->
+return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollection, Line, logger, SubInspector, Yutils) ->
   min, max = math.min, math.max
   {:list, :math, :string, :table, :unicode, :util, :re } = Functional
 
@@ -388,7 +388,7 @@
 
   LineContents.cleanTags = (level = 3, mergeSect = true, defaultToKeep, tagSortOrder) =>
     -- Merge consecutive sections
-    if mergeSect then
+    if mergeSect
       lastTagSection, numMerged = -1, 0
       cb = (section, sections, i) ->
         if i == lastTagSection + numMerged + 1
@@ -436,7 +436,6 @@
 
         return false if tagList\isEmpty!
         return ASS.Section.Tag tagList, false, tagSortOrder
-
       @callback cb, ASS.Section.Tag
     return @
 
