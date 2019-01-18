@@ -36,7 +36,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     return @getEffectiveTags(false,true,false)\getStyleTable @parent.line.styleRef, name
 
   TextSection.getTextExtents = =>
-    return aegisub.text_extents @getStyleTable(nil,coerce), @value
+    return aegisub.text_extents @getStyleTable!, @value
 
   TextSection.getTextMetrics = (calculateBounds) =>
     logger\assert Yutils, yutilsMissingMsg
