@@ -359,19 +359,19 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     return cnt
 
   LineContents.stripTags = =>
-    @callback(-> false), ASS.Section.Tag
+    @callback (-> false), ASS.Section.Tag
     return @
 
   LineContents.stripText = =>
-    @callback(-> false), ASS.Section.Text
+    @callback (-> false), ASS.Section.Text
     return @
 
   LineContents.stripComments = =>
-    @callback(-> false), ASS.Section.Comment
+    @callback (-> false), ASS.Section.Comment
     return @
 
   LineContents.stripDrawings = =>
-    @callback(-> false), ASS.Section.Drawing
+    @callback (-> false), ASS.Section.Drawing
     return @
 
   LineContents.commit = (line = @line, includeEmptySections = true, text = @getString includeEmptySections) =>
