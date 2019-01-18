@@ -68,7 +68,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     c.value = a.value + (b.value - a.value) * t
     return c
 
-  Number.modEq = (val, div) -> (@%div)\equal val
+  Number.modEq = (val, div) => (@%div)\equal val
 
   Number.__lt = (a, b) -> Number.cmp a, "<", b
   Number.__le = (a, b) -> Number.cmp a, "<=", b
