@@ -112,7 +112,7 @@ ASS.tagMap = {
     }
     props: transformable: true
   }
-  
+
   scale_y: {
     sort: 7
     overrideName: "\\fscy"
@@ -335,7 +335,7 @@ ASS.tagMap = {
     type: ASS.Tag.ClipRect
     signatures: {
       default: {
-        pattern: "^\\clip%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)", 
+        pattern: "^\\clip%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)",
         format: "\\clip(%.2N,%.2N,%.2N,%.2N)"
       }
     }
@@ -348,7 +348,7 @@ ASS.tagMap = {
     type: ASS.Tag.ClipRect
     signatures: {
       default: {
-        pattern: "^\\iclip%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)", 
+        pattern: "^\\iclip%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)",
         format: "\\iclip(%.2N,%.2N,%.2N,%.2N)"
       }
     }
@@ -510,11 +510,11 @@ ASS.tagMap = {
     type: ASS.Tag.Move
     signatures: {
       default: {
-        pattern: "^\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d]+),([%-%d]+)%)", 
+        pattern: "^\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d]+),([%-%d]+)%)",
         format: "\\move(%.3N,%.3N,%.3N,%.3N,%.3N,%.3N)"
       }
       simple: {
-        pattern: "^\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)", 
+        pattern: "^\\move%(([%-%d%.]+),([%-%d%.]+),([%-%d%.]+),([%-%d%.]+)%)",
         format: "\\move(%.3N,%.3N,%.3N,%.3N)"
       }
     }
@@ -555,7 +555,7 @@ ASS.tagMap = {
     type: ASS.Tag.Fade
     signatures: {
       default: {
-        pattern: "^\\fade%((%d+),(%d+),(%d+),([%-%d]+),([%-%d]+),([%-%d]+),([%-%d]+)%)", 
+        pattern: "^\\fade%((%d+),(%d+),(%d+),([%-%d]+),([%-%d]+),([%-%d]+),([%-%d]+)%)",
         format: "\\fade(%d,%d,%d,%d,%d,%d,%d)"
       }
     }
