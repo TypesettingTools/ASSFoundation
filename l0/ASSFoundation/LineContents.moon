@@ -460,8 +460,8 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     if cType == "number"
       step = callback
       callback = (idx, len) -> idx + step
+    else logger\assert cType == "function", msgs.splitAtIntervals.badCallback, cType
 
-    else logger\assert ctype == "function", msgs.splitAtIntervals.badCallback, cType
     len = unicode.len (@copy!\stripTags!\getString!)
     idx, sectEndIdx, nextIdx, lastI = 1, 0, 0
     splitLines, splitCnt = {}, 1
