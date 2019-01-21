@@ -19,18 +19,6 @@ function string:split(sep)
     return fields
 end
 
-table.reverseArray = function(tbl)
-    local length, rTbl = #tbl, {}
-    for i,val in ipairs(tbl) do
-        rTbl[length-i+1] = val
-    end
-    return rTbl
-end
-
--- TODO: move into functional
-unicode.reverse = function(s)
-    return table.concat(table.reverseArray(unicode.toCharTable(s)))
-end
 
 util.getScriptInfo = function(sub)
     local infoBlockFound, scriptInfo = false, {}
