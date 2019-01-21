@@ -559,14 +559,18 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     return splitLines
 
   LineContents.trim = =>
-    textSects, t = {}, 1
-    @callback ((section, sections, i) -> textSects[t], t = section, t + 1), ASS.Section.Text
+    textSects, t = {}, 0
+    @callback (section, sections, i) ->
+        t += 1
+        textSects[t] = section,
+      ASS.Section.Text
 
-    return if t < 1
-    if t != 2
+    return if t == 0
+    if t == 1
+      textSects[1]\trim!
+    else
       textSects[1]\trimLeft!
       textSects[t]\trimRight!
-    else textSects[1]\trim!
 
   LineContents.getStyleRef = (style) =>
     if ASS\instanceOf style, ASS.Tag.String -- can use a reset tag as argument
