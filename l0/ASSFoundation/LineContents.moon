@@ -64,7 +64,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     }
   }
 
-  LineContents = createASSClass "LineContents", ASS.Base, {"sections"}, {"table"}
+  LineContents = createASSClass "LineContents", ASS.Base, {"sections"}, {"table"}, nil, nil, (tbl, key) ->
+    if key == "textLength"
+      chars = 0
+      tbl\callback ((sect) -> chars += sect.len), ASS.Section.Text
+      return chars
+
+    else return getmetatable(tbl)[key]
 
   LineContents.new = (line, sections, copyAndCheckSections = true) =>
     sections = @getArgs({sections})[1] if sections
@@ -468,7 +474,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     cb = (section, _, i) ->
       text, off = section.value, sectEndIdx
-      sectEndIdx += unicode.len section.value
+      sectEndIdx += section.len
 
       -- process unfinished line carried over from previous section
       if nextIdx > idx
