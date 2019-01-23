@@ -746,10 +746,10 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         bounds[4] = max bounds[4],sectMetr.bounds[4] or 0
 
       -- add all section widths
-      metr.width += metr.width
+      metr.width += sectMetr.width
       -- get maximum encountered section values for all other metrics (does that make sense?)
       metr.ascent = max sectMetr.ascent, metr.ascent
-      metr.descent, max sectMetr.descent, metr.descent
+      metr.descent = max sectMetr.descent, metr.descent
       metr.internal_leading = max sectMetr.internal_leading, metr.internal_leading
       metr.external_leading = max sectMetr.external_leading, metr.external_leading
       metr.height = max sectMetr.height, metr.height
