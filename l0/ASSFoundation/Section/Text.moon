@@ -117,12 +117,12 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     -- insert a new tag section before index, split
 
   TextSection.trimLeft = =>
-    @value = @value\gsub "^%s*(.+)$", "%1"
+    @value = string.trimLeft @value
 
   TextSection.trimRight = =>
-    @value = @value\gsub "^(.-)%s*$", "%1"
+    @value = string.trimRight @value
 
   TextSection.trim = =>
-    @value = @value\gsub "^%s*(.-)%s*$", "%1"
+    @value = string.trim @value
 
   return TextSection
