@@ -276,8 +276,8 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         logger\error msgs.insertContours.badContour, Contour.typeName,
           type(cnt) == "table" and cnt.typeName or type cnt
 
-        table.insert @contours, index + i-1, cnt
-        cnt.parent = @
+      table.insert @contours, index + i-1, cnt
+      cnt.parent = @
 
     @length = nil if #cnts > 0
     return cnts
