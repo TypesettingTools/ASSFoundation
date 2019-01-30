@@ -70,6 +70,7 @@ return (createASSClass, Functional, LineCollection, Line, logger) ->
     logger\assert tag, msgs.createTag.noSuchTag, name
     return tag.type {tagProps: tag.props, ...}
 
+  local assSectionTypes
   ASS.createLine = (args) =>
     defaults, newLine = @defaults.line
     cnts, ref, useLineProps = args[1], args[2], args[3]
@@ -126,10 +127,11 @@ return (createASSClass, Functional, LineCollection, Line, logger) ->
       -- A new ASSLineContents object is created from the supplied sections and attached to a new Line
       cnts = {cnts} if cnts.class
       newLine = Line {}, ref, table.union defaults, args
+      assSectionTypes = table.values @Section unless assSectionTypes  -- cache Section types list for performance
 
       for cnt in *cnts
         -- TODO: move into ASSLineContents:new()
-        unless @instanceOf(cnt, @Section)
+        unless @instanceOf cnt, assSectionTypes
           error msgs.createLine.badLine\format @LineContents.typeName, cnt.typeName or type cnt
         ref or= if lc = @getParentLineContents!
           lc.line.parentCollection
