@@ -18,7 +18,7 @@ return (createASSClass, Functional, LineCollection, Line, logger) ->
 
     createTag: {
       badType: "argument #1 must be a string, got a %s."
-      noSuchTag: "can't find tag with name '%s#"
+      noSuchTag: "can't find tag with name '%s'"
     }
 
   }
