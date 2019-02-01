@@ -802,13 +802,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     -- complex fade-outs or fade-ins of positive, non-zero fade duration that actually change the opacity
     if t.fade
-      return true if t.fade.startDuration > 0 and not t.fade.startAlpha\equal t.fade.midAlpha
-      return true if t.fade.endDuration > 0 and not t.fade.midAlpha\equal t.fade.endAlpha
+      return true if t.fade.inDuration > 0 and not t.fade.inAlpha\equal t.fade.midAlpha
+      return true if t.fade.outDuration > 0 and not t.fade.midAlpha\equal t.fade.outAlpha
 
     -- -- simple fade-outs or fade-ins of positive, non-zero fade duration that actually change the opacity
     if t.fade_simple
-      return true if t.fade_simple.startDuration > 0 and not t.fade_simple.startAlpha\equal t.fade_simple.midAlpha
-      return true if t.fade_simple.endDuration > 0 and not t.fade_simple.midAlpha\equal t.fade_simple.endAlpha
+      return true if t.fade_simple.inDuration > 0 and not t.fade_simple.inAlpha\equal t.fade_simple.midAlpha
+      return true if t.fade_simple.outDuration > 0 and not t.fade_simple.midAlpha\equal t.fade_simple.outAlpha
 
     return false
 

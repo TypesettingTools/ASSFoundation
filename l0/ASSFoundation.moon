@@ -546,7 +546,7 @@ ASS.tagMap = {
     signatures: {
       default: pattern: "^\\fad%((%d+),(%d+)%)", format: "\\fad(%d,%d)"
     }
-    props: simple: true, global: true
+    props: global: true
     default: {0,0}
   }
   fade: {
