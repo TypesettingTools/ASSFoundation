@@ -10,8 +10,6 @@ version = DependencyControl{
   {
     "l0.ASSFoundation.ClassFactory",
     "aegisub.re", "aegisub.util", "aegisub.unicode",
-    {"l0.ASSFoundation.Common", version: "0.2.0", url: "https://github.com/TypesettingTools/ASSFoundation",
-      feed: "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/master/DependencyControl.json"},
     {"a-mo.LineCollection", version: "1.0.1", url: "https://github.com/TypesettingTools/Aegisub-Motion",
       feed: "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"},
     {"a-mo.Line", version: "1.0.0", url: "https://github.com/TypesettingTools/Aegisub-Motion",
@@ -25,7 +23,7 @@ version = DependencyControl{
 }
 
 modules, logger = {version\requireModules!}, version\getLogger!
-createASSClass, re, util, unicode, Common, LineCollection, Line, SubInspector, Functional, Yutils = unpack modules
+createASSClass, re, util, unicode, LineCollection, Line, SubInspector, Functional, Yutils = unpack modules
 {:list, :math, :string, :table, :unicode, :util, :re } = Functional
 
 ASS = require("l0.ASSFoundation.FoundationMethods") createASSClass, Functional, LineCollection, Line, logger

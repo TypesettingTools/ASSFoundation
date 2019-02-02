@@ -1,4 +1,3 @@
-local common = require("l0.ASSFoundation.Common")
 local util = require("aegisub.util")
 local Functional = require("l0.Functional");
 

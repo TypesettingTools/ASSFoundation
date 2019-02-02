@@ -98,7 +98,7 @@ return (createASSClass, Functional, LineCollection, Line, logger) ->
         p = util.copy defaults
         p.text = cnts
       else
-        p.layer, p.start_time, p.end_time, p.style = num(s[1]), util.timecode2ms(s[2]), util.timecode2ms(s[3]), s[4]
+        p.layer, p.start_time, p.end_time, p.style = num(s[1]), util.assTimecode2ms(s[2]), util.assTimecode2ms(s[3]), s[4]
         p.actor, p.margin_l, p.margin_r, p.margin_t, p.effect, p.text = s[5], num(s[6]), num(s[7]), num(s[8]), s[9], s[10]
 
       newLine = Line {}, ref, table.union args, p, defaults
