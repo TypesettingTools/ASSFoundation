@@ -76,7 +76,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         @__tag.name, table.concat({@getTagParams!}, ', '), format, errMsg
     return tagString
 
-  -- legacy
+  -- legacy TODO: move the disable magic out and replace w/ toString
   TagBase.getTagString = (caller) =>
     -- disabled tags or tags marked for deletion are not emitted
     return "" if @disabled or caller and caller.toRemove and caller.toRemove[@]
