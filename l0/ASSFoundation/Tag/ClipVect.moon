@@ -16,6 +16,12 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   ClipVect.toggleInverse = => @setInverse not @__tag.inverse
 
+  ClipVect.getSignature = =>
+    @__tag.signature = if @scale\equal 1 -- TODO: remove legacy property
+      "default"
+    else "scale"
+    return @__tag.signature
+
   ClipVect.getDrawing = (trimDrawing, pos, an) =>
     if ASS\instanceOf pos, ASS.TagList
       pos, an = pos.tags.position, pos.tags.align

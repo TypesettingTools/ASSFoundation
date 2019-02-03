@@ -20,7 +20,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         Close, Move, Contour, Bezier = ASS.Draw.Close, ASS.Draw.Move, ASS.Draw.Contour, ASS.Draw.Bezier
 
       -- split drawing command string
-      cmdParts = str\split " "
+      cmdParts = string.split str, " "
       cmdPartCnt = #cmdParts
 
       i, junk, prevCmdType = 1

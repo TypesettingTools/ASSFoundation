@@ -290,7 +290,9 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         cmds[c] = cnt\getTagParams @scale
         c += 1
 
-    return table.concat cmds, " "
+    if @scale\equal 1
+      return table.concat cmds, " "
+    else return @scale\getTagParams!, table.concat cmds, " "
 
   DrawingBase.commonOp = (method, callback, default, x, y) => -- drawing commands only have x and y in common
     for cnt in *@contours

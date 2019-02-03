@@ -4,8 +4,14 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   DrawingSection.getStyleTable = ASS.Section.Text.getStyleTable
   DrawingSection.getEffectiveTags = ASS.Section.Text.getEffectiveTags
-  DrawingSection.getString = DrawingSection.getTagParams
   DrawingSection.getTagString = nil
+
+  getTagParams = DrawingSection.getTagParams
+  DrawingSection.getTagParams = () =>
+    scale, commands = getTagParams @
+    return commands or scale
+  DrawingSection.getString = DrawingSection.getTagParams -- TODO: remove in favor of toString
+  DrawingSection.toString = DrawingSection.getTagParams
 
   DrawingSection.alignToOrigin = (mode) =>
     mode = ASS.Tag.Align {mode or 7}
