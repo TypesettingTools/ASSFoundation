@@ -1,5 +1,12 @@
 return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollection, Line, logger, SubInspector, Yutils) ->
   {:list, :math, :string, :table, :unicode, :util, :re } = Functional
+
+  msgs = {
+    toString: {
+      failedFormat: "Failed to convert tag '%s' to string using params (%s) and format '%s': %s"
+    }
+  }
+
   TagBase = createASSClass "TagBase", ASS.Base
 
   TagBase.commonOp = (method, callback, default, ...) =>
@@ -63,7 +70,11 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   TagBase.toString = () =>
     format = ASS.tagMap[@__tag.name].signatures[@getSignature!].format
-    string.formatEx format, @getTagParams!
+    tagString, errMsg = string.formatEx format, @getTagParams!
+    unless tagString
+      logger\error msgs.toString.failedFormat,
+        @__tag.name, table.concat({@getTagParams!}, ', '), format, errMsg
+    return tagString
 
   -- legacy
   TagBase.getTagString = (caller) =>
