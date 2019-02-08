@@ -96,17 +96,37 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       -- filter tags by overridden transform list, keep transforms that have still tags left at the end
       t = 1
       for i = 1, transIdx - 1
-        continue unless transforms[i]
+        transform = transforms[i]
+        continue unless transform
         transTagCnt = 0
-        transforms[i].tags\callback (tag) ->
+        local tagsToInsert
+        transform.tags\callback (tag) ->
           ovrEnd = ovrTransTags[tag.__tag.name] or 0
           -- drop all overridden transforms
           if ovrEnd > i
             return false
+          else if tag.__tag.children
+            -- check for any master tag transforms later overriden in children
+            -- such as {\alpha&HF0&\t(28,279,\alpha&H00&)\1a&HFF&}
+            ovrChildren = [child for child in *tag.__tag.children when ovrTransTags[child] and ovrTransTags[child] > i]
+            if #ovrChildren == 0
+              transTagCnt += 1
+              return
+
+            -- add all children except the ones overriding to the transform and remove the master
+            childTags = [ASS\createTag childTagName,
+              tag\getTagParams! for childTagName in *list.diff tag.__tag.children, ovrChildren]
+            if tagsToInsert == nil
+              tagsToInsert = childTags
+            else list.joinInto tagsToInsert, childTags
+            transTagCnt += #childTags
+            return false
+
           else transTagCnt += 1
+        transform.tags\insertTags tagsToInsert if tagsToInsert != nil
         -- write final transforms table
         if transTagCnt > 0
-          @transforms[t] = transforms[i]
+          @transforms[t] = transform
           t += 1
 
     elseif ASS\instanceOf(tags, TagList)
