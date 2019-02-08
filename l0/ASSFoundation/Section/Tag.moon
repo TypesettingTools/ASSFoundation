@@ -200,12 +200,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       msgs.insertTags.badIndex, tostring(index), type index
 
     tags = if type(tags) == "table"
-      if tags.instanceOf[TagSection]
+      if tags.instanceOf == nil
+        tags
+      elseif tags.instanceOf[TagSection]
         tags.tags
       elseif tags.instanceOf[ASS.TagList]
         TagSection(tags).tags
-      elseif tags.instanceOf
-        {tags}
+      else {tags}
     else logger\error msgs.insertTags.badTags, type tags
 
     for i = 1, #tags
