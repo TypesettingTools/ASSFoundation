@@ -20,7 +20,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
         Close, Move, Contour, Bezier = ASS.Draw.Close, ASS.Draw.Move, ASS.Draw.Contour, ASS.Draw.Bezier
 
       -- split drawing command string
-      cmdParts = string.split str, " "
+      cmdParts = string.split string.trim(str), "%s+", nil, false -- TODO: check possible optimization by using simple split and no trimming here and skipping empty stuff later on instead
       cmdPartCnt = #cmdParts
 
       i, junk, prevCmdType = 1
