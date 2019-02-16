@@ -225,7 +225,7 @@ ASS.tagMap = {
     overrideName: "\\alpha"
     type: ASS.Hex
     signatures: {
-      default: pattern: "^\\alpha&H(%x%x)&", format: "\\alpha&H%02X&"
+      default: pattern: "^\\alpha&H(%x%x?)&?", format: "\\alpha&H%02X&"
     }
     props: transformable: true
     default: {0}
@@ -271,8 +271,8 @@ ASS.tagMap = {
     overrideName: "\\1c"
     type: ASS.Tag.Color
     signatures: {
-      default: pattern: "^\\1c&H%x-(%x%x)(%x%x)(%x%x)&", format: "\\1c&H%02X%02X%02X&"
-      short: pattern: "^\\c&H%x-(%x%x)(%x%x)(%x%x)&", format: "\\c&H%02X%02X%02X&"
+      default: pattern: "^\\1c&H%x-(%x%x)(%x%x)(%x%x)&?", format: "\\1c&H%02X%02X%02X&"
+      short: pattern: "^\\c&H%x-(%x%x)(%x%x)(%x%x)&?", format: "\\c&H%02X%02X%02X&"
     }
     friendlyName: "\\1c  & \\c"
     props: transformable: true

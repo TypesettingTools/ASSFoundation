@@ -65,7 +65,6 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       if @scale > 1
         @div 2^(@scale-1), 2^(@scale-1)
 
-
     -- construct by deep-copying a compatible object
     elseif ASS\instanceOf args[1], DrawingBase, nil, true
       copy = args[1]\copy!
