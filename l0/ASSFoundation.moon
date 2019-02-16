@@ -9,21 +9,20 @@ version = DependencyControl{
   feed: "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/master/DependencyControl.json",
   {
     "l0.ASSFoundation.ClassFactory",
-    "aegisub.re", "aegisub.util", "aegisub.unicode",
-    {"a-mo.LineCollection", version: "1.0.1", url: "https://github.com/TypesettingTools/Aegisub-Motion",
+    {"a-mo.LineCollection", version: "1.3.0", url: "https://github.com/TypesettingTools/Aegisub-Motion",
       feed: "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"},
-    {"a-mo.Line", version: "1.0.0", url: "https://github.com/TypesettingTools/Aegisub-Motion",
+    {"a-mo.Line", version: "1.5.3", url: "https://github.com/TypesettingTools/Aegisub-Motion",
       feed: "https://raw.githubusercontent.com/TypesettingTools/Aegisub-Motion/DepCtrl/DependencyControl.json"},
-    {"SubInspector.Inspector", version: "0.6.0", url: "https://github.com/TypesettingTools/SubInspector",
+    {"SubInspector.Inspector", version: "0.7.2", url: "https://github.com/TypesettingTools/SubInspector",
       feed: "https://raw.githubusercontent.com/TypesettingTools/SubInspector/master/DependencyControl.json"},
-    {"l0.Functional", version: "0.4.1", url: "https://github.com/TypesettingTools/Functional",
+    {"l0.Functional", version: "0.5.0", url: "https://github.com/TypesettingTools/Functional",
       feed: "https://raw.githubusercontent.com/TypesettingTools/Functional/master/DependencyControl.json"},
     {"Yutils", optional: true}
   }
 }
 
 modules, logger = {version\requireModules!}, version\getLogger!
-createASSClass, re, util, unicode, LineCollection, Line, SubInspector, Functional, Yutils = unpack modules
+createASSClass, LineCollection, Line, SubInspector, Functional, Yutils = unpack modules
 {:list, :math, :string, :table, :unicode, :util, :re } = Functional
 
 ASS = require("l0.ASSFoundation.FoundationMethods") createASSClass, Functional, LineCollection, Line, logger
