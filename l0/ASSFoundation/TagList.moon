@@ -187,7 +187,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       for name, tag in pairs tagLists[i].tags
         tagProps = tag.__tag
 
-        unless overrideGlobalTags
+        if not overrideGlobalTags
           -- discard all except the first instance of global tags
           continue if merged.tags[name] and tagProps.global
           -- discard all vectorial clips if one (\clip or \iclip) was already seen
