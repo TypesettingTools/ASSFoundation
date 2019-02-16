@@ -17,14 +17,209 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
       "channels": {
         "alpha": {
-          "version": "0.3.4",
-          "released": "2018-12-12",
+          "version": "0.4.0",
+          "released": "2019-02-16",
           "default": true,
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "DA26B340248121A00E6A4043A1BBD8B52B86A380"
+              "sha1": "0B942999A0D583883511683AC868E74754DF6A24"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Base.moon",
+              "sha1": "C9CC7F300E10950DB4ACDF01D6CEE69CF46D0336"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/ClassFactory.lua",
+              "sha1": "3297902E18D5DCDF331D1BC69CD9F7614F3C4318"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/FoundationMethods.moon",
+              "sha1": "27CBCBFEA1A1E62B5616082FB52B60720807CEFB"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/LineBounds.moon",
+              "sha1": "9E2B7A249C98606CC8E4BBBCA6716C5E6020F996"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/LineBoundsBatch.moon",
+              "sha1": "093A808D1340C749627E940E02BEE9CFA027DD7D"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/LineContents.moon",
+              "sha1": "C67054332A72DD716EA50BD2FE5E30CC81888541"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/TagList.moon",
+              "sha1": "D9C4D7B9E20BAA78450050CF6E3DD178D4E605C7"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/Bezier.moon",
+              "sha1": "DFB4E7E63447862A634766CB1815E6A44984892F"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/Close.moon",
+              "sha1": "EFE374E1F47B71A66ABDAE83C7CC678A5776DD44"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/CommandBase.moon",
+              "sha1": "6C85CD85D860CDE7DAF5E86C7E88375272B4E548"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/Contour.moon",
+              "sha1": "248E103DD02A1A0E45E47097801D66F88EDC0CD6"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/DrawingBase.moon",
+              "sha1": "13B5DB64129D8E9AB2030848BA16ADDF1DABAFA6"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/Line.moon",
+              "sha1": "CFD79EFC9EB987600E2CFA567A4BA3B36C3CFD0C"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/Move.moon",
+              "sha1": "B57B98018CE9968D133013C24409C69058A6CA46"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/MoveNc.moon",
+              "sha1": "3DD7FB712B08A92809533A1856A1E06B06659684"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Parser/Drawing.moon",
+              "sha1": "19152F4879484E39B1F827808B94939F297927C3"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Parser/LineText.moon",
+              "sha1": "AE17FF4BF7D949C86F97CD9389076520AFD926AF"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Parser/Sections.moon",
+              "sha1": "D4FCE7D66B8E5B52B9CD7649FE3B5845DE605E59"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Primitive/Number.moon",
+              "sha1": "BBC3FBDD9B78DED762E67F419C57F04BD8E15BBC"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Primitive/Point.moon",
+              "sha1": "D0D3C0E29BFBCA786514E0E54756712DBA33105F"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Primitive/String.moon",
+              "sha1": "ACDF2E1D5E46D3EE694C905FE902F8AB487997ED"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Primitive/Time.moon",
+              "sha1": "1586532FED960E0CFC2D8DD25B09AF00ADD613F3"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Section/Comment.moon",
+              "sha1": "9663F1D0385FEE23F54DE5C5CD3116682D2DE3C1"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Section/Drawing.moon",
+              "sha1": "49D81DC66B8855DFF58EC2DB432A4F5203EAA60E"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Section/Tag.moon",
+              "sha1": "4DE4B7A684733D2AF9F76C6F99159FBBAB5F0FAD"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Section/Text.moon",
+              "sha1": "747B5D185CA855B425F99065596210C8BE511D49"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Align.moon",
+              "sha1": "8F7BDA4FEA6B0EBCF73E3C67B0581DFF6328B77A"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Base.moon",
+              "sha1": "1A04F4BC0B0816AE31CA2DF954A9295C75311ECB"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/ClipRect.moon",
+              "sha1": "D4B7477CA458B6AD08C55233C8E46B7C5A433DA6"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/ClipVect.moon",
+              "sha1": "A89DE1DAA24DC07CCE7D057B89BE3051A68725AB"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Color.moon",
+              "sha1": "1879B3C7F205406C64645C83DAF554354096FB09"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Fade.moon",
+              "sha1": "4419D0175C9BA17A99F5C7518E972F9880A56A7D"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Indexed.moon",
+              "sha1": "69CCD05EA9AC542B8731D7D0BB42DFAF5605C347"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Move.moon",
+              "sha1": "3BC51CADDC974862659F258F68462F1E661C545B"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/String.moon",
+              "sha1": "093AEE3A6BCAA4DC5B445D62F38389F53851912F"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Toggle.moon",
+              "sha1": "4A1DE0BEC41A52C00B4C8A084E46CA78A09D2CAE"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Transform.moon",
+              "sha1": "785F3DAAD8B9974F0C01412C47B19D1D5C405A32"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Unknown.moon",
+              "sha1": "8361656185FF579F1C8C140AC092EC4824E635A1"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Weight.moon",
+              "sha1": "ACA9A4E24C53B128DFD254A66945767466E25E12"
             },
             {
               "name": ".lua",
@@ -32,204 +227,154 @@
             },
             {
               "name": "/Base.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F593E82EF338F97A5A36A116AC3B98197E515F2E"
-            },
-            {
-              "name": "/ClassFactory.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "79637707E87965446F87E73DFA161C6EACF22A7E"
+              "delete": true
             },
             {
               "name": "/FoundationMethods.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "3D6CD8024E23B181EFD8E3871D57003A7E2402A4"
+              "delete": true
             },
             {
               "name": "/LineBounds.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "A3449F59841D9B890B0389452A4A4FBBC1744AA4"
+              "delete": true
             },
             {
               "name": "/LineContents.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "D608C7DFD954695BFD1C698AA49B7A452022059D"
+              "delete": true
             },
             {
               "name": "/TagList.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "075538D9F801CADFC0A3AAC9BC880137B269C9D1"
+              "delete": true
             },
             {
               "name": "/Draw/Bezier.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "5983D2CDE54756367105580BC79C692072E31701"
+              "delete": true
             },
             {
               "name": "/Draw/Close.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B98ADA6B185B5EE5A88A772F7C6CE9A76AAB5A45"
+              "delete": true
             },
             {
               "name": "/Draw/CommandBase.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "962BEF176F15B9E345E6F4F02A3C92DC18540051"
+              "delete": true
             },
             {
               "name": "/Draw/Contour.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "15B0BCBA52D85E70CB71937AC1F5727A245CC781"
+              "delete": true
             },
             {
               "name": "/Draw/DrawingBase.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "19FA0937F9EB66274EE1EAD60A413CDB8A74D144"
+              "delete": true
             },
             {
               "name": "/Draw/Line.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "A77D135EAE077CC0900CC32768337CB689AFBEC5"
+              "delete": true
             },
             {
               "name": "/Primitive/Number.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "A4AB8DCBC4D96FFFE05249C89785A9C208A38A81"
+              "delete": true
             },
             {
               "name": "/Primitive/Point.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "AF76096E9A0B8A97A02113240F406DCF9DD0BDFB"
+              "delete": true
             },
             {
               "name": "/Primitive/String.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "99E98C2D69D25764EF2A3021596D99AF6F278DC1"
+              "delete": true
             },
             {
               "name": "/Primitive/Time.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "4B7FE7D5AB79AB862AF3C5FAC551AC56AC0DA7F6"
+              "delete": true
             },
             {
               "name": "/Section/Comment.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "155E1A36AB6143E7F1757B15CAD68D7A36248381"
+              "delete": true
             },
             {
               "name": "/Section/Drawing.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "CFB60846CE274C1B244B71BF25FEA5CFA5A8CBCD"
+              "delete": true
             },
             {
               "name": "/Section/Tag.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "087FC84DF128DFA2555D3E8CF31A9560150D1F63"
+              "delete": true
             },
             {
               "name": "/Section/Text.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "22E45B32A822FCB2887157E6706360C6E8640D4C"
+              "delete": true
             },
             {
               "name": "/Tag/Align.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "C8D82EDEF5504430E97D288EBA651C893D270701"
+              "delete": true
             },
             {
               "name": "/Tag/Base.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F21E69EB12D27E44350A9E37F59517BBB1E5BFD4"
+              "delete": true
             },
             {
               "name": "/Tag/ClipRect.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "B8353740838CE8B178E79574AA1CEC4D4204B261"
+              "delete": true
             },
             {
               "name": "/Tag/ClipVect.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "28CFDCC25AEFCBB2D2CB8C910A79574B0B914C95"
+              "delete": true
             },
             {
               "name": "/Tag/Color.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "ABBFCF3510BD8263D9B8014679010531A4EEEA3F"
+              "delete": true
             },
             {
               "name": "/Tag/Fade.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "C6E2BFC2511DE7D076D04F21AC6ABE12D430B480"
+              "delete": true
             },
             {
               "name": "/Tag/Indexed.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "ED5A189E529A0102F70CF4D99F41236EE76FE221"
+              "delete": true
             },
             {
               "name": "/Tag/Move.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "BCB78699700FCAB2D59D9FF6BFD5DFC68B841E73"
+              "delete": true
             },
             {
               "name": "/Tag/String.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "3938D5861B31813ED043582E57AE4485A7720F02"
+              "delete": true
             },
             {
               "name": "/Tag/Toggle.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "2F230691871113B71DFA8B7D65EE37AF6B0C5807"
+              "delete": true
             },
             {
               "name": "/Tag/Transform.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "E556857E7F9D47F9FA1D384749BA07DE3A48E44D"
+              "delete": true
             },
             {
               "name": "/Tag/Weight.lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "83DBAEE55D5CECFCA647EB19A1AB1DE4B465B285"
+              "delete": true
             }
           ],
           "requiredModules": [
             {
-              "moduleName": "aegisub.re"
-            },
-            {
-              "moduleName": "aegisub.util"
-            },
-            {
-              "moduleName": "aegisub.unicode"
-            },
-            {
-              "moduleName": "l0.ASSFoundation.Common",
-              "name": "ASSFoundation Common Components",
-              "version": "0.2.0",
-              "url": "@{baseUrl}"
-            },
-            {
               "moduleName": "a-mo.LineCollection",
-              "version": "1.0.1",
+              "version": "1.3.0",
               "name": "Aegisub-Motion (LineCollection)",
               "url": "https://github.com/TypesettingTools/Aegisub-Motion",
               "feed": "@{feed:a-mo}"
             },
             {
               "moduleName": "a-mo.Line",
-              "version": "1.0.0",
+              "version": "1.5.3",
               "name": "Aegisub-Motion (Line)",
               "url": "https://github.com/TypesettingTools/Aegisub-Motion",
               "feed": "@{feed:a-mo}"
             },
             {
-              "moduleName": "a-mo.Log",
-              "name": "Aegisub-Motion (Log)",
-              "url": "https://github.com/TypesettingTools/Aegisub-Motion",
-              "feed": "@{feed:a-mo}"
+              "moduleName": "l0.Functional",
+              "version": "0.5.0",
+              "name": "(Almost) Functional Suite",
+              "url": "https://github.com/TypesettingTools/Functional",
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/Functional/master/DependencyControl.json"
             },
             {
               "moduleName": "SubInspector.Inspector",
-              "version": "0.6.0",
+              "version": "0.7.2",
               "feed": "https://raw.githubusercontent.com/TypesettingTools/SubInspector/master/DependencyControl.json"
             },
             {
@@ -240,14 +385,44 @@
         }
       },
       "changelog": {
-        "0.3.4": [
-          "TagList now discards any \\pos or \\move tags after the first one was seen, avoiding failure on lines where their order doesn't match the sort order.",
-          "\\move now works with negative start and end times.",
-          "Junk drawing data is now emitted as a comment at the end of the drawing section.",
-          "Comment sections are now detected more reliably instead of being handled like a tag section.",
-          "Broken tags without proper closing brackets are now given one automatically.",
-          "Removed a check within the \\fade tag that did not work correctly with negative values in complex fades.",
-          "Shear tags now output decimals with a maximum precision of 3 digits, raised from the previous limit of 2."
+        "0.4.0": [
+          "Ported almost all of ASSFoundation to Moonscript. The one thing that remains plain old Lua is the old custom class system, which is due to be replaced in a later ASSFoundation release. APIs are largely unaffected by this port.",
+          "Type coercion and the associated parameters across all classes have been removed as part of the port.",
+          "ASSFoundation.Common has been removed in favor of the 'Functional' library, which does all Common did and more, but does not pollute Lua-internal objects with its functions.",
+          "Support for ASS Drawings has been reworked to dramatically improve performance and reduce memory footprint (particularly when working with complex drawings) while a the same time not compromising ASSFoundations's object-oriented approach. Ordinates of a contour are now stored as plain numbers instead of an `ASS.Primitive.Number` object. Special internal constructors have been added to the drawing-related classes to improve parsing performance.",
+          "Quirks mode has been introducted to handle subtle differences between libass and vsfilter. Currently only affects how broken drawings are repaired.",
+          "Added `LineBoundsBatch` class for efficiently running many lines or variations thereof through SubInspector.",
+          "Parsing of broken tags has been improved both in terms of reliability and leniency.",
+          "TagList: The handling of alpha states has been replaced with a more abstract relationship of 'master' and 'child' tags.",
+          "TagList: child alpha tags that apppear in a tag section after a transform of its master tag are now handled correctly. Previously the \\1|2|3|4|a tag would have been simply moved in front of the transforms, thereby breaking the line. Now the master \\alpha in the transform is expanded to its child componments allowing us to move the override around without breaking the line.",
+          "TagList.merge(): fixed broken expandResets option.",
+          "TagList: unknown tags are now marked as non-overriding to avoid losing all but the last one when there are multiple unknown tags in a tag section.",
+          "TagList.diff(): fixed master tags being removed despite children in the reference having different values.",
+          "TagList: fixed tag state handling for tags w/ possibly multiple occurances within a tag section not fully overriding each other (i.e. karaoke tags, possibly unknown tags).",
+          "Parsing functionality (crude as it is) has been separated into separate classes.",
+          "The parser now properly distinguishes between comment sections and garbage appearing within a tag section.",
+          "The parser now accepts all transform tags with sub-millisecond timing information. The added precision is obviously absolutely worthless, but vsfilter doesn't care, so neither should we.",
+          "Tag.Base.equal(): added a parameter that makes the method treat tags of different but compatible classes with equal content as equal.",
+          "The drawing parser will now only create a command if either any parameters are provided or the command does not accept any.",
+          "The drawing parser now correctly handle both drawings with untrimmed whitespace as well as extraneous whitespace between drawing commands.",
+          "Primitive.Point/Primite.Number: added .lerp() method for linear interpolation.",
+          "Constructors of tags now prefer reading explicitly defined tag properties from supplied arguments over copying the properties from a supplied tag of the same class.",
+          "DrawingBase.callback() and LineContents.getString() now take a number of custom user-defined arguments to pass into their respective calls to the specified callback/predicate function. This is an optimization to avoid the overhead of non-jitted closures when performing bulk operations. See the ASSWipe automation script for an example involving the cleaning of invisible contours from a drawing.",
+          "Shadow tags now use infinite precision. No matter how small the offset, there's still going to be a shadow present, so we can't just nuke small values.",
+          "A valid list of ASSv4+ tags (i.e. excluding the ASSFoundation-internal 'unknown' and 'junk' types) are now provided as `ASS.tagNames.ASSv4Plus`",
+          "Changed the default decimal precision in shear tags to a more sensible value of 3 digits. The previous value of 2 caused visible differences in certain situations.",
+          "Base: improved error messages for failed string to number conversions to include the target radix.",
+          "LineContents.cleanTags(): improved performance by avoiding duplicate filter runs during level 4 cleaning as well as initial diff runs against an empty tag list.",
+          "LineContents.trim(): fixed an off-by-one error that caused a null-reference exception when there was no tag section in the line.",
+          "LineContents: added a computed `textLength` property that always holds the total length of the text in all tag sections. Unicode supported.",
+          "Section/Tag.insertTags(): fixed tag check assertion itself throwing an error when the inserted tag is not a table.",
+          "Section/Tag.insertTags(): now also accepts a list of tags.",
+          "Section/Comment: in order to not disturb adjacent tag sections, opening braces inside the comment are now escaped when converting a comment section to its ASS string representation. Since there's no way to escape closing braces in a tag/comment section or even in ASS in general, closing curly braces are nuked entirely.",
+          "Tag.Move: \\move tags with reversed start and end times are now detected and fixed automatically.",
+          "Tag.Fade: changed the fields to better reflect how \\fade actually works. Complex fades are essentially two fades (in and out) which are both applied with the in part overriding the out part. As a consequence, having t3 < t2 is absolutely legal and t2 can't be clamped in any way. The previously present assertions enforcing monotonically increasing times have been removed.",
+          "Tag.Fade: remove the `.setSimple` method since there's no real way of converting between complex and simple fades w/o knowing the line duration (which is not known at this stage in the graph).",
+          "Tag.Base.toString(): now spits out an actually helpful, detailed error message when the ASS string representation of a tag object could not be formed.",
+          "Tag/Base: Tags will no longer automatically change their signature then `.getTagParams()` is run. The previous behavior caused issues when callers didn't account for it and determined signatures before calling `.getTagParams()`. Now a dedicated `.getSignature()` method is provided to explicitly determine and return the correct signature."
         ],
         "0.3.3": [
           "Line splitting no longer incorrectly calculates the position for splits with leading or trailing whitespace characters.",
@@ -325,50 +500,6 @@
         ],
         "0.1.0": [
           "Reorganized module files"
-        ]
-      }
-    },
-    "l0.ASSFoundation.Common": {
-      "url": "@{baseUrl}",
-      "author": "line0",
-      "name": "ASSFoundation Common Components",
-      "description": "Collection of commonly used functions.",
-      "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/cmn-v@{version}-@{channel}/@{namespacePath}",
-      "channels": {
-        "alpha": {
-          "version": "0.2.0",
-          "released": "2015-03-18",
-          "default": true,
-          "files": [
-            {
-              "name": ".lua",
-              "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "60B27619878B5BB263767A5F9C21DC247D68A79F"
-            }
-          ],
-          "requiredModules": [
-            {
-              "moduleName": "aegisub.util"
-            },
-            {
-              "moduleName": "aegisub.unicode"
-            },
-            {
-              "moduleName": "a-mo.Log",
-              "name": "Aegisub-Motion (Log)",
-              "url": "https://github.com/TypesettingTools/Aegisub-Motion",
-              "feed": "@{feed:a-mo}"
-            }
-          ]
-        }
-      },
-      "changelog": {
-        "0.2.0": [
-          "Removed table.sort and and table.insert replacements."
-        ],
-        "0.1.1": [
-          "Fixed broken RGB to HSV color conversion",
-          "Added update feeds"
         ]
       }
     }
