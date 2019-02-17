@@ -14,12 +14,381 @@
       "author": "line0",
       "name": "ASSFoundation",
       "description": "General purpose ASS processing library.",
-      "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation/v@{version}-@{channel}/@{namespacePath}",
+      "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation",
       "channels": {
-        "alpha": {
+        "release": {
           "version": "0.4.0",
           "released": "2019-02-16",
           "default": true,
+          "fileBaseUrl": "@{fileBaseUrl}/v@{version}/@{namespacePath}",
+          "files": [
+            {
+              "name": ".moon",
+              "url": "@{fileBaseUrl}@{fileName}",
+              "sha1": "0B942999A0D583883511683AC868E74754DF6A24"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Base.moon",
+              "sha1": "C9CC7F300E10950DB4ACDF01D6CEE69CF46D0336"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/ClassFactory.lua",
+              "sha1": "3297902E18D5DCDF331D1BC69CD9F7614F3C4318"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/FoundationMethods.moon",
+              "sha1": "27CBCBFEA1A1E62B5616082FB52B60720807CEFB"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/LineBounds.moon",
+              "sha1": "9E2B7A249C98606CC8E4BBBCA6716C5E6020F996"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/LineBoundsBatch.moon",
+              "sha1": "093A808D1340C749627E940E02BEE9CFA027DD7D"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/LineContents.moon",
+              "sha1": "C67054332A72DD716EA50BD2FE5E30CC81888541"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/TagList.moon",
+              "sha1": "D9C4D7B9E20BAA78450050CF6E3DD178D4E605C7"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/Bezier.moon",
+              "sha1": "DFB4E7E63447862A634766CB1815E6A44984892F"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/Close.moon",
+              "sha1": "EFE374E1F47B71A66ABDAE83C7CC678A5776DD44"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/CommandBase.moon",
+              "sha1": "6C85CD85D860CDE7DAF5E86C7E88375272B4E548"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/Contour.moon",
+              "sha1": "248E103DD02A1A0E45E47097801D66F88EDC0CD6"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/DrawingBase.moon",
+              "sha1": "13B5DB64129D8E9AB2030848BA16ADDF1DABAFA6"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/Line.moon",
+              "sha1": "CFD79EFC9EB987600E2CFA567A4BA3B36C3CFD0C"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/Move.moon",
+              "sha1": "B57B98018CE9968D133013C24409C69058A6CA46"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Draw/MoveNc.moon",
+              "sha1": "3DD7FB712B08A92809533A1856A1E06B06659684"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Parser/Drawing.moon",
+              "sha1": "19152F4879484E39B1F827808B94939F297927C3"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Parser/LineText.moon",
+              "sha1": "AE17FF4BF7D949C86F97CD9389076520AFD926AF"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Parser/Sections.moon",
+              "sha1": "D4FCE7D66B8E5B52B9CD7649FE3B5845DE605E59"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Primitive/Number.moon",
+              "sha1": "BBC3FBDD9B78DED762E67F419C57F04BD8E15BBC"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Primitive/Point.moon",
+              "sha1": "D0D3C0E29BFBCA786514E0E54756712DBA33105F"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Primitive/String.moon",
+              "sha1": "ACDF2E1D5E46D3EE694C905FE902F8AB487997ED"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Primitive/Time.moon",
+              "sha1": "1586532FED960E0CFC2D8DD25B09AF00ADD613F3"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Section/Comment.moon",
+              "sha1": "9663F1D0385FEE23F54DE5C5CD3116682D2DE3C1"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Section/Drawing.moon",
+              "sha1": "49D81DC66B8855DFF58EC2DB432A4F5203EAA60E"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Section/Tag.moon",
+              "sha1": "4DE4B7A684733D2AF9F76C6F99159FBBAB5F0FAD"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Section/Text.moon",
+              "sha1": "747B5D185CA855B425F99065596210C8BE511D49"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Align.moon",
+              "sha1": "8F7BDA4FEA6B0EBCF73E3C67B0581DFF6328B77A"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Base.moon",
+              "sha1": "1A04F4BC0B0816AE31CA2DF954A9295C75311ECB"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/ClipRect.moon",
+              "sha1": "D4B7477CA458B6AD08C55233C8E46B7C5A433DA6"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/ClipVect.moon",
+              "sha1": "A89DE1DAA24DC07CCE7D057B89BE3051A68725AB"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Color.moon",
+              "sha1": "1879B3C7F205406C64645C83DAF554354096FB09"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Fade.moon",
+              "sha1": "4419D0175C9BA17A99F5C7518E972F9880A56A7D"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Indexed.moon",
+              "sha1": "69CCD05EA9AC542B8731D7D0BB42DFAF5605C347"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Move.moon",
+              "sha1": "3BC51CADDC974862659F258F68462F1E661C545B"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/String.moon",
+              "sha1": "093AEE3A6BCAA4DC5B445D62F38389F53851912F"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Toggle.moon",
+              "sha1": "4A1DE0BEC41A52C00B4C8A084E46CA78A09D2CAE"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Transform.moon",
+              "sha1": "785F3DAAD8B9974F0C01412C47B19D1D5C405A32"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Unknown.moon",
+              "sha1": "8361656185FF579F1C8C140AC092EC4824E635A1"
+            },
+            {
+              "url": "@{fileBaseUrl}@{fileName}",
+              "name": "/Tag/Weight.moon",
+              "sha1": "ACA9A4E24C53B128DFD254A66945767466E25E12"
+            },
+            {
+              "name": ".lua",
+              "delete": true
+            },
+            {
+              "name": "/Base.lua",
+              "delete": true
+            },
+            {
+              "name": "/FoundationMethods.lua",
+              "delete": true
+            },
+            {
+              "name": "/LineBounds.lua",
+              "delete": true
+            },
+            {
+              "name": "/LineContents.lua",
+              "delete": true
+            },
+            {
+              "name": "/TagList.lua",
+              "delete": true
+            },
+            {
+              "name": "/Draw/Bezier.lua",
+              "delete": true
+            },
+            {
+              "name": "/Draw/Close.lua",
+              "delete": true
+            },
+            {
+              "name": "/Draw/CommandBase.lua",
+              "delete": true
+            },
+            {
+              "name": "/Draw/Contour.lua",
+              "delete": true
+            },
+            {
+              "name": "/Draw/DrawingBase.lua",
+              "delete": true
+            },
+            {
+              "name": "/Draw/Line.lua",
+              "delete": true
+            },
+            {
+              "name": "/Primitive/Number.lua",
+              "delete": true
+            },
+            {
+              "name": "/Primitive/Point.lua",
+              "delete": true
+            },
+            {
+              "name": "/Primitive/String.lua",
+              "delete": true
+            },
+            {
+              "name": "/Primitive/Time.lua",
+              "delete": true
+            },
+            {
+              "name": "/Section/Comment.lua",
+              "delete": true
+            },
+            {
+              "name": "/Section/Drawing.lua",
+              "delete": true
+            },
+            {
+              "name": "/Section/Tag.lua",
+              "delete": true
+            },
+            {
+              "name": "/Section/Text.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/Align.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/Base.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/ClipRect.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/ClipVect.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/Color.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/Fade.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/Indexed.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/Move.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/String.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/Toggle.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/Transform.lua",
+              "delete": true
+            },
+            {
+              "name": "/Tag/Weight.lua",
+              "delete": true
+            }
+          ],
+          "requiredModules": [
+            {
+              "moduleName": "a-mo.LineCollection",
+              "version": "1.3.0",
+              "name": "Aegisub-Motion (LineCollection)",
+              "url": "https://github.com/TypesettingTools/Aegisub-Motion",
+              "feed": "@{feed:a-mo}"
+            },
+            {
+              "moduleName": "a-mo.Line",
+              "version": "1.5.3",
+              "name": "Aegisub-Motion (Line)",
+              "url": "https://github.com/TypesettingTools/Aegisub-Motion",
+              "feed": "@{feed:a-mo}"
+            },
+            {
+              "moduleName": "l0.Functional",
+              "version": "0.5.0",
+              "name": "(Almost) Functional Suite",
+              "url": "https://github.com/TypesettingTools/Functional",
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/Functional/master/DependencyControl.json"
+            },
+            {
+              "moduleName": "SubInspector.Inspector",
+              "version": "0.7.2",
+              "feed": "https://raw.githubusercontent.com/TypesettingTools/SubInspector/master/DependencyControl.json"
+            },
+            {
+              "moduleName": "Yutils",
+              "optional": true
+            }
+          ]
+        },
+        "alpha": {
+          "version": "0.4.0",
+          "released": "2019-02-16",
+          "default": false,
+          "fileBaseUrl": "@{fileBaseUrl}/v@{version}-@{channel}/@{namespacePath}",
           "files": [
             {
               "name": ".moon",
