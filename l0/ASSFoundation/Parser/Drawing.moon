@@ -59,64 +59,67 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
               continue
 
             -- process ordinates that failed to cast to a number
-            local reason
+
+            -- either the command or the the drawing is truncated
             if not prm or prm\match "^[bclmnps]$"
-              -- either the command or the the drawing is truncated
-              reason = msgs.parse.wrongOrdinateCount\format prevCmdType.typeName, prmCnt, p-1
+              unless ASS.config.fixDrawings
+                reason = msgs.parse.wrongOrdinateCount\format prevCmdType.typeName, prmCnt, p-1
+                near = table.concat cmdParts, " ", math.max(i+p-10,1), i+p
+                logger\error msgs.parse.cantParse, near, reason
 
               -- we can fix this if required, but need to
               -- give back any subsequent drawing commands
               prmCnt = prm and p - 1 or p
-              break if ASS.config.fixDrawings
+              break
 
             -- the ordinate is either malformed or has trailing junk
-            elseif ASS.config.fixDrawings
-              ord, fragment = prm\match "^([%-%d%.]*)(.*)$"
-
-              switch ASS.config.quirks
-                when ASS.Quirks.VSFilter
-                  -- xy-vsfilter accepts and draws an ordinate with junk at the end,
-                  -- but will skip any following drawing commands in the drawing section.
-                  if ord
-                    prms[p-skippedOrdCnt] = tonumber ord
-                    fragment = prm unless prms[p-skippedOrdCnt]
-
-                  -- move the junk into a comment section and stop parsing further drawing commands
-                  junk or= ASS.Section.Comment fragment
-                  junk\append list.slice(cmdParts, i+p+1), " "
-                  i = cmdPartCnt + 1 -- fast forward to end of the outer loop
-                  break
-
-                when ASS.Quirks.libass
-                  -- libass only draws y ordinates with trailing junk but discards x ordinates.
-                  -- However, it will recover once it hits valid commands again.
-                  junk or= ASS.Section.Comment!
-
-                  if not ord or p % 2 == 1
-                    -- move broken x parameter into a comment section
-                    junk\append prm, " "
-                    -- make sure to read another parameter for this command
-                    -- to replace the one we just gave up
-                    skippedOrdCnt, prmCnt += 1
-                  else
-                    -- move junk trailing the y ordinate into a comment section
-                    prms[p-skippedOrdCnt] = tonumber ord
-                    if not prms[p-skippedOrdCnt]
-                      junk\append prm, " "
-                      skippedOrdCnt, prmCnt += 1
-                    else junk\append fragment, " "
-                  p += 1
-
-                else logger\error msgs.parse.invalidQuirksMode, tostring ASS.config.quirks
-
-            else
+            elseif not ASS.config.fixDrawings
               near = table.concat cmdParts, " ", math.max(i+p-10,1), i+p
-              logger\error msgs.parse.cantParse, near, reason or msgs.parse.badOrdinate\format prm
+              logger\error msgs.parse.cantParse, near, msgs.parse.badOrdinate\format prm
+
+            ord, fragment = prm\match "^([%-%d%.]*)(.*)$"
+
+            switch ASS.config.quirks
+              when ASS.Quirks.VSFilter
+                -- xy-vsfilter accepts and draws an ordinate with junk at the end,
+                -- but will skip any following drawing commands in the drawing section.
+                if ord
+                  prms[p-skippedOrdCnt] = tonumber ord
+                  fragment = prm unless prms[p-skippedOrdCnt]
+
+                -- move the junk into a comment section and stop parsing further drawing commands
+                junk or= ASS.Section.Comment fragment
+                junk\append list.slice(cmdParts, i+p+1), " "
+                i = cmdPartCnt + 1 -- fast forward to end of the outer loop
+                break
+
+              when ASS.Quirks.libass
+                -- libass only draws y ordinates with trailing junk but discards x ordinates.
+                -- However, it will recover once it hits valid commands again.
+                junk or= ASS.Section.Comment!
+
+                if not ord or p % 2 == 1
+                  -- move broken x parameter into a comment section
+                  junk\append prm, " "
+                  -- make sure to read another parameter for this command
+                  -- to replace the one we just gave up
+                  skippedOrdCnt, prmCnt += 1
+                else
+                  -- move junk trailing the y ordinate into a comment section
+                  prms[p-skippedOrdCnt] = tonumber ord
+                  if not prms[p-skippedOrdCnt]
+                    junk\append prm, " "
+                    skippedOrdCnt, prmCnt += 1
+                  else junk\append fragment, " "
+                p += 1
+
+              else logger\error msgs.parse.invalidQuirksMode, tostring ASS.config.quirks
 
           -- set the marker for skipping input/type checking in the drawing command constructors
           prms.__raw = true
 
-          if #prms > 0 or prevCmdType.__defProps.ords == 0
+          -- only create the command if the required number of ordinates have been specified
+          if #prms == prevCmdType.__defProps.ords
             -- use the superfast internal constructor if available
             contour[d] = if prevCmdType.__defNew
               prevCmdType.__defNew prms
@@ -124,6 +127,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
           i += prmCnt
 
+        -- TODO: also check for ordinates ending w/ junk here and apply quirks algo
         else logger\error msgs.parse.unsupportedCommand, cmdParts[i]
         i += 1
         d += 1
