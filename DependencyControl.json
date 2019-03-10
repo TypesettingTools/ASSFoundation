@@ -17,15 +17,15 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation",
       "channels": {
         "release": {
-          "version": "0.4.0",
-          "released": "2019-02-16",
+          "version": "0.4.1",
+          "released": "2019-03-10",
           "default": true,
           "fileBaseUrl": "@{fileBaseUrl}/v@{version}/@{namespacePath}",
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "26EF6803836B4A3C0B5FFBF4599B1C341999FA6D"
+              "sha1": "F27863B1CB628B45FC2DA6DABE1648F5603F3A0B"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -105,7 +105,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Parser/Drawing.moon",
-              "sha1": "19152F4879484E39B1F827808B94939F297927C3"
+              "sha1": "40E624776D6A3359B17DAE049083EEFD23D635BA"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -140,7 +140,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Section/Comment.moon",
-              "sha1": "9663F1D0385FEE23F54DE5C5CD3116682D2DE3C1"
+              "sha1": "94EFE768666A2CD6CD68FCF7DEBF0CCAB88643D1"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -754,6 +754,9 @@
         }
       },
       "changelog": {
+        "0.4.1": [
+          "Parser: drawing commands are now skipped when ordinates are missing. Fixes issues commands w/ missing ordindates caused in further processing and when concerting them back into strings."
+        ],
         "0.4.0": [
           "Ported almost all of ASSFoundation to Moonscript. The one thing that remains plain old Lua is the old custom class system, which is due to be replaced in a later ASSFoundation release. APIs are largely unaffected by this port.",
           "Type coercion and the associated parameters across all classes have been removed as part of the port.",
