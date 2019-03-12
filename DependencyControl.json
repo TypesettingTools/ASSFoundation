@@ -385,15 +385,15 @@
           ]
         },
         "alpha": {
-          "version": "0.4.0",
-          "released": "2019-02-16",
+          "version": "0.4.1",
+          "released": "2019-03-10",
           "default": false,
           "fileBaseUrl": "@{fileBaseUrl}/v@{version}-@{channel}/@{namespacePath}",
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "0B942999A0D583883511683AC868E74754DF6A24"
+              "sha1": "F27863B1CB628B45FC2DA6DABE1648F5603F3A0B"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -473,7 +473,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Parser/Drawing.moon",
-              "sha1": "19152F4879484E39B1F827808B94939F297927C3"
+              "sha1": "40E624776D6A3359B17DAE049083EEFD23D635BA"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -508,7 +508,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Section/Comment.moon",
-              "sha1": "9663F1D0385FEE23F54DE5C5CD3116682D2DE3C1"
+              "sha1": "94EFE768666A2CD6CD68FCF7DEBF0CCAB88643D1"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
