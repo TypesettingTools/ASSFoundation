@@ -17,8 +17,8 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation",
       "channels": {
         "release": {
-          "version": "0.4.1",
-          "released": "2019-03-10",
+          "version": "0.4.2",
+          "released": "2019-03-22",
           "default": true,
           "fileBaseUrl": "@{fileBaseUrl}/v@{version}/@{namespacePath}",
           "files": [
@@ -85,7 +85,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Draw/DrawingBase.moon",
-              "sha1": "13B5DB64129D8E9AB2030848BA16ADDF1DABAFA6"
+              "sha1": "CAB49DBB4526FDE663A6E16C4810BD3E445C3315"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -165,7 +165,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Tag/Base.moon",
-              "sha1": "1A04F4BC0B0816AE31CA2DF954A9295C75311ECB"
+              "sha1": "D6A8342CE310C44EB790FD10C814C23437A8AF61"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -175,7 +175,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Tag/ClipVect.moon",
-              "sha1": "A89DE1DAA24DC07CCE7D057B89BE3051A68725AB"
+              "sha1": "E6AB18E4168A2042123DB968E45FAD276183899D"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -385,8 +385,8 @@
           ]
         },
         "alpha": {
-          "version": "0.4.1",
-          "released": "2019-03-10",
+          "version": "0.4.2",
+          "released": "2019-03-22",
           "default": false,
           "fileBaseUrl": "@{fileBaseUrl}/v@{version}-@{channel}/@{namespacePath}",
           "files": [
@@ -453,7 +453,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Draw/DrawingBase.moon",
-              "sha1": "13B5DB64129D8E9AB2030848BA16ADDF1DABAFA6"
+              "sha1": "CAB49DBB4526FDE663A6E16C4810BD3E445C3315"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -533,7 +533,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Tag/Base.moon",
-              "sha1": "1A04F4BC0B0816AE31CA2DF954A9295C75311ECB"
+              "sha1": "D6A8342CE310C44EB790FD10C814C23437A8AF61"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -543,7 +543,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Tag/ClipVect.moon",
-              "sha1": "A89DE1DAA24DC07CCE7D057B89BE3051A68725AB"
+              "sha1": "E6AB18E4168A2042123DB968E45FAD276183899D"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -754,6 +754,9 @@
         }
       },
       "changelog": {
+        "0.4.2": [
+          "ClipVect: Yutils calculations no longer fail on vectorial clips with a scale other than 1."
+        ],
         "0.4.1": [
           "Parser: drawing commands are now skipped when ordinates are missing. Fixes issues commands w/ missing ordindates caused in further processing and when concerting them back into strings."
         ],
