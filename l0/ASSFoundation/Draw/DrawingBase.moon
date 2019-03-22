@@ -281,17 +281,21 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     @length = nil if #cnts > 0
     return cnts
 
-  DrawingBase.getTagParams = =>
+  DrawingBase.toString = =>
     cmds, c = {}, 1
     for i, cnt in ipairs @contours
       unless cnt.disabled or @toRemove and @toRemove[cnt]
         -- make disabled contours and contours subject to delayed deletion disappear
         cmds[c] = cnt\getTagParams @scale
         c += 1
+    return table.concat cmds, " "
 
+  DrawingBase.__tostring = DrawingBase.__tostring
+
+  DrawingBase.getTagParams = =>
     if @scale\equal 1
-      return table.concat cmds, " "
-    else return @scale\getTagParams!, table.concat cmds, " "
+      return DrawingBase.toString @
+    return @scale\getTagParams!, DrawingBase.toString @
 
   DrawingBase.commonOp = (method, callback, default, x, y) => -- drawing commands only have x and y in common
     for cnt in *@contours
@@ -375,7 +379,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   DrawingBase.getBounds = =>
     logger\assert Yutils, yutilsMissingMsg
-    l, t, r, b = Yutils.shape.bounding Yutils.shape.flatten @getTagParams!
+    l, t, r, b = Yutils.shape.bounding Yutils.shape.flatten DrawingBase.toString @
     return {ASS.Point(l, t), ASS.Point(r, b), w: r-l, h: b-t}
 
   DrawingBase.outline = (x, y, mode) =>
@@ -384,7 +388,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   DrawingBase.getOutline = (x, y = x, mode = "round") =>
     logger\assert Yutils, yutilsMissingMsg
-    outline = Yutils.shape.to_outline Yutils.shape.flatten(@getTagParams!), x, y, mode
+    outline = Yutils.shape.to_outline Yutils.shape.flatten(DrawingBase.toString @), x, y, mode
     return @class {str: outline}
 
   DrawingBase.removeContours = (cnts, first = 1, last, includeCW = true, includeCCW = true) =>
@@ -465,7 +469,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
     if angle % 360 != 0
       logger\assert Yutils, yutilsMissingMsg
-      shape = @getTagParams!
+      shape = DrawingBase.toString @
       bnd = {Yutils.shape.bounding shape }
 
       rotMatrix = with Yutils.math.create_matrix!

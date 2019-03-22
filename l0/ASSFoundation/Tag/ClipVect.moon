@@ -9,6 +9,9 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     }
   }
 
+  ClipVect.toString = ASS.Tag.Base.toString
+  ClipVect.__toString = ASS.Tag.Base.toString
+
   ClipVect.setInverse = (state = true) =>
     @__tag.inverse = state
     @__tag.name = state and "iclip_vect" or "clip_vect"
