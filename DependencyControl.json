@@ -25,7 +25,7 @@
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F27863B1CB628B45FC2DA6DABE1648F5603F3A0B"
+              "sha1": "49D8DD1BEC18E156F963F5011A7A0752B2B9F3C7"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -393,7 +393,7 @@
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "F27863B1CB628B45FC2DA6DABE1648F5603F3A0B"
+              "sha1": "49D8DD1BEC18E156F963F5011A7A0752B2B9F3C7"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
