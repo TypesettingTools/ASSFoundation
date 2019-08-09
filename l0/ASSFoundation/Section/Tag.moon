@@ -229,8 +229,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     return #inserted>1 and inserted or inserted[1]
 
   TagSection.insertDefaultTags = (tagNames, index) =>
-    defaultTags = @parent\getDefaultTags!\getTags tagNames
-    return @insertTags defaultTags, index
+    defaultTags = @parent\getDefaultTags!
+
+    tags = if type(tagNames) == "string"
+      defaultTags.tags[tagNames]
+    else [defaultTags.tags[tagName] for tagName in *tagNames]
+
+    return @insertTags tags, index
 
   TagSection.getString = =>
     tagStrings = {}
