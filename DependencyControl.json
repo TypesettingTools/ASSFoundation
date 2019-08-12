@@ -17,15 +17,15 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation",
       "channels": {
         "release": {
-          "version": "0.4.2",
-          "released": "2019-03-22",
+          "version": "0.4.3",
+          "released": "2019-08-12",
           "default": true,
           "fileBaseUrl": "@{fileBaseUrl}/v@{version}/@{namespacePath}",
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "49D8DD1BEC18E156F963F5011A7A0752B2B9F3C7"
+              "sha1": "6903E95F48D87CC91934CB4C8A88F4B049E04687"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -150,7 +150,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Section/Tag.moon",
-              "sha1": "4DE4B7A684733D2AF9F76C6F99159FBBAB5F0FAD"
+              "sha1": "CBF0B83FBA2060BCB5EF42CD76E08E86A2DF9749"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -385,15 +385,15 @@
           ]
         },
         "alpha": {
-          "version": "0.4.2",
-          "released": "2019-03-22",
+          "version": "0.4.3",
+          "released": "2019-08-12",
           "default": false,
           "fileBaseUrl": "@{fileBaseUrl}/v@{version}-@{channel}/@{namespacePath}",
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "49D8DD1BEC18E156F963F5011A7A0752B2B9F3C7"
+              "sha1": "6903E95F48D87CC91934CB4C8A88F4B049E04687"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -518,7 +518,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Section/Tag.moon",
-              "sha1": "4DE4B7A684733D2AF9F76C6F99159FBBAB5F0FAD"
+              "sha1": "CBF0B83FBA2060BCB5EF42CD76E08E86A2DF9749"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -754,6 +754,9 @@
         }
       },
       "changelog": {
+        "0.4.3": [
+          "TagSection: fixed insertDefaultTags() calling a method that doesn't exist on TagList"
+        ],
         "0.4.2": [
           "ClipVect: Yutils calculations no longer fail on vectorial clips with a scale other than 1."
         ],
