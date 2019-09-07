@@ -97,9 +97,9 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   TextSection.splitAtChar = (index, mutate) =>
     index = unicode.len @value + index + 1 if index < 0
-    right = ASS.Section.Text unicode.sub @value index, -1
+    right = ASS.Section.Text unicode.sub @value, index, -1
 
-    leftText = unicode.sub @value, 1, index -1
+    leftText = unicode.sub @value, 1, index - 1
     left = if mutate
       @value = leftText
       @
