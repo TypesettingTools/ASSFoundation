@@ -27,7 +27,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   Color.lerp = (a, b, t) ->
     c = a\copy!
-    return c.applyHSV (ha, sa, va) ->
+    return c\applyHSV (ha, sa, va) ->
       hb, sb, vb = b\getHSV!
       return ha + (hb - ha)*t, sa + (sb - sa)*t, va + (vb - va)*t
 
