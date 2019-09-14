@@ -17,15 +17,15 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation",
       "channels": {
         "release": {
-          "version": "0.4.3",
-          "released": "2019-08-12",
+          "version": "0.4.4",
+          "released": "2019-09-14",
           "default": true,
           "fileBaseUrl": "@{fileBaseUrl}/v@{version}/@{namespacePath}",
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "6903E95F48D87CC91934CB4C8A88F4B049E04687"
+              "sha1": "DA0A4D42569337DD519DA6A67AC0D1E1868811C0"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -155,7 +155,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Section/Text.moon",
-              "sha1": "747B5D185CA855B425F99065596210C8BE511D49"
+              "sha1": "47B73500882983AE9493265C443E15FDFD5504BB"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -180,7 +180,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Tag/Color.moon",
-              "sha1": "1879B3C7F205406C64645C83DAF554354096FB09"
+              "sha1": "28CA9FE78E71AE479A709B62BA264464C3D5E7F8"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -385,15 +385,15 @@
           ]
         },
         "alpha": {
-          "version": "0.4.3",
-          "released": "2019-08-12",
+          "version": "0.4.4",
+          "released": "2019-09-14",
           "default": false,
           "fileBaseUrl": "@{fileBaseUrl}/v@{version}-@{channel}/@{namespacePath}",
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "6903E95F48D87CC91934CB4C8A88F4B049E04687"
+              "sha1": "DA0A4D42569337DD519DA6A67AC0D1E1868811C0"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -523,7 +523,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Section/Text.moon",
-              "sha1": "747B5D185CA855B425F99065596210C8BE511D49"
+              "sha1": "47B73500882983AE9493265C443E15FDFD5504BB"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -548,7 +548,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/Tag/Color.moon",
-              "sha1": "1879B3C7F205406C64645C83DAF554354096FB09"
+              "sha1": "28CA9FE78E71AE479A709B62BA264464C3D5E7F8"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -754,6 +754,10 @@
         }
       },
       "changelog": {
+        "0.4.4": [
+          "Tag/Color: fixed a typo that broke Color.lerp()",
+          "Section/Text: fixed 2 typos that broke TextSection.splitAtChar()"
+        ],
         "0.4.3": [
           "TagSection: fixed insertDefaultTags() calling a method that doesn't exist on TagList"
         ],
