@@ -392,17 +392,20 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       return true
     return false
 
-  LineContents.cleanTags = (level = 3, mergeSect = true, defaultToKeep, tagSortOrder) =>
+  LineContents.cleanTags = (level = 3, mergeConsecutiveSections = true, defaultToKeep, tagSortOrder) =>
     -- Merge consecutive sections
-    if mergeSect
-      lastTagSection, numMerged = -1, 0
-      cb = (section, sections, i) ->
-        if i == lastTagSection + numMerged + 1
-          list.joinInto sections[lastTagSection].tags, section.tags
-          numMerged += 1
+    if mergeConsecutiveSections
+      predicate = mergeConsecutiveSections if "function" == type mergeConsecutiveSections
+      targetIndex, mergedCount = -1, 0
+      local targetSection
+      cb = (sourceSection, sections, i) ->
+        if i == targetIndex + mergedCount + 1 and (not predicate or predicate sourceSection, targetSection, sections, i)
+          list.joinInto targetSection.tags, sourceSection.tags
+          mergedCount += 1
           return false
         else
-          lastTagSection, numMerged = i, 0
+          targetIndex, mergedCount = i, 0
+          targetSection = sections[targetIndex]
 
       @callback cb, ASS.Section.Tag
 
