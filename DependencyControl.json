@@ -17,15 +17,15 @@
       "fileBaseUrl": "https://raw.githubusercontent.com/TypesettingTools/ASSFoundation",
       "channels": {
         "release": {
-          "version": "0.4.4",
-          "released": "2019-09-14",
+          "version": "0.5.0",
+          "released": "2019-10-23",
           "default": true,
           "fileBaseUrl": "@{fileBaseUrl}/v@{version}/@{namespacePath}",
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "DA0A4D42569337DD519DA6A67AC0D1E1868811C0"
+              "sha1": "F62AE41FBC4399C455DA14746CE64432E57FB24E"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -55,7 +55,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/LineContents.moon",
-              "sha1": "C67054332A72DD716EA50BD2FE5E30CC81888541"
+              "sha1": "D0FE3C41E1F0176AA8166DB73725D64281254E86"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -385,15 +385,15 @@
           ]
         },
         "alpha": {
-          "version": "0.4.4",
-          "released": "2019-09-14",
+          "version": "0.5.0",
+          "released": "2019-10-23",
           "default": false,
           "fileBaseUrl": "@{fileBaseUrl}/v@{version}-@{channel}/@{namespacePath}",
           "files": [
             {
               "name": ".moon",
               "url": "@{fileBaseUrl}@{fileName}",
-              "sha1": "DA0A4D42569337DD519DA6A67AC0D1E1868811C0"
+              "sha1": "F62AE41FBC4399C455DA14746CE64432E57FB24E"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -423,7 +423,7 @@
             {
               "url": "@{fileBaseUrl}@{fileName}",
               "name": "/LineContents.moon",
-              "sha1": "C67054332A72DD716EA50BD2FE5E30CC81888541"
+              "sha1": "D0FE3C41E1F0176AA8166DB73725D64281254E86"
             },
             {
               "url": "@{fileBaseUrl}@{fileName}",
@@ -754,6 +754,9 @@
         }
       },
       "changelog": {
+        "0.5.0": [
+          "LineContents.cleanTags now takes an optional predicate to determine when to merge consecutive tag sections"
+        ],
         "0.4.4": [
           "Tag/Color: fixed a typo that broke Color.lerp()",
           "Section/Text: fixed 2 typos that broke TextSection.splitAtChar()"
