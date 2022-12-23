@@ -1,6 +1,7 @@
 return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollection, Line, logger, SubInspector, Yutils) ->
   min, max = math.min, math.max
   {:list, :math, :string, :table, :unicode, :util, :re } = Functional
+  time, frame = aegisub.ms_from_frame, aegisub.frame_from_ms
 
   msgs = {
     new: {
@@ -826,5 +827,75 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     @sections = reversed
     @updateRefs!
     return @cleanTags 4
+
+  LineContents.line2fbf = (cleanLevel = 3) =>
+    line, effTags = @line, (@getEffectiveTags -1, true, true, false).tags
+    startTime = line.start_time
+    startFrame = line.startFrame
+    endFrame = line.endFrame
+    offset = (time(startFrame+1)-time(startFrame))/2
+
+    -- Tag Collection
+    local fade, fadeExists, transformExists
+    -- Fade
+    for tag in *{"fade_simple", "fade"}
+      fade = @getTags(tag, 1)[1] unless fade
+      fadeExists = true if fade
+    -- Transform
+    transforms = @getTags "transform"
+    transformExists = true if #transforms != 0
+
+    -- Fbfing
+    fbfLines, fbfCount = {}, 1
+    for frame = startFrame, endFrame-1, 1
+      newLine = Line @line, @line.parentCollection
+      newLine.start_time = time(frame)
+      newLine.end_time = time(frame + 1)
+      data = ASS\parse newLine
+      now = time(frame) + offset - startTime
+
+      -- Move
+      move = effTags.move
+      if move and not move.startPos\equal move.endPos
+        t1, t2 = move.startTime.value, move.endTime.value
+        t1 or= 0
+        t2 = t2 == 0 and line.duration or t2 == nil and line.duration or t2
+        fac = now < t1 and 0 or now >= t2 and 1 or (now - t1)/(t2 - t1) 
+        finalPos = move.startPos\lerp(move.endPos, fac)
+        data\removeTags "move"
+        data\replaceTags {ASS\createTag "position", finalPos}
+
+      -- Transform
+      if transformExists
+        currValue = {}
+        data\removeTags "transform"
+        for tr in *transforms
+          t1 = tr.startTime\get!
+          t2 = tr.endTime\get!
+          t2 = t2 == 0 and line.duration or t2
+          accel = tr.accel\get!
+          fac = now < t1 and 0 or now >= t2 and 1 or (now - t1) ^ accel / (t2 - t1) ^ accel
+          for tag in *tr.tags\getTags!
+            tagname = tag.__tag.name
+            currValue[tagname] or= effTags[tagname]
+            local finalValue
+            if tag.class == ASS.Tag.Color
+              finalValue = currValue[tagname]\lerpRGB tag, fac
+            else
+              finalValue = currValue[tagname]\lerp tag, fac
+            data\replaceTags finalValue
+            currValue[tagname] = finalValue
+
+      -- Fade
+      if fadeExists
+        alpha = data\getTags("alpha", 1)[1]
+        currAlpha = fade\interpolate(now, line.duration, alpha)
+        data\removeTags {"fade", "fade_simple"}
+        data\replaceTags {ASS\createTag 'alpha', currAlpha}
+
+      data\cleanTags cleanLevel
+      data\commit!
+      fbfLines[fbfCount], fbfCount = newLine, fbfCount+1
+    return fbfLines
 
   return LineContents
