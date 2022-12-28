@@ -103,13 +103,15 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
                   junk\append prm, " "
                   -- make sure to read another parameter for this command
                   -- to replace the one we just gave up
-                  skippedOrdCnt, prmCnt += 1
+                  skippedOrdCnt += 1
+                  prmCnt += 1
                 else
                   -- move junk trailing the y ordinate into a comment section
                   prms[p-skippedOrdCnt] = tonumber ord
                   if not prms[p-skippedOrdCnt]
                     junk\append prm, " "
-                    skippedOrdCnt, prmCnt += 1
+                    skippedOrdCnt += 1
+                    prmCnt += 1
                   else junk\append fragment, " "
                 p += 1
 

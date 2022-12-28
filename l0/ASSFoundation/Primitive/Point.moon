@@ -25,7 +25,9 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   Point.getTagParams = (precision = @__tag.precision) =>
     x, y = @x, @y
-    x, y %= @__tag.mod if @__tag.mod
+    if @__tag.mod
+      x %= @__tag.mod
+      y %= @__tag.mod
 
     return round(x, precision), round(y, precision)
 

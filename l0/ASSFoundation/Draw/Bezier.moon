@@ -47,7 +47,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
   DrawBezier.getTagParams = (precision = @__tag.precision) =>
     x1, y1, x2, y2, x3, y3 = @p1.x, @p1.y, @p2.x, @p2.y, @p3.x, @p3.y
-    x1, x2, x3, y1, y2, y3 %= @__tag.mod if @__tag.mod
+    if @__tag.mod
+      x1 %= @__tag.mod
+      x2 %= @__tag.mod
+      x2 %= @__tag.mod
+      y1 %= @__tag.mod
+      y2 %= @__tag.mod
+      y2 %= @__tag.mod
 
     return round(x1, precision), round(y1, precision), round(x2, precision), round(y2, precision), round(x3, precision), round(y3, precision)
 
