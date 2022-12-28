@@ -38,7 +38,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
 
         -- close command closes a contour
         if cmdType == Close
-          contour[d] = Close!
+          contour[d] = Close {}
 
         -- There are two ways for a new drawing command to start
         -- (a) a new command is explicitely denoted by its identifier m, l, b, etc
