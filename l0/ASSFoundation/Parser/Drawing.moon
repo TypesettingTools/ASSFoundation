@@ -58,6 +58,13 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
               p += 1
               continue
 
+            -- skip repeats of the same drawing command after ordinate pairs
+            if (p - skippedOrdCnt) % 2 == 1 and cmdMap[prm] == prevCmdType
+              p += 1
+              skippedOrdCnt += 1
+              prmCnt += 1
+              continue
+
             -- process ordinates that failed to cast to a number
 
             -- either the command or the the drawing is truncated
