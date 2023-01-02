@@ -31,4 +31,12 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
       hb, sb, vb = b\getHSV!
       return ha + (hb - ha)*t, sa + (sb - sa)*t, va + (vb - va)*t
 
+  Color.lerpRGB = (a, b, t) ->
+    c = a\copy!
+    ba, ga, ra = a\getTagParams!
+    bb, gb, rb = b\getTagParams!
+    with c
+      .r.value, .g.value, .b.value = ra + (rb - ra)*t, ga + (gb - ga)*t, ba + (bb - ba)*t
+    return c
+
   return Color

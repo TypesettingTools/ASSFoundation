@@ -38,6 +38,34 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     @checkPositive inDuration, outDuration
     return @inAlpha\getTagParams!, @midAlpha\getTagParams!, @outAlpha\getTagParams!, t1, math.max(t2, t1), t3, math.max(t4, t3)
 
+  --- Interpolate the fade for any given time
+  -- @param time time at which fade must be interpolated of
+  -- @param lineDuration duration of the current line
+  -- @param alpha alpha in the first tag block if it exists
+  -- @return the interpolated alpha value
+  Fade.interpolate = (time, lineDuration, alpha) =>
+    local a1, a2, a3, t1, t2, t3 , t4, finalAlpha
+    if @__tag.name == "fade_simple"
+      a1, a2, a3, t1, t4  = 255, 0, 255, 0, lineDuration
+      t2, t3 = @inDuration\getTagParams!, @outDuration\getTagParams!
+      t3 = t4 - t3
+    else
+      a1, a2, a3, t1, t2, t3 , t4 = @getTagParams!
+
+    a2 = alpha if alpha
+    currAlpha = a3
+    if time < t1
+      currAlpha = a1
+    elseif time < t2
+      cf = (time - t1)/(t2 - t1)
+      currAlpha = a1 * (1 - cf) + a2 * cf
+    elseif time < t3
+      currAlpha = a2
+    elseif time < t4
+      cf = (time - t3)/(t4 - t3)
+      currAlpha = a2 * (1 - cf)+ a3 * cf
+    return currAlpha
+
   -- TODO: add method to convert between fades by supplying a line duration
 
   return Fade

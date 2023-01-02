@@ -34,6 +34,7 @@ return (ASS, ASSFInst, yutilsMissingMsg, createASSClass, Functional, LineCollect
     c = a\copy!
     c.topLeft = a.topLeft\lerp b.topLeft, t
     c.bottomRight = a.bottomRight\lerp b.bottomRight, t
+    return c
 
   ClipRect.setInverse = (state = true) =>
     @__tag.inverse = state
