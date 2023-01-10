@@ -611,6 +611,7 @@ for name, tag in pairs ASS.tagMap
   -- populate friendly name <-> tag name conversion tables
   if tag.friendlyName
     ASS.toFriendlyName[name], ASS.toTagName[tag.friendlyName] = tag.friendlyName, name
+    ASS.toFriendlyName[tag.friendlyName], ASS.toTagName[name] = tag.friendlyName, name
   -- fill tag names table
   tagType = ASS.tagNames[tag.type]
   if not tagType
